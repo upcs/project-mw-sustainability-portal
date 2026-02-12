@@ -1,22 +1,29 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="stylesheets/styles.css" />
+    <link rel="stylesheet" href="stylesheets/homepage.css" />
     <script src="javascripts/getdata.js"></script>
   </head>
   <body>
-      
-    <div class="container">  
-      <h1>MW Sustainablity</h1>
-      <label for="user">Enter Username: (user)</label><br>
-      <input type="text" id="user" name="user"><br><br>
-      <label for="pass">Enter Password: (pass)</label><br>
-      <input type="text" id="pass" name="pass"><br><br>
-      <button type="button" id="submitButton" onclick=takeinfo() value="Submit">Submit</button>
-    </div>
-    <button type="button" id="change" onclick=changepage()>Change</button>
-    <h2 id="check1"></h2>
-    <h2 id="check2"></h2>
+    <button class="rounded-square-button" onclick="window.location.href='login.html'">ADMIN LOGIN</button>
+    <img src="/images/MWSustainabilityProjects_Products3.jpeg"> 
+    <h1>Malawi Sustainablity Development</h1>
+    <hr class="solid">
+    <h2>Nkhorongo Community Day Secondary School</h2>
 
+    <!--Make 3 circle buttons in a row!-->
+    <table>
+      <tr>
+        <td>
+          <button class="circle-button" onclick="window.location.href='mission.html'">MISSION</button>
+        </td>
+        <td>
+          <button class="circle-button" onclick="window.location.href='projects.html'">PROJECTS</button>
+        </td>
+        <td>
+          <button class="circle-button" onclick="window.location.href='contactpage.html'">CONTACT</button>
+        </td>
+      </tr>
+    </table>
   </body>
 </html>
