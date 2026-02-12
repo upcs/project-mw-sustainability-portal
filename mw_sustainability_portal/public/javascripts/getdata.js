@@ -21,3 +21,4 @@ function changepage(){
     let newWindow = window.open("projects.html", "_self");
 }
 
+
