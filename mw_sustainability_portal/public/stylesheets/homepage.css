@@ -1,21 +1,10 @@
-body{
-  padding: 25px;
-}
-.title {
-	color: #cafdff;
-}
+/**
+*
+* CSS Stylesheet for homepage
+*
+**/
 body {
   background-color: #94c9b9;
-}
-
-h1 {
-  text-align: center;
-  color: #4c665f;
-}
-
-h2 {
-  text-align: center;
-  color: #cafdff;
 }
 
 img {
@@ -23,11 +12,16 @@ img {
   margin: auto;
 }
 
-.container {
-text-align: center;
+h1 {
+  text-align: center;
+  color: #4c665f;
+  font-size: 48px;
 }
-input {
-display: inline-block;
+
+h2 {
+  text-align: center;
+  color: #cafdff;
+  font-size: 32px;
 }
 
 .circle-button {
@@ -52,11 +46,28 @@ display: inline-block;
   transition: all 0.2s ease;
   }
 
-  .circle-button:hover {
+.circle-button:hover {
   background-color: #529c9f; /* Darker on hover */
 }  
 
-/* Solid border */
+.rounded-square-button {
+  width: 100px;
+  height: 50px;
+
+  border-radius: 10%;
+}
+
+/* Line divider */
 hr.solid {
   border-top: 3px solid #000000;
+}
+
+/*Space out buttons so they're not kissing.*/
+table {
+  margin:auto;
+}
+
+td{
+  padding-left: 50px;
+  padding-right: 50px;
 }
