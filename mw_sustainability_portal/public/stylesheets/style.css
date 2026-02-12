@@ -12,3 +12,7 @@ text-align: center;
 input {
 display: inline-block;
 }
+
+h2 {
+  text-align: center;
+}
