@@ -1,8 +1,18 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+body{
+  padding: 25px;
 }
 
-a {
-  color: #00B7FF;
+.title {
+	color: #cafdff;
+}
+
+.container {
+text-align: center;
+}
+input {
+display: inline-block;
+}
+
+h2 {
+  text-align: center;
 }

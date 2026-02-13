@@ -15,7 +15,9 @@ function takeinfo() {
         document.getElementById("check2").innerHTML="BAD PASS";
     }
 }
+
 function changepage(){
     let newWindow = window.open("projects.html", "_self");
 }
+
 
