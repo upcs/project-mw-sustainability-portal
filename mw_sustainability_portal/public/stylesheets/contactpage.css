@@ -30,6 +30,12 @@ h3 {
   font-size: 16px;
 }
 
+p{
+  text-align: center;
+  color: #2a3f39;
+  font-weight: bold;
+}
+
 .circle-button {
   /* Set equal width and height for a perfect circle */
   width: 100px;
@@ -76,4 +82,16 @@ table {
 td{
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.title {
+	color: #cafdff;
+}
+
+.container {
+text-align: center;
+}
+
+input {
+display: inline-block;
 }
