@@ -15,6 +15,7 @@ function takeinfo() {
         document.getElementById("check2").innerHTML="BAD PASS";
     }
 }
+
 function changepage(){
     //var myWindow = window.open("", "_self");
     //myWindow.document.write(project.html, "project", "_self");

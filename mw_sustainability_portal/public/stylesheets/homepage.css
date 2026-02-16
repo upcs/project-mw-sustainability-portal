@@ -53,8 +53,14 @@ h2 {
 .rounded-square-button {
   width: 100px;
   height: 50px;
-
   border-radius: 10%;
+  float: right;
+
+  background-color: #94ebee;
+}
+
+.rounded-square-button:hover {
+  background-color: #529c9f;
 }
 
 /* Line divider */
