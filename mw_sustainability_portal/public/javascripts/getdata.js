@@ -20,4 +20,8 @@ function changepage(){
     let newWindow = window.open("projects.html", "_self");
 }
 
+function changetoproject(){
+    $.get('http://localhost:3000/projects', function(status){
+    })
+}
 
