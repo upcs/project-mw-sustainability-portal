@@ -21,7 +21,12 @@ function changepage(){
 }
 
 function changetoproject(){
-    $.get('http://localhost:3000/projects', function(status){
-    })
+    alert("Clicked1");
+    $.get('http://localhost:3000/projects', function(data, status) {
+        alert("Data: " + data + "\nStatus: " + status);
+    });
+    
+    //$.get('http://localhost:3000/projects', function(status){})
+    
 }
 
