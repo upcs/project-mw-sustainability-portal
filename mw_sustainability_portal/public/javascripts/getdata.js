@@ -23,3 +23,29 @@ function changepage(){
 }
 
 
+async function getProjects(){
+    const response = await fetch('/projects');
+    const data = await response.text();
+    document.body.innerHTML = data;
+}
+
+async function getProjectsPost(){
+    try {
+        const response = await fetch('projects', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.text();
+    
+        document.body.innerHTML = data;
+
+    } catch (error) {
+        //console.error('Error fetching data:', error);
+    }
+}
