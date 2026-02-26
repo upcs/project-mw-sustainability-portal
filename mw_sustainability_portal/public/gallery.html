@@ -1,0 +1,181 @@
+<!-- Landon Harrison, version 1 -->
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+<style>
+	body{ 
+		margin: 0;
+		padding: 0; 
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.rows {
+		display: block;
+	}
+	.btn-open-popup:hover {
+		background-color: #4caf50;
+	}
+	.overlay-container {
+		display: none;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: rgba(0,0,0,0.6);
+		justify-content: center;
+		align-items: center;
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+	.popup-box {
+		background: #fff;
+		padding: 24px;
+		border-radius: 12px;
+		box-shadow: 0 0 20px green;
+		width: 320px;
+		text-align: center;
+		opacity: 0;
+		transform: scale(0.8);
+		animation: fadeInUp 0.5s ease-out forwards;
+	}
+	.form-container {
+		display: flex;
+		flex-direction: column;
+	}
+	.form-label {
+		margin-bottom: 10px;
+		font-size: 16px;
+		color: red;
+		text-align: left;
+	}
+	.form-input {
+		padding: 10px;
+		margin-bottom: 20px;
+		border: 1px solid #ccc;
+		border-radius: 8px;
+	}
+	.btn-submit,
+	.btn-close-popup {
+		padding: 12px 24px;
+		border: none;
+		cursor: pointer;
+		transition: background-color 0.3s ease, color 0.3s ease; 
+	}
+	.btn-submit,
+	.btn-close-popup{
+		background-color: blue;
+		color: #fff;
+	}
+
+	.btn-submit:hover,
+	.btn-close-popup:hover {
+		background-color: yellow;
+	}
+	
+	@keyframes fadeInUp {
+		from {
+			opacity: 0;
+			transform: translateY(20px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0)
+		}
+	}
+	
+	.overlay-container.show {
+		display: flex;
+		opacity: 1;
+	}
+</style>
+
+
+<script>
+
+var imgArray = [];
+
+//puts the url of the image in the array of images
+function takeUrl(){
+		
+		let img = new Image();
+		
+		if(imgArray.length == 0){ 
+			img.src = document.getElementById('mainImage').src;
+			imgArray.push(img); }
+	
+		img = new Image();
+		img.src = document.getElementById('URLinput').value;
+		imgArray.push(img);
+	
+	
+}
+
+function nextImage(){
+	var currImg = document.getElementById('mainImage');
+	for (var i = 0; i < imgArray.length; i++){
+		if(i == imgArray.length-1){
+				document.getElementById('mainImage').src = imgArray[0].src; break; }
+		if(imgArray[i].src == currImg.src){
+			document.getElementById('mainImage').src = imgArray[i+1].src; break;}
+	}					
+			
+}
+
+function prevImage(){
+	var currImg = document.getElementById('mainImage');
+	for (var i = 0; i < imgArray.length; i++){
+		if(imgArray[i].src == currImg.src){
+			if(i == 0){
+				document.getElementById('mainImage').src = imgArray[imgArray.length-1].src; break; }
+			document.getElementById('mainImage').src = imgArray[i-1].src; break;}
+	}					
+			
+}
+
+//opens a text box to input a new url for image 
+function imgPopup(){
+	const overlay = document.getElementById('popupOverlay');
+	overlay.classList.toggle('show');
+}
+
+
+
+</script>
+</head>
+
+<div class:"rows">
+	<div id="splash">
+		<img src="https://www.momontimeout.com/wp-content/uploads/2023/09/no-bake-peanut-butter-cheesecake-square.jpeg" alt="hello?" id="mainImage" width="300" height="350">
+	</div>
+	<a href="#" class="previousround"onclick="prevImage()">&#8249;</a> 
+	<a href="#" class="nextround" onclick="nextImage()">&#8250;</a>
+
+
+
+	<button class="btn-open-popup" onclick="imgPopup()">add image +</button>
+
+	<div id="popupOverlay" class="overlay-container">
+		<div class = "popup-box">
+			<h2>Image input</h2>
+			<form class ="form-container">
+				<label class= "form-label"
+				for="name">
+			Input image URL:</label>
+			<input class="form-input" type="text"
+			placeholder="URL here" id ="URLinput" 
+			name="URLinput" required>
+			<button class="btn-submit"
+			type="button" onclick="takeUrl();imgPopup();"> Add Image </button>
+		</form>
+		<button class="btn-close-popup"
+		onclick="imgPopup()">Close</button>
+		</div>
+	</div>
+</div>
+
+</html>
