@@ -1,5 +1,4 @@
 login = function(event) {
-    alert("login");
     let user=document.getElementById("user").value;
     let password=document.getElementById("pass").value;
     const payload = { 
@@ -15,17 +14,16 @@ login = function(event) {
         })
         .done(function (response) {
             const obj = (response);
-            alert("success");
+            alert("Login Success");
         })
         .fail(function (xhr, status, error) {
-            alert("Error:", error);
+            alert("Invalid Login", error);
         });
 }
 
 
 
 register = function(event) {
-    alert("poster");
     let user=document.getElementById("user").value;
     let password=document.getElementById("pass").value;
     const payload = { 
@@ -45,7 +43,7 @@ register = function(event) {
             alert("success");
         })
         .fail(function (xhr, status, error) {
-            alert("Error:", error);
+            alert("Unavailable Username", error);
         });
 }
 
