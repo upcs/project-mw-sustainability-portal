@@ -67,6 +67,7 @@ p{
 .rounded-square-button {
   width: 100px;
   height: 50px;
+  float: right;
 
   border-radius: 10%;
 }
