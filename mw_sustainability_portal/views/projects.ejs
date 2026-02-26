@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Projects</title>
+</head>
+<body>
+
+<p>Welcome, sustainability enthusiast</p>
+    <table>
+        <thead>
+            <tr>
+                <th>Project Name</th>
+                <th>Team</th>
+            </tr>
+        </thead>
+        <tbody>
+          <% records.forEach(function(record) { %>
+            <tr>
+              <td><%= record.name %></td>
+              <td><%= record.team %></td>
+            </tr>
+        <% }); %>
+        </tbody>
+    </table>
+
+</body>
+</html>
