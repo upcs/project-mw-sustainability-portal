@@ -4,7 +4,9 @@
 *
 **/
 body {
-  background-color: #94c9b9;
+  background-color: #44AA99;
+  background-image: url('../images/semicirclebg2.png');
+  background-repeat: no-repeat;
 }
 
 img {
@@ -14,7 +16,7 @@ img {
 
 h1 {
   text-align: center;
-  color: #4c665f;
+  color: #FFEE98;
   font-size: 48px;
 }
 
@@ -28,6 +30,12 @@ h3 {
   text-align: center;
   color: #cafdff;
   font-size: 16px;
+}
+
+p{
+  text-align: center;
+  color: #cafdff;
+  font-weight: bold;
 }
 
 .circle-button {
@@ -76,4 +84,16 @@ table {
 td{
   padding-left: 10px;
   padding-right: 10px;
+}
+
+.title {
+	color: #cafdff;
+}
+
+.container {
+text-align: center;
+}
+
+input {
+display: inline-block;
 }
