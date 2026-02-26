@@ -1,4 +1,65 @@
-function takeinfo() {
+login = function(event) {
+    alert("login");
+    let user=document.getElementById("user").value;
+    let password=document.getElementById("pass").value;
+    const payload = { 
+        username: user,
+        password: password,
+        role: `admin`
+    }
+    $.post({ //takes json file from
+            url: "http://localhost:3000/authRoutes/login", // Change to your API endpoint
+            data: JSON.stringify(payload),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
+        })
+        .done(function (response) {
+            const obj = (response);
+            alert("success");
+        })
+        .fail(function (xhr, status, error) {
+            alert("Error:", error);
+        });
+}
+
+
+
+register = function(event) {
+    alert("poster");
+    let user=document.getElementById("user").value;
+    let password=document.getElementById("pass").value;
+    const payload = { 
+        username: user,
+        password: password,
+        role: `admin`
+    }
+    
+    $.post({ //takes json file from
+            url: "http://localhost:3000/authRoutes/register", // Change to your API endpoint
+            data: JSON.stringify(payload),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json"
+        })
+        .done(function (response) {
+            const obj = (response);
+            alert("success");
+        })
+        .fail(function (xhr, status, error) {
+            alert("Error:", error);
+        });
+}
+
+$(function() { //event handler
+    $("#submitButton1").click(login)
+});
+
+$(function() { //event handler
+    $("#submitButton2").click(register)
+});
+
+
+
+/*function takeinfo() {
     let user=document.getElementById("user").value;
     let password=document.getElementById("pass").value;
     if (user == "user") {
@@ -14,19 +75,7 @@ function takeinfo() {
     else {
         document.getElementById("check2").innerHTML="BAD PASS";
     }
-}
+}*/
 
-function changepage(){
-    let newWindow = window.open("projects.html", "_self");
-}
 
-function changetoproject(){
-    alert("Clicked1");
-    $.get('http://localhost:3000/projects', function(data, status) {
-        alert("Data: " + data + "\nStatus: " + status);
-    });
-    
-    //$.get('http://localhost:3000/projects', function(status){})
-    
-}
 
