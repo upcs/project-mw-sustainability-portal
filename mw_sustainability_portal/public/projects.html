@@ -1,11 +1,100 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <link rel="stylesheet" href="/stylesheets/style.css" />
-        <script src="javascripts/getdata.js"></script>
+        <link rel="stylesheet" href="stylesheets/contactpage.css" />
+        <style>
+            .image-container img {
+                width: 300px;
+                height: 300px;
+                overflow: hidden;
+                object-fit: cover; /* Scales the image to cover the container while preserving aspect ratio */
+                object-position: center; /* Centers the image within the container (default) */
+            }
+            .projbutton
+            {
+                border-radius: 5%;
+                font-size: 20px;
+                padding: 20px;
+                font-weight: bold;
+                color: #FFEE98;
+                background-color: rgb(74, 74, 147);
+                margin: 30px;
+            }
+            .bob
+            {
+                /* center button for each project */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            figcaption
+            {
+                text-align: center;
+                font-weight: bold;
+                padding-top: 25px;
+                font-size: 20px;
+                color: #cafdff;
+            }
+        </style>
     </head>
 
     <body>
+        <button onclick="window.location.href='index.html'">Home</button>
+        <h1>PROJECTS</h1>
+        <h2>These are all of our projects!</h2>
+
+         <div class="gallery">
+            <table>
+                <tr>
+                    <td>
+                        <figure class="bob">
+                            <div class="image-container">
+                                <img src="images/WhatsApp Image 2026-02-04 at 23.13.03.jpeg" alt="Description of Image 1">
+                            </div>
+                            <figcaption>Manure Production</figcaption>
+                            <figcaption>Brief project description goes here.</figcaption>
+                            <button class="projbutton" onclick="window.location.href='index.html'">View Project</button>
+                        </figure>
+                    </td>
+                    <td>
+                        <figure class="bob">
+                            <div class="image-container">
+                                <img src="images/MWSustainabilityProjects_Products1.jpeg" alt="Description of Image 1">
+                            </div>
+                            <figcaption>Agriculture</figcaption>
+                            <figcaption>Brief project description goes here.</figcaption>
+                            <button class="projbutton" onclick="window.location.href='index.html'">View Project</button>
+                        </figure>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <figure class="bob">
+                            <div class="image-container">
+                                <img src="images/projectpicplaceholder.png" alt="Description of Image 1">
+                            </div>
+                            <figcaption>Cleaning Our School</figcaption>
+                            <figcaption>Brief project description goes here.</figcaption>
+                            <button class="projbutton" onclick="window.location.href='index.html'">View Project</button>
+                        </figure>
+                    </td>
+                    <td>
+                        <figure class="bob">
+                            <div class="image-container">
+                                <img src="images/projectpicplaceholder.png" alt="Description of Image 1">
+                            </div>
+                            <figcaption>Planting Trees</figcaption>
+                            <figcaption>Brief project description goes here.</figcaption>
+                            <button class="projbutton" onclick="window.location.href='index.html'">View Project</button>
+                        </figure>
+                    </td>
+                </tr>
+            </table>
+         </div>
+        <link rel="stylesheet" href="/stylesheets/style.css" />
+        <script src="javascripts/getdata.js"></script>
+   
         <h1>These are all of our projects!</h1>
         <div id="content"></div>
         <h2> These are no project at this time, please come back later or refresh the page</h2>
@@ -14,4 +103,5 @@
         getProjectsPost();
     </script>
     </body>
+
 </html>
