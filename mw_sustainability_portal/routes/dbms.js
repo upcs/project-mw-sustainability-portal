@@ -9,7 +9,7 @@
 exports.version = '0.0.1';
 
 
-var mysql = require('mysql'),
+var mysql = require('mysql2'),
     async = require('async');
 
 var host = "localhost:3306";    //pdx0mysql00 IP address
