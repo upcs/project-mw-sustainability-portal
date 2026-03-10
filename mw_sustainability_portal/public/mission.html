@@ -6,8 +6,11 @@
         <style>
             img 
             {
-                max-width: 200px; /* Ensures the image doesn't exceed its container's width */
-                height: auto;    /* Maintains the image's aspect ratio */
+                max-width: 250px; /* Ensures the image doesn't exceed its container's width */
+                height: 250px;    /* Maintains the image's aspect ratio */
+                overflow: hidden;
+                object-fit: cover; /* Scales the image to cover the container while preserving aspect ratio */
+                object-position: center;
             }
             figcaption
             {
