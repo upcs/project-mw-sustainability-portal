@@ -25,7 +25,8 @@ router.post('/', function(req, res, next) {
             if (results[0].pass == pass)
             {
                 console.log("good pass!");
-                
+                //render admin view
+                res.render('admin_view');
             }
             else
             {
