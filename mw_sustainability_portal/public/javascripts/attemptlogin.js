@@ -17,6 +17,8 @@
 // Client side fetch request for POST on server — make this a login
 async function trylogin() {
     
+    console.log("starting trylogin");
+
     //store the entered user and pass
     let user=document.getElementById("user").value;
     let password=document.getElementById("pass").value;
