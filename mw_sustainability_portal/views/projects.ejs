@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
 <head>
     <title>Projects</title>
@@ -14,10 +15,10 @@
             </tr>
         </thead>
         <tbody>
-          <% records.forEach(function(record) { %>
+          <% records1.forEach(function(splitted[0]) { %>
             <tr>
-              <td><%= record.name %></td>
-              <td><%= record.team %></td>
+              <td><%= splitted[0].name %></td>
+              <td><%= splitted[0].team %></td>
             </tr>
         <% }); %>
         </tbody>
@@ -25,3 +26,87 @@
 
 </body>
 </html>
+
+
+<!--
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="stylesheets/contactpage.css" />
+        <style>
+            .image-container img {
+                width: 300px;
+                height: 300px;
+                overflow: hidden;
+                object-fit: cover; /* Scales the image to cover the container while preserving aspect ratio */
+                object-position: center; /* Centers the image within the container (default) */
+            }
+            .projbutton
+            {
+                border-radius: 5%;
+                font-size: 20px;
+                padding: 20px;
+                font-weight: bold;
+                color: #FFEE98;
+                background-color: rgb(74, 74, 147);
+                margin: 30px;
+            }
+            .bob
+            {
+                /* center button for each project */
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            figcaption
+            {
+                text-align: center;
+                font-weight: bold;
+                padding-top: 25px;
+                font-size: 20px;
+                color: #cafdff;
+            }
+        </style>
+    </head>
+
+    <body>
+        <button onclick="window.location.href='index.html'">Home</button>
+        <h1>PROJECTS</h1>
+
+        <% records1.forEach(function(splitted) { %>
+            <tr>
+              <td><%= splitted.name %></td>
+              <td><%= splitted.team %></td>
+            </tr>
+
+         <div class="gallery">
+            <table>
+                <tr>
+                    <td>
+                        <figure class="bob">
+                            <div class="image-container">
+                                <img src="../public/images/manure_production/banner.jpeg" alt="Description of Image 1">
+                            </div>
+                            <figcaption>Manure Production</figcaption>
+                            <figcaption>Brief project description goes here.</figcaption>
+                            <button class="projbutton" onclick="window.location.href='projectpageexample.html'">View Project</button>
+                        </figure>
+                    </td>
+                    <td>
+                        <figure class="bob">
+                            <div class="image-container">
+                                <img src="images/MWSustainabilityProjects_Products1.jpeg" alt="Description of Image 1">
+                            </div>
+                            <figcaption>Agriculture</figcaption>
+                            <figcaption>Brief project description goes here.</figcaption>
+                            <button class="projbutton" onclick="window.location.href='projectpageexample.html'">View Project</button>
+                        </figure>
+                    </td>
+                </tr>
+              
+            </table>
+         </div>
+    </body>
+</html>
+-->
