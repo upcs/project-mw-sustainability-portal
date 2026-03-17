@@ -15,7 +15,8 @@
 // }
 
 // Client side fetch request for POST on server — make this a login
-async function trylogin() {
+//async function trylogin() {
+function trylogin() {
 
 
     document.getElementById("check1").innerHTML="attmepting login";
@@ -24,38 +25,38 @@ async function trylogin() {
     
     console.log("starting trylogin");
 
-    //store the entered user and pass
-    let user=document.getElementById("user").value;
-    let password=document.getElementById("pass").value;
-    //alert(password)
-    let hashpass = hash(password, 5); //placeholder method
+    // //store the entered user and pass
+    // let user=document.getElementById("user").value;
+    // let password=document.getElementById("pass").value;
+    // //alert(password)
+    // let hashpass = hash(password, 5); //placeholder method
 
-    console.log("starting try catch");
-    alert("starting try catch");
+    // console.log("starting try catch");
+    // alert("starting try catch");
 
-    const postData = {user: user, pass: password};
-    const jsonBody = JSON.stringify(postData);
-    //change month to numbers here
-    //Client-side post handling, use full url to access orders.js
-    try {
-    const response = await fetch('login', {
-    method: 'POST',
-    headers: {
-    'Content-Type': 'application/json'
-    },
-        body : jsonBody,
-    });
+    // const postData = {user: user, pass: password};
+    // const jsonBody = JSON.stringify(postData);
+    // //change month to numbers here
+    // //Client-side post handling, use full url to access orders.js
+    // try {
+    // const response = await fetch('login', {
+    // method: 'POST',
+    // headers: {
+    // 'Content-Type': 'application/json'
+    // },
+    //     body : jsonBody,
+    // });
 
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    const data = await response.text();
-    document.body.innerHTML = data;
+    // if (!response.ok) {
+    //     throw new Error(`HTTP error! status: ${response.status}`);
+    // }
+    // const data = await response.text();
+    // document.body.innerHTML = data;
 
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        alert('Error fetching data:', error);
-    }
+    // } catch (error) {
+    //     console.error('Error fetching data:', error);
+    //     alert('Error fetching data:', error);
+    // }
 }
 
 
