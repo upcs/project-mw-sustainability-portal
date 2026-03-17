@@ -17,7 +17,7 @@
 // Client side fetch request for POST on server — make this a login
 async function trylogin() {
 
-    alert("attempting login")
+    alert("attempting login");
     
     console.log("starting trylogin");
 
@@ -28,6 +28,7 @@ async function trylogin() {
     let hashpass = hash(password, 5); //placeholder method
 
     console.log("starting try catch");
+    alert("starting try catch");
 
     const postData = {user: user, pass: password};
     const jsonBody = JSON.stringify(postData);
@@ -50,6 +51,7 @@ async function trylogin() {
 
     } catch (error) {
         console.error('Error fetching data:', error);
+        alert('Error fetching data:', error);
     }
 }
 
