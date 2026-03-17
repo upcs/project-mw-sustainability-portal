@@ -16,6 +16,8 @@
 
 // Client side fetch request for POST on server — make this a login
 async function trylogin() {
+
+    alert("attempting login")
     
     console.log("starting trylogin");
 
