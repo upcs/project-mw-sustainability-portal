@@ -1,3 +1,4 @@
+//const bcrypt = require("bscryptjs");
 /**
  * 3/16/26
  * collect user and pass entered when the user clicks login
@@ -28,8 +29,7 @@ async function trylogin() {
     let user=document.getElementById("user").value;
     let password=document.getElementById("pass").value;
     //alert(password)
-    let hashpass = hash(password, 5); //placeholder method
-
+    let hashpass = hash(password, 10); //placeholder method
     console.log("starting try catch");
 
     const postData = {user: user, pass: password};
@@ -47,7 +47,10 @@ async function trylogin() {
 
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
+        
     }
+    alert("repsonse okay");
+    
     const data = await response.text();
     document.body.innerHTML = data;
 
