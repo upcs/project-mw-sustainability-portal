@@ -9,6 +9,7 @@ var app = express();
 
 router.post('/', function(req, res, next) {
     console.log('Pulling data from DB');
+    alert("made it to login js")
 
     let user = req.body.user;
     let pass = req.body.pass;
