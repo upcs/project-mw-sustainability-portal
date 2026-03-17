@@ -9,23 +9,26 @@ var dbms = require("./dbms.js");
 
 router.post('/', function(req, res, next) {
     console.log('Pulling data from DB');
-    alert("made it to login js!!!!!!!")
-
     let user = req.body.user;
     let pass = req.body.pass;
-    var query = 'select * from login'
+    console.log('got req user and pass');
+    var query = 'select * from login';
     dbms.dbquery( query, function (err, results) {
+        console.log("results :  ");
+        console.log(results);
+        console.log(pass);
+        console.log(results[0].pass);
         if (err) {
-            alert("Incorrect User or pass!");
+            console.log("Incorrect User!");
         } else {
             //does the password equal the user input one?
-            if (result.pass == pass)
+            if (results[0].pass == pass)
             {
-                alert("good pass!");
+                console.log("good pass!");
             }
             else
             {
-                alert("Incorrect User or pass!");
+                console.log("Incorrect pass!");
             }
         }
     });

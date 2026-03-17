@@ -19,9 +19,8 @@
 async function trylogin() {
 
 
-    document.getElementById("check1").innerHTML="attmepting login";
+    //document.getElementById("check1").innerHTML="attmepting login";
 
-    alert("attempting login");
     
     console.log("starting trylogin");
 
@@ -32,14 +31,13 @@ async function trylogin() {
     let hashpass = hash(password, 5); //placeholder method
 
     console.log("starting try catch");
-    alert("starting try catch");
 
     const postData = {user: user, pass: password};
     const jsonBody = JSON.stringify(postData);
     //change month to numbers here
     //Client-side post handling, use full url to access orders.js
     try {
-    const response = await fetch('mylogin', {
+    const response = await fetch('http://localhost:3000/mylogin', {
     method: 'POST',
     headers: {
     'Content-Type': 'application/json'
