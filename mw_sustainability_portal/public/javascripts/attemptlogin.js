@@ -34,17 +34,17 @@ async function trylogin() {
     console.log("starting try catch");
     alert("starting try catch");
 
-    //const postData = {user: user, pass: password};
-    //const jsonBody = JSON.stringify(postData);
+    const postData = {user: user, pass: password};
+    const jsonBody = JSON.stringify(postData);
     //change month to numbers here
     //Client-side post handling, use full url to access orders.js
     try {
-    const response = await fetch('login', {
+    const response = await fetch('mylogin', {
     method: 'POST',
     headers: {
     'Content-Type': 'application/json'
     },
-        //body : jsonBody,
+        body : jsonBody,
     });
 
     if (!response.ok) {

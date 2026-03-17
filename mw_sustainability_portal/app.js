@@ -7,8 +7,8 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var projectsRouter = require('./routes/projects');
-var authRouter = require('./routes/authRoutes');
-var loginRouter = require('./routes/login');
+//var authRouter = require('./routes/authRoutes');
+var loginRouter = require('./routes/mylogin');
 
 var app = express();
 
@@ -25,8 +25,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/projects', projectsRouter);
-app.use('/authRoutes', authRouter);
-app.use('/login', loginRouter);
+//app.use('/authRoutes', authRouter);
+app.use('/mylogin', loginRouter);
 
 app.post('/submit', (req, res) => {
     console.log(req.body); // Access parsed data

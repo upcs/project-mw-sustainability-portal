@@ -4,8 +4,8 @@
 var express = require('express');
 var router = express.Router();
 var dbms = require("./dbms.js");
-const { concat } = require("async");
-var app = express();
+//const { concat } = require("async");
+//var app = express();
 
 router.post('/', function(req, res, next) {
     console.log('Pulling data from DB');
@@ -30,3 +30,5 @@ router.post('/', function(req, res, next) {
         }
     });
 });
+
+module.exports = router;
