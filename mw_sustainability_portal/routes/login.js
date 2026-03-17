@@ -13,8 +13,8 @@ router.post('/', function(req, res, next) {
 
     let user = req.body.user;
     let pass = req.body.pass;
-
-    dbms.dbquery( 'SELECT * FROM login where user =' + user, function (err, results) {
+    var query = 'select * from login'
+    dbms.dbquery( query, function (err, results) {
         if (err) {
             alert("Incorrect User or pass!");
         } else {
