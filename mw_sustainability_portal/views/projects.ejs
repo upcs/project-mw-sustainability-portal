@@ -15,11 +15,21 @@
             </tr>
         </thead>
         <tbody>
-          <% records1.forEach(function(splitted[0]) { %>
-            <tr>
-              <td><%= splitted[0].name %></td>
-              <td><%= splitted[0].team %></td>
-            </tr>
+            <% var count = 1 %>
+            <% records.forEach(function(results) { %>
+            
+            <% if count % 2 == 1 { %>
+                <tr>
+                    <td><%= results.name %></td>
+                    <td><%= results.team %></td>
+                </tr>
+            <% } else { %>
+                <tr>
+                    <td><%= results.name %></td>
+                    <td><%= results.team %></td>                
+                </tr>
+            <% } %>
+            <% count += 1 %> 
         <% }); %>
         </tbody>
     </table>
