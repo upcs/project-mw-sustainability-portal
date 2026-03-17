@@ -22,7 +22,7 @@ router.post('/', function(req, res, next) {
             res.send('Bad bad things happened');
         } else {
             console.log(results); 
-            res.render('projects', {records: results});
+            res.render('projects_list', {records: results});
         }
     });
 });
