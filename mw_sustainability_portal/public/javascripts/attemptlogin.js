@@ -39,7 +39,7 @@ async function trylogin() {
     //change month to numbers here
     //Client-side post handling, use full url to access orders.js
     try {
-    const response = await fetch('/login', {
+    const response = await fetch('../routes/login', {
     method: 'POST',
     headers: {
     'Content-Type': 'application/json'
