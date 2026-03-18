@@ -18,7 +18,7 @@ router.get('/' , async(req, res) => {
 router.post('/', function(req, res, next) {
     console.log('Pulling data from DB');
 
-    dbms.dbquery( 'SELECT * FROM project_list;', function (err, results) {
+    dbms.dbquery( 'SELECT * FROM login;', function (err, results) {
         if (err) {
             res.send('Bad bad things happened');
         } else {
