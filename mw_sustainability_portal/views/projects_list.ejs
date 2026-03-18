@@ -52,19 +52,11 @@
                             <% var count = 1 %>
                             <% records.forEach(function(project) { %>
                                 <% if (count % 2 == 1) { %>
-                                    <td>
-                                        <div class="image-container">
-                                            <img id="banner" src="" alt="Banner">
-                                        </div>
-                                        <h1 id="proj_name">-</h1>
-                                        <h3 id="team_name">-</h3>
-                                        <button class="projbutton" onclick="window.location.href='projectpageexample.html'">View Project</button>
-
-                                        <% var image = document.getElementById("banner"); %>
-                                        <% image.src = project.image_route %>
-                                        <% document.getElementById("proj_name").textContent = project.name; %>
-                                        <% document.getElementById("team_name").textContent = project.team; %>
-                                    </td>
+                                    <td><%= project.name %></td>
+                                    <td><%= project.team %></td>
+                                    <td><img src=<%= project.image_route %> ></td>
+                                    <td><%= project.page_route %></td>
+                                    <td><%= project.html_generated %></td>
                                 <% } else { %>
                                     <td><%= project.name %></td>
                                     <td><%= project.team %></td>
