@@ -1,8 +1,6 @@
-
 <!DOCTYPE html>
-<html>
-    <head>
-        <link rel="stylesheet" href="stylesheets/contactpage.css" />
+<head>
+     <link rel="stylesheet" href="stylesheets/contactpage.css" />
         <style>
             .image-container img {
                 width: 300px;
@@ -38,28 +36,16 @@
                 color: #cafdff;
             }
         </style>
-    </head>
-
-    <body>
-        <button onclick="window.location.href='index.html'">Home</button>
-        <h1>PROJECTS</h1>
-
-        <div class="gallery">
-            <table border="1" cellpadding="10" cellspacing="0">
-                <tbody>
-                    <% if (records && records.length > 0) { %>
-                        <% records.forEach(function(project) { %>
-                            <tr>
-                                <%- include('proj_template.ejs') %>
-                            </tr>
-                        <% }); %>
-                    <% } else { %>
-                        <tr>
-                            <td colspan="5">No projects found</td>
-                        </tr>
-                    <% } %>
-                </tbody>
-            </table>
+</head>
+<body>
+    <figure class="bob">
+        <div class="image-container">
+            <img src="../public/images/manure_production/banner.jpeg" alt="Description of Image 1">
         </div>
-    </body>
+        <figcaption>Manure Production</figcaption>
+        <figcaption>Brief project description goes here.</figcaption>
+        <button class="projbutton" onclick="window.location.href='projectpageexample.html'">View Project</button>
+    </figure>
+</body>
+
 </html>
