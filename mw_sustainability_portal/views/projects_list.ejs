@@ -47,21 +47,21 @@
         <div class="gallery">
             <table border="1" cellpadding="10" cellspacing="0">
                 <tbody>
-                    <tr>
-                        <% if (records && records.length > 0) { %>
-                            <% records.forEach(function(project) { %>
-                                    <td><%= project.name %></td>
-                                    <td><%= project.team %></td>
-                                    <td><img src=<% =project.image_route %> ></td>
-                                    <td><%= project.page_route %></td>
-                                    <td><%= project.html_generated %></td>
-                            <% }); %>
-                        <% } else { %>
+                    <% if (records && records.length > 0) { %>
+                        <% records.forEach(function(project) { %>
                             <tr>
-                                <td colspan="5">No projects found</td>
-                            </tr>
-                        <% } %>
-                    </tr>
+                                <td><%= project.name %></td>
+                                <td><%= project.team %></td>
+                                <td><img src=<% =project.image_route %> ></td>
+                                <td><%= project.page_route %></td>
+                                <td><%= project.html_generated %></td>
+                            </tr>   
+                        <% }); %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="5">No projects found</td>
+                        </tr>
+                    <% } %>
                 </tbody>
             </table>
         </div>
