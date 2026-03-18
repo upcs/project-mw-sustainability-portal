@@ -53,7 +53,7 @@
                                 <td><%= project.name %></td>
                                 <td><%= project.team %></td>
                                 <td> <img id="banner" src=""> </td>
-                                <td><%= project.image_route %></td>
+                                <% document.getElementById("banner").src = project.image_route %>
                                 <td><%= project.page_route %></td>
                                 <td><%= project.html_generated %></td>
                             </tr>   
