@@ -53,14 +53,12 @@
                             <% records.forEach(function(project) { %>
                                 <% if (count % 2 == 1) { %>
                                     <td>
-                                        <figure class="bob">
                                         <div class="image-container">
                                             <img id="banner" src="" alt="Banner">
                                         </div>
-                                            <figcaption id="proj_name">-</figcaption>
-                                            <figcaption id="team_name">-</figcaption>
-                                            <button class="projbutton" onclick="window.location.href='projectpageexample.html'">View Project</button>
-                                        </figure>
+                                        <h1 id="proj_name">-</h1>
+                                        <h3 id="team_name">-</h3>
+                                        <button class="projbutton" onclick="window.location.href='projectpageexample.html'">View Project</button>
 
                                         <% var image = document.getElementById("banner"); %>
                                         <% image.src = project.image_route %>
