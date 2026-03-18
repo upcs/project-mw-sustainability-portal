@@ -11,13 +11,9 @@ router.post('/', function(req, res, next) {
     console.log('Pulling data from DB');
     let user = req.body.user;
     let pass = req.body.pass;
-    console.log('got req user and pass');
+    console.log('got db user and pass');
     var query = 'select * from login';
     dbms.dbquery( query, function (err, results) {
-        console.log("results :  ");
-        console.log(results);
-        console.log(pass);
-        console.log(results[0].pass);
         if (err) {
             console.log("Incorrect User!");
         } else {
