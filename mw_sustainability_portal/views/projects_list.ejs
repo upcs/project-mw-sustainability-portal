@@ -1,48 +1,4 @@
 
-<% console.log("view"); %>
-<!DOCTYPE html>
-
-<html>
-<head>
-    <title>projects_list</title>
-</head>
-<body>
-
-<p>Welcome, sustainability enthusiast</p>
-    <!--
-    <table>
-        <thead>
-            <tr>
-                <th>Project Name</th>
-                <th>Team</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% var count = 1 %>
-            <% records.forEach(function(results) { %>
-            
-            <% if count % 2 == 1 { %>
-                <tr>
-                    <td><%= results.name %></td>
-                    <td><%= results.team %></td>
-                </tr>
-            <% } else { %>
-                <tr>
-                    <td><%= results.name %></td>
-                    <td><%= results.team %></td>                
-                </tr>
-            <% } %>
-            <% count += 1 %> 
-        <% }); %>
-        </tbody>
-    </table>
--->
-
-</body>
-</html>
-
-
-<!--
 <!DOCTYPE html>
 <html>
     <head>
@@ -73,7 +29,7 @@
                 align-items: center;
                 justify-content: center;
             }
-            figcaption
+            .figcaption
             {
                 text-align: center;
                 font-weight: bold;
@@ -88,39 +44,35 @@
         <button onclick="window.location.href='index.html'">Home</button>
         <h1>PROJECTS</h1>
 
-        <% records1.forEach(function(splitted) { %>
-            <tr>
-              <td><%= splitted.name %></td>
-              <td><%= splitted.team %></td>
-            </tr>
-
-         <div class="gallery">
-            <table>
-                <tr>
-                    <td>
-                        <figure class="bob">
-                            <div class="image-container">
-                                <img src="../public/images/manure_production/banner.jpeg" alt="Description of Image 1">
-                            </div>
-                            <figcaption>Manure Production</figcaption>
-                            <figcaption>Brief project description goes here.</figcaption>
-                            <button class="projbutton" onclick="window.location.href='projectpageexample.html'">View Project</button>
-                        </figure>
-                    </td>
-                    <td>
-                        <figure class="bob">
-                            <div class="image-container">
-                                <img src="images/MWSustainabilityProjects_Products1.jpeg" alt="Description of Image 1">
-                            </div>
-                            <figcaption>Agriculture</figcaption>
-                            <figcaption>Brief project description goes here.</figcaption>
-                            <button class="projbutton" onclick="window.location.href='projectpageexample.html'">View Project</button>
-                        </figure>
-                    </td>
-                </tr>
-              
+        <div class="gallery">
+            <table border="1" cellpadding="10" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Project Name</th>
+                        <th>Team</th>
+                        <th>Image Route</th>
+                        <th>Page Route</th>
+                        <th>HTML Generated</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (records && records.length > 0) { %>
+                        <% records.forEach(function(project) { %>
+                            <tr>
+                                <td><%= project.name %></td>
+                                <td><%= project.team %></td>
+                                <td><%= project.image_route %></td>
+                                <td><%= project.page_route %></td>
+                                <td><%= project.html_generated %></td>
+                            </tr>
+                        <% }); %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="5">No projects found</td>
+                        </tr>
+                    <% } %>
+                </tbody>
             </table>
-         </div>
+        </div>
     </body>
 </html>
--->
