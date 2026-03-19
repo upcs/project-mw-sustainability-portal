@@ -49,7 +49,7 @@ async function trylogin() {
         throw new Error(`HTTP error! status: ${response.status}`);
         
     }
-    alert("repsonse okay");
+    //alert("repsonse okay");
     
     const data = await response.text();
     document.body.innerHTML = data;
