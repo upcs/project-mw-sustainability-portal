@@ -13,6 +13,7 @@ router.post('/', function(req, res, next) {
     let pass = req.body.pass;
     console.log('got db user and pass');
     var query = 'select * from login';
+    var correct = 1; //1 = wrong pass
     dbms.dbquery( query, function (err, results) {
         if (err) {
             console.log("Incorrect User!");
@@ -22,12 +23,15 @@ router.post('/', function(req, res, next) {
             {
                 console.log("good pass!");
                 //render admin view
+                correct = 0;
                 res.render('admin_view');
             }
             else
             {
                 console.log("Incorrect pass!");
+                res.render('admin_error')
             }
+        
         }
     });
 });
