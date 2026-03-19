@@ -12,12 +12,11 @@ exports.version = '0.0.1';
 var mysql = require('mysql2'),
     async = require('async');
 
-
 //for testing on local server/db
 var host = "pdx0mysql00.campus.up.edu";    //pdx0mysql00 IP address
 var database = "cs341s26mwsus";  //database name
 var user = "cs341s26mwsus";         //username (change to match your db)
-var password = "@E9D]ugX.oVU70qx"; //password
+var password = "@E9D]ugX.oVU70qx";  //password (change to match your db, yes THIS IS VERY POOR PRACTICE)
 
 // var host = "localhost";    //pdx0mysql00 IP address
 // var database = "mwsus";  //database name
@@ -58,17 +57,15 @@ exports.dbquery = function(query_str, callback) {
         //Step 2: Issue query
         function (results, callback) {
             console.log("\n** retrieving data");
-            dbclient.query(query_str, function(err, rows, fields){
-                return callback(err, rows, fields);
-            });
+            dbclient.query(query_str, callback);
         },
 
         //Step 3: Collect results
         function (rows, fields, callback) {
             console.log("\n** dumping data:");
             results = rows;
-            console.log(rows);
-            return callback(null);
+            console.log("" + rows);
+            callback(null);
         }
 
     ],

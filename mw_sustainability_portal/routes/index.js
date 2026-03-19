@@ -1,8 +1,9 @@
 const express = require("express");
 const dotenv = require("dotenv").config();
 const dbConnect = require("../public/javascripts/src/config/dbConnect");
-const authRoutes = require("./authRoutes");
-const userRoutes = require("./userRoutes");
+const authRoutes = require("../routes/authRoutes");
+const userRoutes = require("../routes/userRoutes");
+//var loginRoutes = require('../routes/loginRoutes');
 var router = express.Router();
 
 

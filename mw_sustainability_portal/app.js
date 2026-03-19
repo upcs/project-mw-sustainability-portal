@@ -10,6 +10,7 @@ var usersRouter = require('./routes/users');
 var projectsRouter = require('./routes/projects');
 var authRouter = require('./routes/authRoutes');
 var uploadRouter = require('./routes/upload');
+var loginRouter = require('./routes/mylogin');
 
 var app = express();
 
@@ -29,7 +30,7 @@ app.use('/users', usersRouter);
 app.use('/projects', projectsRouter);
 app.use('/authRoutes', authRouter);
 app.use('/upload',uploadRouter);
-
+app.use('/mylogin', loginRouter);
 
 app.post('/submit', (req, res) => {
     console.log(req.body); // Access parsed data
