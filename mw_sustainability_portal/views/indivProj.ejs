@@ -1,0 +1,79 @@
+
+<!DOCTYPE html>
+<head>
+    <style>
+        .slider{
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slides img {
+            width: 100%;
+            display: block;
+        }
+
+
+    </style>
+
+</head>
+
+
+
+        <div class="slider">
+                <tbody>
+                    <% if (records && records.length > 0) { %>
+                        <tr>
+                            <% records.forEach(function(assets) {  %>
+                                <td>
+                                    <div class="slides">
+                                        <img src=<%= assets.asset_route%>>
+                                    </div>
+                                </td>
+                            <% }); %>
+                            </tr>
+                            <% } else { %>
+                                <tr>
+                                    <td colspan="5">No assets found</td>
+                                </tr>
+                            <% } %>
+                </tbody>
+            
+            <a href="#" class="previousround">&#8249;</a> 
+            <a href="#" class="nextround">&#8250;</a>
+        </div>
+
+    </body>
+</html>
+
+<script>
+        const slides = document.querySelector('.slides');
+        const images = document.querySelectorAll('.slides img');
+        const prevButton = document.querySelector('.previousround');
+        const nextButton = document.querySelector('.nextround');
+
+        let index = 0;
+        const totalImages = images.length;
+
+        function showSlide(index){
+            slides.style.transform = `translateX(${-index * 100}%)`;
+        }
+
+        nextButton.addEventListener('click', ()=> {
+            index = (index +1) % totalImages;
+            showSlide(index);
+        });
+
+        prevButton.addEventListener('click', ()=> {
+            index = (index - 1 + totalImages) % totalImages;
+            showSlide(index);
+        });
+
+    </script>

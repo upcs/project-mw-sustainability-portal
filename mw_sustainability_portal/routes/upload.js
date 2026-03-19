@@ -46,12 +46,12 @@ router.post('/', upload.single("uploadFile"), async (req, res) => {
 
     //creating filename and filepath 
     const fileName = file.filename;
-    const filePath = path.posix.join("..","images", fileName);
+    const filePath = path.posix.join("images", fileName);
 
     //var projectId = 72; //not in use, just for testing
 
     //change sql prompt in next spring, using id 18 as hardcoded value 
-    const sql = "INSERT INTO `project_assets`(`project_id`, `asset_route`, `is_video`, `is_image`, `is_text`) VALUES ('18','" + filePath + "' ,'0' ,'1','0');"
+    const sql = "INSERT INTO `project_assets`(`project_id`, `asset_route`, `is_video`, `is_image`, `is_text`) VALUES ('72','" + filePath + "' ,'0' ,'1','0');"
    
 
     dbms.dbquery(sql, (err, results) => {
@@ -64,7 +64,7 @@ router.post('/', upload.single("uploadFile"), async (req, res) => {
         
 });
 
-//exports the state of the router 
+//exports the state of the router
 module.exports = router;
 
 

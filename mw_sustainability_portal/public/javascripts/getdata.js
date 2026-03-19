@@ -103,3 +103,30 @@ async function getProjectsPost(){
         //console.error('Error fetching data:', error);
     }
 }
+
+async function getindivproj(){
+    const response = await fetch('/indivProj');
+    const data = await response.text();
+    document.body.innerHTML = data;
+}
+
+async function getindivpost(){
+    try {
+        const response = await fetch('indivProj', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.text();
+    
+        document.body.innerHTML = data;
+
+    } catch (error) {
+        //console.error('Error fetching data:', error);
+    }
+}
