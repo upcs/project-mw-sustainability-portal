@@ -37,7 +37,7 @@ console.log('about to enter pullFrom post');
 /* creating the endpoint (name and path ) for the file */
 router.post('/', pullFromDb.single("pullFromDb"), async (req, res) => {  
     
-    console.log('entered upload post');
+    console.log('entered pullFrom post');
 
     const file = req.file;
     if(!file){
