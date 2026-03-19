@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var dbms = require("./dbms.js");
+const { concat } = require("async");
+var app = express();
 
 /* GET projects page page. */
 router.get('/' , async(req, res) => {
@@ -14,17 +16,16 @@ router.get('/' , async(req, res) => {
 
 });
 
-
 router.post('/', function(req, res, next) {
-    console.log('Pulling data from DB');
-
-    dbms.dbquery( 'SELECT * FROM login;', function (err, results) {
+    dbms.dbquery( 'SELECT name, team, image_route, page_route, html_generated FROM projects_list', function (err, results) {
         if (err) {
             res.send('Bad bad things happened');
         } else {
-            res.render('projects', {records: results});
+            console.log(results); 
+            res.render('projects_list', {records: results});
         }
     });
 });
+
 
 module.exports = router;
