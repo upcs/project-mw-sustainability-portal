@@ -60,7 +60,7 @@ exports.dbquery = function(query_str, callback) {
         },
 
         //Step 3: Collect results
-        function (rows, fields, _callback) {
+        function (rows, fields, callback) {
             console.log("\n** dumping data:");
             results = rows;
             console.log("" + rows);
@@ -89,5 +89,5 @@ exports.dbquery = function(query_str, callback) {
             dbclient.destroy();
         }
     };
-}//function dbquery
 
+}//function dbquery
