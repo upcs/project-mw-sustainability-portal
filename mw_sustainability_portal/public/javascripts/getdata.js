@@ -103,3 +103,26 @@ async function getProjectsPost(){
         //console.error('Error fetching data:', error);
     }
 }
+
+async function renderPage() {
+    //var data = {info : project};
+    //var jsonBody = JSON.stringify(data);
+    try {
+        const response = await fetch('render_project', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: jsonBody
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.text();
+    
+        document.body.innerHTML = data;
+    } catch (error) {
+        //console.error('Error fetching data:', error);
+    }
+}

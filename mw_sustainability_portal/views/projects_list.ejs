@@ -37,6 +37,11 @@
                 color: #cafdff;
             }
         </style>
+        <script
+		    src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+	    </script>
+        <script src="../public/javascripts/getdata.js"></script>
+
     </head>
 
     <body>
@@ -60,7 +65,8 @@
                                                 <p><%= project.name %></p>                             
                                                 <p>Presented by: <%= project.team %></p>
                                             </div>
-                                            <button class="projbutton" onclick="window.location.href='projectpageexample.ejs'">View Project</button>
+                                            <button class="projbutton" id="view_button" onclick="window.location.href='projectpageexample.html'">View Project</button>
+                                            <!--<button class="projbutton" id="view_button" onclick="renderPage()">View Project</button>-->
                                     </div> 
                                 </td>
                             <% }); %>
