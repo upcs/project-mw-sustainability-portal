@@ -60,7 +60,7 @@ exports.dbquery = function(query_str, callback) {
         },
 
         //Step 3: Collect results
-        function (rows, fields, callback) {
+        function (rows, fields, _callback) {
             console.log("\n** dumping data:");
             results = rows;
             console.log("" + rows);
@@ -83,5 +83,11 @@ exports.dbquery = function(query_str, callback) {
         dbclient.end();
 
     });
-
+    exports.close = function () {
+        // mysql2 keeps internal handles alive unless you destroy the connection
+        if (dbclient && dbclient.destroy) {
+            dbclient.destroy();
+        }
+    };
 }//function dbquery
+
