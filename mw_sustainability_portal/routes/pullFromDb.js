@@ -1,6 +1,6 @@
 /* Landon Harrison Version 0318 */
-/* this js file is the direct contact for any js wishing to upload to the database and dbms.js */
-/* uses multer, posts, and the creation of an sql prompt to upload files -- use of github ai */
+/* this js file is the direct contact for any js wishing to pull paths from the database and dbms.js */
+/* uses multer, posts, and the creation of an sql prompt to pull file paths */
 
 const express = require('express');
 var multer = require('multer');
@@ -14,28 +14,28 @@ const dbms = require("./dbms");
 const router = express.Router();
 
 
-/* working with file directory */
-const uploadDir = path.join(process.cwd(), "public",  "images");
-fs.mkdirSync(uploadDir, {recursive : true});
+// /* working with file directory */
+// const uploadDir = path.join(process.cwd(), "public",  "images");
+// fs.mkdirSync(uploadDir, {recursive : true});
 
 
-/* configuring multer to take image uploads */
-const storage = multer.diskStorage({
-    destination: (req,file,cb) => cb(null, uploadDir),
-    filename: (req, file, cb) => {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random()*1E9);
-        cb(null, `${file.fieldname}-${uniqueSuffix}${path.extname(file.originalname)}`);
-    },
-})
+// /* configuring multer to take image uploads */
+// const storage = multer.diskStorage({
+//     destination: (req,file,cb) => cb(null, uploadDir),
+//     filename: (req, file, cb) => {
+//         const uniqueSuffix = Date.now() + '-' + Math.round(Math.random()*1E9);
+//         cb(null, `${file.fieldname}-${uniqueSuffix}${path.extname(file.originalname)}`);
+//     },
+// })
 
-console.log('about to declare upload');
+console.log('about to declare pullFrom');
 
-const upload = multer({ storage });
+//const upload = multer({ storage });
 
-console.log('about to enter upload post');
+console.log('about to enter pullFrom post');
 
 /* creating the endpoint (name and path ) for the file */
-router.post('/', upload.single("uploadFile"), async (req, res) => {  
+router.post('/', pullFromDb.single("pullFromDb"), async (req, res) => {  
     
     console.log('entered upload post');
 

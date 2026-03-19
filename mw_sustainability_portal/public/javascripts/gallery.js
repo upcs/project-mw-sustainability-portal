@@ -1,5 +1,8 @@
-/* Event Listener */
+/* Landon Harrison Version 0318 */
+/* this js file is the middleman between the gallery html and the upload.js file that */
+/* uploads files to the database -- done with help from github ai */
 
+/* Event Listener */
 document.addEventListener("DOMContentLoaded", ()=> {
 
     /* declaring form and file elements */
@@ -23,13 +26,16 @@ document.addEventListener("DOMContentLoaded", ()=> {
         const response = await fetch("/upload", {method: "POST", body: fd});
         const data = await response.json();
 
+
         if(!response.ok){
             alert(data.message || "Upload fail");
             return;
         }
 
         //show the uploaded image 
-        document.getElementById("mainImage").src = data.url;
+        document.getElementById("mainImage").src = data.asset_route;
+        console.log(process.cwd());
+        console.log(data.asset_route);
 
     });
 
