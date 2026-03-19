@@ -83,5 +83,11 @@ exports.dbquery = function(query_str, callback) {
         dbclient.end();
 
     });
+    exports.close = function () {
+        // mysql2 keeps internal handles alive unless you destroy the connection
+        if (dbclient && dbclient.destroy) {
+            dbclient.destroy();
+        }
+    };
 
 }//function dbquery
