@@ -19,11 +19,13 @@ document.addEventListener("DOMContentLoaded", ()=> {
             return; //ending process if no file chosen
         }
 
-        const fd = new FormData();
+        console.log("about to initialize formdata");
+
+        const fd = new FormData(uploadForm);
         fd.append("uploadFile", fileInput.files[0]);
         //multer.single("uploadFile");
 
-        const response = await fetch("/upload", {method: "POST", body: fd});
+        const response = await fetch("/upload", {method: "POST", body: fd, headers: { Accept : "application/json" },});
         const data = await response.json();
 
 
@@ -32,12 +34,18 @@ document.addEventListener("DOMContentLoaded", ()=> {
             return;
         }
 
+        
+
         //show the uploaded image 
-        document.getElementById("mainImage").src = data.asset_route;
+        //document.getElementById("mainImage").src = data.asset_route;
         console.log(process.cwd());
         console.log(data.asset_route);
+        
+        uploadForm.reset();
+        fileInput.value ="";
 
     });
+    
 
 
 });

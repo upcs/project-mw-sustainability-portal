@@ -56,7 +56,9 @@ exports.dbquery = function(query_str, callback) {
         //Step 2: Issue query
         function (results, callback) {
             console.log("\n** retrieving data");
-            dbclient.query(query_str, callback);
+            dbclient.query(query_str, function(err, rows, fields){
+                return callback(err, rows, fields);
+            });
         },
 
         //Step 3: Collect results

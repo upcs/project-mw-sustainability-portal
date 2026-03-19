@@ -40,31 +40,42 @@ router.post('/', upload.single("uploadFile"), async (req, res) => {
     console.log('entered upload post');
 
     const file = req.file;
-    if(!file){
+    while(!file){
         return res.status(400).send({message: "please select an image file"});
     }
 
     //creating filename and filepath 
     const fileName = file.filename;
-    const filePath = path.posix.join("..","images", fileName);
+    const filePath = path.posix.join("images", fileName);
 
     //var projectId = 72; //not in use, just for testing
 
     //change sql prompt in next spring, using id 18 as hardcoded value 
-    const sql = "INSERT INTO `project_assets`(`project_id`, `asset_route`, `is_video`, `is_image`, `is_text`) VALUES ('18','" + filePath + "' ,'0' ,'1','0');"
-   
+    const sql = "INSERT INTO `project_assets`(`project_id`, `asset_route`, `is_video`, `is_image`, `is_text`) VALUES ('72','" + filePath + "' ,'0' ,'1','0');"
 
     dbms.dbquery(sql, (err, results) => {
-        if (err) return res.status(500).json({message: "DB insert failed"});
+        if (err){
+            console.log("DB insert failed: ", err);
+            return res.status(500).json({message: "DB insert failed"});}
 
-        const url = `${req.protocol}://${req.get("host")}/${filePath}`;
-        return res.status(201).json({filePath});
-    });
-    
+        const isFetch = req.xhr || (req.headers.accept && req.headers.accept.includes("application/json"));
+
+        if(isFetch){
+            return res.status(201).json({filePath});
+        }
+
+        //const url = `${req.protocol}://${req.get("host")}/${filePath}`;
+
+        return res.redirect('/indivProj');
         
+    });
+
+
+      
+
 });
 
-//exports the state of the router 
+//exports the state of the router
 module.exports = router;
 
 

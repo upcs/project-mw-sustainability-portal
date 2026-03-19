@@ -104,16 +104,19 @@ async function getProjectsPost(){
     }
 }
 
-async function renderPage() {
-    //var data = {info : project};
-    //var jsonBody = JSON.stringify(data);
+async function getindivproj(){
+    const response = await fetch('/indivProj');
+    const data = await response.text();
+    document.body.innerHTML = data;
+}
+
+async function getindivpost(){
     try {
-        const response = await fetch('render_project', {
+        const response = await fetch('indivProj', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
-            },
-            body: jsonBody
+            'Content-Type': 'application/json'
+            }
         });
 
         if (!response.ok) {
@@ -122,6 +125,7 @@ async function renderPage() {
         const data = await response.text();
     
         document.body.innerHTML = data;
+
     } catch (error) {
         //console.error('Error fetching data:', error);
     }
