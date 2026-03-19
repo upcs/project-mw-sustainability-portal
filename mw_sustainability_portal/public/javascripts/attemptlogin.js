@@ -21,7 +21,7 @@ async function trylogin() {
 
 
     //document.getElementById("check1").innerHTML="attmepting login";
-
+    
     
     console.log("starting trylogin");
 
@@ -37,7 +37,7 @@ async function trylogin() {
     //change month to numbers here
     //Client-side post handling, use full url to access orders.js
     try {
-    const response = await fetch('http://localhost:3000/mylogin', {
+    const response = await fetch('mylogin', {
     method: 'POST',
     headers: {
     'Content-Type': 'application/json'
