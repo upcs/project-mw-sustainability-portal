@@ -4,17 +4,18 @@ var dbms = require("./dbms.js");
 const { concat } = require("async");
 var app = express();
 
-// /* GET projects page page. */
-// router.get('/' , async(req, res) => {
-//     const sqlQuery = 'SELECT * FROM projects_list';
-//     dbms.dbquery(sqlQuery, (err, results) => {
-//         if (err) {
-//             res.send('There are no projects or I cannot collect data');
-//         }
-//         res.render('projects', { items: results });
-//     });
+/* GET projects page page. */
+router.get('/' , (req, res) => {
+    const sqlQuery = 'SELECT asset_route FROM project_assets WHERE project_id = 72';
+    dbms.dbquery(sqlQuery, (err, results) => {
+        if (err) {
+            res.send('There are no projects or I cannot collect data');
+        }
+        console.log(results); 
+        res.render('indivProj', { records: results });
+    });
 
-// });
+});
 
 router.post('/', function(req, res, next) {
     dbms.dbquery( 'SELECT asset_route FROM project_assets WHERE project_id = 72', function (err, results) {
@@ -25,6 +26,9 @@ router.post('/', function(req, res, next) {
             res.render('indivProj', {records: results});
         }
     });
+
+
+ 
 });
 
 

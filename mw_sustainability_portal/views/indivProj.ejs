@@ -1,23 +1,22 @@
 
 <!DOCTYPE html>
+<script src="/javascripts/gallery.js" defer ></script>
+<link rel="stylesheet" href="stylesheets/contactpage.css" />
 <head>
     <style>
-        .slider{
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin: auto;
-            overflow: hidden;
+        .gallery{
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+            max-width: 1000px;
+            margin: 20px;
         }
 
-        .slides {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-
-        .slides img {
+        .gallery img {
             width: 100%;
-            display: block;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
         }
 
 
@@ -26,54 +25,27 @@
 </head>
 
 
-
-        <div class="slider">
-                <tbody>
-                    <% if (records && records.length > 0) { %>
-                        <tr>
-                            <% records.forEach(function(assets) {  %>
-                                <td>
-                                    <div class="slides">
-                                        <img src=<%= assets.asset_route%>>
-                                    </div>
-                                </td>
-                            <% }); %>
-                            </tr>
-                            <% } else { %>
-                                <tr>
-                                    <td colspan="5">No assets found</td>
-                                </tr>
-                            <% } %>
-                </tbody>
-            
-            <a href="#" class="previousround">&#8249;</a> 
-            <a href="#" class="nextround">&#8250;</a>
+        <div class="gallery">
+            <% if (records && records.length > 0) { %>
+                    <% records.forEach(function(assets) {  %>
+                        <img src="/<%= assets.asset_route%>">
+                        <% }); %>
+                    <% } else { %>
+                    <td colspan="5">No assets found</td>
+                    <% } %>
         </div>
+        <br>
+        <br>  
+        
+        <div>
+			<form id="uploadForm" method="post" action="/upload" enctype="multipart/form-data">
+						File to be uploaded: <input type="file" name="uploadFile" id="file" accept="image/*">
+				
+				<br><br>		
+				<button type="submit">Upload</button>
+			</form>
+			</div>
+		</div>
 
     </body>
 </html>
-
-<script>
-        const slides = document.querySelector('.slides');
-        const images = document.querySelectorAll('.slides img');
-        const prevButton = document.querySelector('.previousround');
-        const nextButton = document.querySelector('.nextround');
-
-        let index = 0;
-        const totalImages = images.length;
-
-        function showSlide(index){
-            slides.style.transform = `translateX(${-index * 100}%)`;
-        }
-
-        nextButton.addEventListener('click', ()=> {
-            index = (index +1) % totalImages;
-            showSlide(index);
-        });
-
-        prevButton.addEventListener('click', ()=> {
-            index = (index - 1 + totalImages) % totalImages;
-            showSlide(index);
-        });
-
-    </script>
