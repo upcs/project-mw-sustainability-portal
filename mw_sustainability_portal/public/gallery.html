@@ -4,7 +4,7 @@
 
 <html>
 <head>
-
+<script src="/javascripts/gallery.js" defer ></script>
 <style>
 	body{ 
 		margin: 0;
@@ -100,17 +100,9 @@
 var imgArray = [];
 
 //puts the url of the image in the array of images
-function takeUrl(){
+function populate(){
 		
-		let img = new Image();
-		
-		if(imgArray.length == 0){ 
-			img.src = document.getElementById('mainImage').src;
-			imgArray.push(img); }
 	
-		img = new Image();
-		img.src = document.getElementById('URLinput').value;
-		imgArray.push(img);
 	
 	
 }
@@ -137,45 +129,29 @@ function prevImage(){
 			
 }
 
-//opens a text box to input a new url for image 
-function imgPopup(){
-	const overlay = document.getElementById('popupOverlay');
-	overlay.classList.toggle('show');
-}
-
 
 
 </script>
 </head>
+<body>
+	<div class="rows">
+		<div id="splash">
+			<img src="https://www.momontimeout.com/wp-content/uploads/2023/09/no-bake-peanut-butter-cheesecake-square.jpeg" alt="hello?" id="mainImage" width="300" height="350">
+		</div>
+		<a href="#" class="previousround"onclick="prevImage()">&#8249;</a> 
+		<a href="#" class="nextround" onclick="nextImage()">&#8250;</a>
 
-<div class:"rows">
-	<div id="splash">
-		<img src="https://www.momontimeout.com/wp-content/uploads/2023/09/no-bake-peanut-butter-cheesecake-square.jpeg" alt="hello?" id="mainImage" width="300" height="350">
-	</div>
-	<a href="#" class="previousround"onclick="prevImage()">&#8249;</a> 
-	<a href="#" class="nextround" onclick="nextImage()">&#8250;</a>
 
-
-
-	<button class="btn-open-popup" onclick="imgPopup()">add image +</button>
-
-	<div id="popupOverlay" class="overlay-container">
-		<div class = "popup-box">
-			<h2>Image input</h2>
-			<form class ="form-container">
-				<label class= "form-label"
-				for="name">
-			Input image URL:</label>
-			<input class="form-input" type="text"
-			placeholder="URL here" id ="URLinput" 
-			name="URLinput" required>
-			<button class="btn-submit"
-			type="button" onclick="takeUrl();imgPopup();"> Add Image </button>
-		</form>
-		<button class="btn-close-popup"
-		onclick="imgPopup()">Close</button>
+		<div>
+			<form id="uploadForm">
+						File to be uploaded: <input type="file" name="uploadFile" id="file">
+				
+				<br><br>		
+				<button type="submit">Upload</button>
+			</form>
+			</div>
 		</div>
 	</div>
-</div>
 
+</body>
 </html>
