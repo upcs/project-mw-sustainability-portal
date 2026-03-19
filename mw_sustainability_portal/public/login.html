@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="jquery-3.7.1.js"></script>
     <link rel="stylesheet" href="stylesheets/contactpage.css" />
-    <script src="javascripts/getdata.js"></script>
+    <script src="javascripts/attemptlogin.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha.js"></script>
   </head>
   <body>
       
@@ -14,17 +13,12 @@
       <input type="text" id="user" name="user"><br><br>
       <label for="pass">Enter Password:</label><br>
       <input type="password" type="text" id="pass" name="pass"><br><br>
-      <button type="button" id="submitButton1" value="Submit">Submit</button>
+      <button type="button" onclick="trylogin()" id="submitloginbutton" 
+      >Submit</button>
     </div>
-   <div class="container">  
-      <h1>MW Sustainablity Administrator Account Creation</h1>
-      <label for="user">Enter Username:</label><br>
-      <input type="text" id="user" name="user"><br><br>
-      <label for="pass">Enter Password:</label><br>
-      <input type="password" type="text" id="pass" name="pass"><br><br>
-      <button type="button" id="submitButton2" value="Submit">Submit</button>
-    </div>
+
     <h2 id="check1"></h2>
     <h2 id="check2"></h2>
+    
   </body>
 </html>
