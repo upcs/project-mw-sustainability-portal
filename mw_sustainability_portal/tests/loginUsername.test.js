@@ -9,9 +9,8 @@ test('checks if admin login database has the login saved', (done) => {
             expect(1).toEqual(2); //fails test
             return done();
         } else {
-
-            expect(results[0].user).toEqual("admin"); //passes test
             console.log("Admin User Ready");
+            expect(results[0].user).toEqual("admin"); //passes test
             return done();
         }
     });

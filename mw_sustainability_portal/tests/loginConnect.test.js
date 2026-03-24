@@ -8,8 +8,8 @@ test('checks if admin login database connects', (done) => {
             expect(1).toBe(2); //fails test
             return done();
         } else {
-            expect(1).toBe(1); //passes test
             console.log("Login Success");
+            expect(1).toBe(1); //passes test
             return done();
         }
     });

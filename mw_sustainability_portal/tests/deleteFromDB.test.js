@@ -7,8 +7,8 @@ test('Test For DB Deletion', () => {
             expect(1).toBe(2); //fails test
             //return done();
         } else {
-            expect(1).toBe(1); //passes test
             console.log("Deleted From DB");
+            expect(1).toBe(1); //passes test
             //return done();
         }
     });

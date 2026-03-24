@@ -7,8 +7,8 @@ test('Test For DB Insertion', () => {
             expect(1).toBe(2); //fails test
             //return done();
         } else {
-            expect(1).toBe(1);
             console.log("Inserted to DB");
+            expect(1).toBe(1);
             //return done();
         }
     });

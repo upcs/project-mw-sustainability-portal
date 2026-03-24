@@ -29,7 +29,7 @@ router.post('/', function(req, res, next) {
             else
             {
                 console.log("Incorrect pass!");
-                res.render('admin_error')
+                res.render('admin_error');
             }
         
         }
