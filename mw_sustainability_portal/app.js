@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var projectsRouter = require('./routes/projects');
 var indivRouter = require('./routes/indivProj');
+var newProjRouter = require('./routes/newProj');
 var authRouter = require('./routes/authRoutes');
 var uploadRouter = require('./routes/upload');
 var loginRouter = require('./routes/mylogin');
@@ -33,6 +34,7 @@ app.use('/indivProj', indivRouter);
 app.use('/authRoutes', authRouter);
 app.use('/upload',uploadRouter);
 app.use('/mylogin', loginRouter);
+app.use('/newProj', newProjRouter);
 
 app.post('/submit', (req, res) => {
     console.log(req.body); // Access parsed data
