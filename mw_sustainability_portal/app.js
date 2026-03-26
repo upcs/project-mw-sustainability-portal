@@ -13,6 +13,7 @@ var newProjRouter = require('./routes/newProj');
 var authRouter = require('./routes/authRoutes');
 var uploadRouter = require('./routes/upload');
 var loginRouter = require('./routes/mylogin');
+var uploadProjRouter = require('./routes/uploadProj');
 
 var app = express();
 
@@ -35,6 +36,7 @@ app.use('/authRoutes', authRouter);
 app.use('/upload',uploadRouter);
 app.use('/mylogin', loginRouter);
 app.use('/newProj', newProjRouter);
+app.use('/uploadProj', uploadProjRouter);
 
 app.post('/submit', (req, res) => {
     console.log(req.body); // Access parsed data

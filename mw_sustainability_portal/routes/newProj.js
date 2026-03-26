@@ -23,8 +23,7 @@ router.post('/', function(req, res, next) {
     //     } else {
     //         console.log(results); 
             res.render('newProj');
-    //     }
-    // });
+    
 
 
  

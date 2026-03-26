@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", ()=> {
 
     /* declaring form and file elements */
-    const uploadForm = document.getElementById("projInput");
+    //const uploadForm = document.getElementById("projInput");
     const name = document.getElementById("projName");
     const team = document.getElementById("projTeam");
     const route = document.getElementById("pageRoute");
@@ -21,11 +21,13 @@ document.addEventListener("DOMContentLoaded", ()=> {
 
         console.log("about to initialize formdata");
 
-        const fd = new FormData(projInput);
-        //fd.append("uploadFile", fileInput.files[0]);
-        //multer.single("uploadFile");
+        const postData = {name: name, team: team, route: route};
+        const jsonBody = JSON.stringify(postData);
+        // const fd = new FormData(projInput);
+        // fd.append("uploadFile", name, team, route);
+        // //multer.single("uploadFile");
 
-        const response = await fetch("/newProj", {method: "POST", body: fd, headers: { Accept : "application/json" },});
+        const response = await fetch("/newProj", {method: "POST", body: jsonBody, headers: { Accept : "application/json" },});
         const data = await response.json();
 
 

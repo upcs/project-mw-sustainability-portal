@@ -3,9 +3,9 @@
 /* uses multer, posts, and the creation of an sql prompt to upload files -- use of github ai */
 
 const express = require('express');
-var multer = require('multer');
-var path = require('path');
-var fs = require('fs');
+// var multer = require('multer');
+// var path = require('path');
+// var fs = require('fs');
 
 console.log('declaring router');
 
@@ -39,21 +39,21 @@ router.post('/', async (req, res) => {
     
     console.log('entered upload post');
 
-    const name = req.name;
-    const team = req.team;
-    const route = req.route;
+    const name = req.body.name;
+    const team = req.body.team;
+    const route = req.body.route;
     // while(!file){
     //     return res.status(400).send({message: "please select an image file"});
     // }
 
     //creating filename and filepath 
     
-    const filePath = path.posix.join("images", fileName);
+    //const filePath = path.posix.join("images", fileName);
 
     //var projectId = 72; //not in use, just for testing
 
     //change sql prompt in next spring, using id 18 as hardcoded value 
-    const sql = "INSERT INTO `project_assets`(`project_id`, `asset_route`, `is_video`, `is_image`, `is_text`) VALUES ('72','" + filePath + "' ,'0' ,'1','0');"
+    const sql = "INSERT INTO `projects_list`( `name`, `team`, `page_route`, `image_route`) VALUES ('" + name + "','" + team + "','" + route + "', 'images\\1600px_COLOURBOX9214366-3078337225.jpg');";
 
     dbms.dbquery(sql, (err, results) => {
         if (err){
@@ -68,7 +68,7 @@ router.post('/', async (req, res) => {
 
         //const url = `${req.protocol}://${req.get("host")}/${filePath}`;
 
-        return res.redirect('/indivProj');
+        return res.redirect('/newProj');
         
     });
 
