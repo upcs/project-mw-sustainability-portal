@@ -5,7 +5,10 @@ const { concat } = require("async");
 var app = express();
 
 router.post('/', function(req, res, next) {
-    console.log('post works');
+    //console.log('post works');
+    page_route = req.body.page;
+
+    res.render(page_route);
 });
 
 

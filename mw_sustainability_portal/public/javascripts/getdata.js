@@ -79,12 +79,16 @@ $(function() { //event handler
 //connect to ejs page
 async function render_proj(route){
     alert(route);
+    const data = {page : route};
+    const json_body = JSON.stringify(data);
+
     try {
         const response = await fetch('render_project', {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json'
             },
+            body: json_body,
         });
 
     if (!response.ok) {
