@@ -1,10 +1,6 @@
 
 <!DOCTYPE html>
-<script> 
-    let x = document.cookie;
-    console.log(x);
-    //check if the values in x = the saved admin password
-</script>
+<script src = "../routes/makeNewProject.js"></script>
 <html>
     <head>
         <link rel="stylesheet" href="stylesheets/contactpage.css" />
@@ -60,7 +56,7 @@
                             <div class="image-container">
                                 <img src="images/blankplus2.png" alt="Description of Image 1">
                             </div>
-                            <button style="margin-bottom: 40%;" class="projbutton" onclick="window.location.href='projectpageexample.html'">Create New Project</button>
+                            <button style="margin-bottom: 40%;" id="projbutton"">Create New Project</button>
                         </figure>
                     </td>
                     <td>
@@ -99,4 +95,10 @@
             </table>
          </div>
     </body>
+    <script>
+        $('#projbutton').click(function(){
+            $.post("http://localhost:3000/protected", function(){
+            })
+        });
+    </script>
 </html>

@@ -16,6 +16,8 @@ app.use(express.json());
 //Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/protected", authRoutes);
+
 
 //Start the server
 const PORT2 = process.env.PORT2 || 7001;

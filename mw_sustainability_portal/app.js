@@ -12,6 +12,7 @@ var indivRouter = require('./routes/indivProj');
 var authRouter = require('./routes/authRoutes');
 var uploadRouter = require('./routes/upload');
 var loginRouter = require('./routes/mylogin');
+var protectedRouter = require('./routes/protected'); //check auth
 
 var app = express();
 
@@ -33,6 +34,7 @@ app.use('/indivProj', indivRouter);
 app.use('/authRoutes', authRouter);
 app.use('/upload',uploadRouter);
 app.use('/mylogin', loginRouter);
+app.use('/protected', protectedRouter); //check auth
 
 app.post('/submit', (req, res) => {
     console.log(req.body); // Access parsed data

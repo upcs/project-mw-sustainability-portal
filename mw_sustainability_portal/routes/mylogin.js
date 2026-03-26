@@ -12,7 +12,7 @@ router.post('/', function(req, res, next) {
     let user = req.body.user;
     let pass = req.body.pass;
     console.log('got db user and pass');
-    var query = 'select * from login';
+    var query = 'select * from login'; //need to fix to select only 1
     var correct = 1; //1 = wrong pass
     dbms.dbquery( query, function (err, results) {
         if (err) {
@@ -23,7 +23,9 @@ router.post('/', function(req, res, next) {
             {
                 console.log("good pass!");
                 //render admin view
+
                 correct = 0;
+                //call router for rendering admin view next step
                 res.render('admin_view');
             }
             else
