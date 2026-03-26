@@ -5,10 +5,7 @@ const { concat } = require("async");
 var app = express();
 
 router.post('/', function(req, res, next) {
-    //var route = req.body.info.page_route;
-
-    res.render('project_template');
-    
+    console.log('post works');
 });
 
 
