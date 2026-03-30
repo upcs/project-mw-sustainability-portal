@@ -10,7 +10,7 @@ var authcheck = require('../public/javascripts/isauthenticated.js');
 //this should send a post to isauthenticated(?)
 
 router.post('/', function(req, res, next) {
-
+    console.log("JIAHDUEHFIEFIEFIEF");
     //send back an ejs for either protected page or error page?
     if(isauthenticated())
     {

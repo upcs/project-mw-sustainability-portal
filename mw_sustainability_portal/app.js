@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var session = require('express-session');
 
 
 var indexRouter = require('./routes/index');
@@ -28,13 +29,16 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/projects', projectsRouter);
 app.use('/indivProj', indivRouter);
 app.use('/upload',uploadRouter);
 app.use('/mylogin', loginRouter);
 app.use('/protected', protectedRouter); //check auth
 app.use('/render_project', renderProjRouter);
+
+app.use(session({
+  secret: 'thiswillbealongrandomstring'
+}));
 
 app.post('/submit', (req, res) => {
     console.log(req.body); // Access parsed data
