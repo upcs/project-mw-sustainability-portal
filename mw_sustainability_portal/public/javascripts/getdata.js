@@ -77,9 +77,9 @@ $(function() { //event handler
 
 
 //connect to ejs page
-async function render_proj(route){
-    alert(route);
-    const data = {page : route};
+async function render_proj(name, team, id){
+    const data = {proj_name : name, proj_team : team, proj_id : id};
+    console.log(data);
     const json_body = JSON.stringify(data);
 
     try {
@@ -101,7 +101,6 @@ async function render_proj(route){
     } catch (error) {
         //console.error('Error fetching data:', error);
     }
-   //alert('function call works');
 }
 
 
