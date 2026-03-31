@@ -22,11 +22,15 @@ router.post('/', function(req, res, next) {
             if (results[0].pass == pass)
             {
                 console.log("good pass!");
-                //render admin view
+
+                //create session for authenticated user
+                let currSession = req.session;
+                //currSession.user =
+                currSession.authenticated = true;
 
                 correct = 0;
                 //call router for rendering admin view next step
-                res.render('admin_view');
+                res.render('admin_view'); //should be indirect render, go through protected.js
             }
             else
             {

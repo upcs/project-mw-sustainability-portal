@@ -37,7 +37,8 @@ app.use('/protected', protectedRouter); //check auth
 app.use('/render_project', renderProjRouter);
 
 app.use(session({
-  secret: 'thiswillbealongrandomstring'
+  secret: 'thiswillbealongrandomstring',
+  authenticated: false
 }));
 
 app.post('/submit', (req, res) => {

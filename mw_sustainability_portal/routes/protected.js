@@ -2,15 +2,23 @@ var express = require('express');
 var router = express.Router();
 var dbms = require("./dbms.js");
 var authcheck = require('../public/javascripts/isauthenticated.js');
+var session = require('express-session');
 
+function isauthenticated()
+{
+    // if(session)
+    // {
+    //     return next;
+    // }
+}
 
 //this file will check if the user is authenticated and then either redirect
 //to protected_form.ejs or the failed login page
 
-//this should send a post to isauthenticated(?)
+router.post('/', isauthenticated(), function(req, res, next) { //recieves a post
+    console.log("entered protection function (recieved post)");
 
-router.post('/', function(req, res, next) {
-    console.log("JIAHDUEHFIEFIEFIEF");
+    if(currSession.isauthenticated)
     //send back an ejs for either protected page or error page?
     if(isauthenticated())
     {
