@@ -23,6 +23,9 @@ jobs:
           command: npm run test --ci --runInBand --reporters=default --reporters=jest-junit
       - store_test_results:
           path: ./test-results/
+      - run:
+        name: Upload to CodeCov
+    command: bash <(curl -s https://codecov.io/bash)
   deploy:
     # This is an example deploy job, not actually used by the workflow
     docker:
