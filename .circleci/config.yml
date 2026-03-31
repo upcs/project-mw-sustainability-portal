@@ -3,6 +3,7 @@
 version: 2.1
 orbs:
   node: circleci/node@5
+  codecov: codecov/codecov@5
 jobs:
   test-node:
     # Install node dependencies and run tests
@@ -38,3 +39,7 @@ workflows:
     # - deploy:
     #     requires:
     #       - test-node
+  upload-to-codecov:
+    jobs:
+      - checkout 
+      - codecov/upload
