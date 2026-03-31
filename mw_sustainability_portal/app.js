@@ -2,8 +2,9 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
 var session = require('express-session');
+const crypto = require('crypto'); //do i need to install this?
+const sessionSecret = crypto.randomBytes(32).toString('hex'); //generate secret string
 
 
 var indexRouter = require('./routes/index');
@@ -22,7 +23,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({extended : true}));
-app.use(logger('dev'));
+//app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -37,8 +38,13 @@ app.use('/protected', protectedRouter); //check auth
 app.use('/render_project', renderProjRouter);
 
 app.use(session({
-  secret: 'thiswillbealongrandomstring',
-  authenticated: false
+    secret: sessionSecret,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: 'auto',
+        maxAge: 3600
+    }
 }));
 
 app.post('/submit', (req, res) => {

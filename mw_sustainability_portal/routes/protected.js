@@ -10,6 +10,19 @@ function isauthenticated()
     // {
     //     return next;
     // }
+
+    //for debugging:
+
+    // Check if the 'user' property exists in the session object
+    if (req.session.user) {
+        // User is logged in
+        console.log('Session exists and has a user:', req.session.user);
+        return true;
+    } else {
+        // No user in the session
+        console.log('No user in the session');
+        return false;
+    }
 }
 
 //this file will check if the user is authenticated and then either redirect
