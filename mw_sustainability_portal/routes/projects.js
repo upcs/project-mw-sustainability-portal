@@ -17,7 +17,7 @@ router.get('/' , async(req, res) => {
 });
 
 router.post('/', function(req, res, next) {
-    dbms.dbquery( 'SELECT name, team, image_route, page_route, html_generated FROM projects_list', function (err, results) {
+    dbms.dbquery('SELECT id, name, team, image_route, html_generated FROM projects_list', function (err, results) {
         if (err) {
             res.send('Bad bad things happened');
         } else {
