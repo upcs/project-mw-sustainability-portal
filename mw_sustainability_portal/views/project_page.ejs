@@ -38,18 +38,32 @@
     </head>
 
     <body>
+        <% var desc = ""; %>
+        <% var img_arr = []; %>
+
+        <% records.forEach(function(asset) { %>
+            <% if (asset.is_text === 1) { %>
+                <% desc = asset.asset_route; %>
+            <% } else if (asset.is_image === 1) { %>
+                <% img_arr.push(asset.asset_route); %>
+            <% } %>
+        <% }); %>
+
+        <% console.log("Description route: ", desc); %>
+        <% console.log("Image routes: ", img_arr); %>
+
         <button onclick="window.location.href='index.html'">Home</button>
-        <h1>Project Name</h1>
-        <h2>Project Subheader</h2>
+        <h1> <%= proj_name %> </h1>
+        <h2> <%= proj_team %> </h2>
          <div class="gallery">
             <table>
                 <tr>
                     <td>
                         <figure class="bob">
                             <div class="image-container">
-                                <img src="images/WhatsApp Image 2026-02-04 at 23.13.03.jpeg" alt="Description of Image 1">
+                                <img src=<%= img_arr[0] %>>
                             </div>
-                            <figcaption>Caption: students working on project</figcaption>
+                            <figcaption> [Insert Caption Here] </figcaption>
                         </figure>
                     </td>
                     <td>
@@ -57,15 +71,7 @@
                             <p style="text-align: left;">
                                 2/25/2026
                             </p>
-                            <p>
-                                
-                                Here is where you could write some text about this project.
-                                You could give a general update or describe what the students have been working on.
-                                You could talk about future plans for the project.
-                                Really anything you like. This text box also gets longer the more you type.
-                                I will type a lot to show this.
-
-                            </p>
+                            <iframe srcdoc="<p> <%= desc %> </p>" > </iframe>
                         </div>
                     </td>
                 </tr>
@@ -73,9 +79,9 @@
                     <td>
                         <figure class="bob">
                             <div class="image-container">
-                                <img src="images/WhatsApp Image 2026-02-04 at 23.13.05.jpeg" alt="Description of Image 1">
+                                <img src=<%= img_arr[1] %>>
                             </div>
-                            <figcaption>Caption</figcaption>
+                            <figcaption>[Insert caption here]</figcaption>
                         </figure>
                     </td>
                 </tr>

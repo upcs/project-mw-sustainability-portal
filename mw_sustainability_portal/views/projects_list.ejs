@@ -38,7 +38,6 @@
             }
         </style>
         <script src="../public/javascripts/getdata.js"></script>
-
     </head>
 
     <body>
@@ -62,8 +61,7 @@
                                                 <p><%= project.name %></p>                             
                                                 <p>Presented by: <%= project.team %></p>
                                             </div>
-                                            <button class="projbutton" id="view_button" onclick="render_proj( '<%= project.page_route %>' )">View Project</button>
-                                            <!--<button class="projbutton" id="view_button" onclick="renderPage()">View Project</button>-->
+                                            <button class="projbutton" id="view_button" onclick="render_proj( '<%= project.name %>', '<%= project.team %>', '<%= project.id %>' )">View Project</button>
                                     </div> 
                                 </td>
                             <% }); %>
