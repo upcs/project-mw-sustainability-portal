@@ -35,15 +35,15 @@ console.log('about to declare upload');
 console.log('about to enter upload post');
 
 /* creating the endpoint (name and path ) for the file */
-router.post('/upload_new_proj', async (req, res) => {  
+router.post('/', async (req, res) => {  
     
     console.log('entered upload post');
 
     let name = req.body.name;
     let team = req.body.team;
-    let route = req.body.route;
+   // let route = req.body.route;
 
-    console.log(name, team, route);
+    console.log(name, team);
     // while(!file){
     //     return res.status(400).send({message: "please select an image file"});
     // }
@@ -55,7 +55,7 @@ router.post('/upload_new_proj', async (req, res) => {
     //var projectId = 72; //not in use, just for testing
 
     //change sql prompt in next spring, using id 18 as hardcoded value 
-    const sql = "INSERT INTO `projects_list`( `name`, `team`, `page_route`, `image_route`) VALUES ('" + name + "','" + team + "','" + route + "', 'images\\1600px_COLOURBOX9214366-3078337225.jpg');";
+    const sql = "INSERT INTO `projects_list`( `name`, `team`, `image_route`) VALUES ('" + name + "','" + team + "', 'images\\1600px_COLOURBOX9214366-3078337225.jpg');";
 
     dbms.dbquery(sql, (err, results) => {
         if (err){
