@@ -76,6 +76,30 @@ $(function() { //event handler
 }*/
 
 
+//connect to ejs page
+async function render_proj(route){
+    alert(route);
+    try {
+        const response = await fetch('render_project', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+        });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.text();
+    
+    document.body.innerHTML = data;
+
+    } catch (error) {
+        //console.error('Error fetching data:', error);
+    }
+   //alert('function call works');
+}
+
 
 async function getProjects(){
     const response = await fetch('/projects');

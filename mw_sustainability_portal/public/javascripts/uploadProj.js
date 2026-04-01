@@ -1,19 +1,21 @@
 /* Event Listener */
 document.addEventListener("DOMContentLoaded", ()=> {
-
-    /* declaring form and file elements */
-    //const uploadForm = document.getElementById("projInput");
-    const name = document.getElementById("projName");
-    const team = document.getElementById("projTeam");
-    const route = document.getElementById("pageRoute");
+    const uploadForm = document.getElementById("projInput");
+    
 
     console.log("about to enter event listener");
 
     uploadForm.addEventListener("submit", async(e)=>{
         e.preventDefault();
 
+        /* declaring form and file elements */
+        //const uploadForm = document.getElementById("projInput");
+        let name1 = document.getElementById("projName").value;
+        let team1 = document.getElementById("projTeam").value;
+        let route1 = document.getElementById("pageRoute").value;
+
         /* error checking for no files being fed to gallery.html */
-        if(name .length ==0 || team.length ==0 || route.length == 0){
+        if(name1.length ==0 || team1.length ==0 || route1.length == 0){
 
             alert("add information to form first please");
             return; //ending process if no file chosen
@@ -21,13 +23,13 @@ document.addEventListener("DOMContentLoaded", ()=> {
 
         console.log("about to initialize formdata");
 
-        const postData = {name: name, team: team, route: route};
+        const postData = { name: name1, team: team1, route: route1 };
         const jsonBody = JSON.stringify(postData);
         // const fd = new FormData(projInput);
         // fd.append("uploadFile", name, team, route);
         // //multer.single("uploadFile");
 
-        const response = await fetch("/newProj", {method: "POST", body: jsonBody, headers: { Accept : "application/json" },});
+        const response = await fetch("/upload_new_proj", {method: "POST", headers: { Accept : "application/json" }, body: jsonBody});
         const data = await response.json();
 
 
@@ -44,6 +46,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
         // console.log(data.asset_route);
         
         uploadForm.reset();
+        res.render('newProj');
         //fileInput.value ="";
 
     });

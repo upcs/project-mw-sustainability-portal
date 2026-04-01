@@ -10,10 +10,12 @@ var usersRouter = require('./routes/users');
 var projectsRouter = require('./routes/projects');
 var indivRouter = require('./routes/indivProj');
 var newProjRouter = require('./routes/newProj');
-var authRouter = require('./routes/authRoutes');
 var uploadRouter = require('./routes/upload');
 var loginRouter = require('./routes/mylogin');
-var uploadProjRouter = require('./routes/uploadProj');
+var uploadProjRouter = require('./routes/upload_new_proj');
+var uploadRouter = require('./routes/upload');
+var loginRouter = require('./routes/mylogin');
+var renderProjRouter = require('./routes/render_project');
 
 var app = express();
 
@@ -32,11 +34,11 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/projects', projectsRouter);
 app.use('/indivProj', indivRouter);
-app.use('/authRoutes', authRouter);
 app.use('/upload',uploadRouter);
 app.use('/mylogin', loginRouter);
 app.use('/newProj', newProjRouter);
-app.use('/uploadProj', uploadProjRouter);
+app.use('/upload_new_proj', uploadProjRouter);
+app.use('/render_project', renderProjRouter);
 
 app.post('/submit', (req, res) => {
     console.log(req.body); // Access parsed data

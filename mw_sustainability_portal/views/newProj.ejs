@@ -5,17 +5,17 @@
   <body>
    <h2>New Project Form</h2>
 
-   <form id="projInput" method="post" action="/uploadProj" enctype="multipart/form-data">
+   <form id="projInput" method="post" action="/upload_new_proj" >
       <label for="projName">Project Name: </label>
-      <input type="text" id="projName">
+      <input type="text" id="projName" name = "name">
 
       <label for="projTeam">Project Name: </label>
-      <input type="text" id="projTeam">
+      <input type="text" id="projTeam" name = "team">
 
       <label for="pageRoute">Project Name: </label>
-      <input type="text" id="pageRoute">
+      <input type="text" id="pageRoute" name = "route">
 
-      <button type="submit">Upload</button>
+      <button type="submit" >Upload</button>
    </form>
   </body>
 </html>
