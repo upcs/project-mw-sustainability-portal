@@ -35,8 +35,8 @@ router.post('/', function(req, res, next) { //recieve a post
                 // correct = 0;
                 // //call router for rendering admin view next step
                 // res.render('admin_view'); //should be indirect render, go through protected.js
-                //req.session.user = { id: null, username: user };
-                req.session.user = req.body.user;
+                req.session.user = { id: null, username: user };
+                //req.session.user = req.body.user;
                 req.session.isAuthenticated = true;
 
                 req.session.save((err) => {

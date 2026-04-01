@@ -13,7 +13,7 @@ var projectsRouter = require('./routes/projects');
 var indivRouter = require('./routes/indivProj');
 var uploadRouter = require('./routes/upload');
 var loginRouter = require('./routes/mylogin');
-var protectedRouter = require('./routes/protected'); //check auth
+//var protectedRouter = require('./routes/protected'); //check auth
 var renderProjRouter = require('./routes/render_project');
 
 var app = express();
@@ -34,7 +34,7 @@ app.use('/projects', projectsRouter);
 app.use('/indivProj', indivRouter);
 app.use('/upload',uploadRouter);
 app.use('/mylogin', loginRouter);
-app.use('/protected', protectedRouter); //check auth
+//app.use('/protected', protectedRouter); //check auth
 app.use('/render_project', renderProjRouter);
 
 app.use(session({
