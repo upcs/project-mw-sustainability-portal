@@ -23,6 +23,7 @@ router.post('/', function(req, res, next) {
                 results.forEach(function(asset) { 
                     if (asset.is_text === 1) { 
                         desc = asset.asset_route;
+                        console.log(desc);
                     } else if (asset.is_image === 1) {
                         img_arr.push(asset.asset_route);
                     }
