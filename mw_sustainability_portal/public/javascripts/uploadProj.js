@@ -12,9 +12,8 @@ document.addEventListener("DOMContentLoaded", ()=> {
         //const uploadForm = document.getElementById("projInput");
         let name1 = document.getElementById("projName").value;
         let team1 = document.getElementById("projTeam").value;
-        let description = document.getElementById("pageDescrip").value;
+        let description = document.getElementById("pageDescrip")[0].value;
 
-        console.log(description);
 
         /* error checking for no files being fed to gallery.html */
         if(name1.length ==0 || team1.length ==0 || description.length == 0){

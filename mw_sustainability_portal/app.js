@@ -13,7 +13,7 @@ var newProjRouter = require('./routes/newProj');
 var uploadRouter = require('./routes/upload');
 var loginRouter = require('./routes/mylogin');
 var uploadProjRouter = require('./routes/upload_new_proj');
-var uploadRouter = require('./routes/upload');
+//var uploadRouter = require('./routes/upload');
 var loginRouter = require('./routes/mylogin');
 var renderProjRouter = require('./routes/render_project');
 
@@ -34,7 +34,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/projects', projectsRouter);
 app.use('/indivProj', indivRouter);
-app.use('/upload',uploadRouter);
+//app.use('/upload',uploadRouter);
 app.use('/mylogin', loginRouter);
 app.use('/newProj', newProjRouter);
 app.use('/upload_new_proj', uploadProjRouter);
