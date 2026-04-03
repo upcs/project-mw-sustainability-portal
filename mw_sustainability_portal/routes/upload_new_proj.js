@@ -33,7 +33,6 @@ router.post('/', upload_limit, async (req, res) => {
     /* working with file directory */
     let uploadDir = path.join( "public",  "assets", name);
     await fs.mkdir(uploadDir, {recursive : true});
-    uploadDir = path.join( "assets", name);
 
     /* putting description path in variable and writing to file */
     const descript_path = path.join(uploadDir, "description.txt");
@@ -46,7 +45,7 @@ router.post('/', upload_limit, async (req, res) => {
     // }
 
     //creating filename and filepath 
-    
+    uploadDir = path.join( "assets", name);
     //change sql prompt in next spring, using id 18 as hardcoded value 
     const sql = "INSERT INTO `projects_list`( `name`, `team`, `image_route`) VALUES ('" + name + "','" + team + "', '/images/1600px_COLOURBOX9214366-3078337225.jpg'); "+
        "INSERT INTO `project_assets` (`project_id`, `asset_route`, `is_text`) SELECT id, '"+descript_path+"', 1  FROM `projects_list` WHERE name = '"+name+"'";
