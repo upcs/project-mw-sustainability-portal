@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
         let team1 = document.getElementById("projTeam").value;
         let description = document.getElementById("pageDescrip").value;
 
-        alert(description);
+        console.log(description);
 
         /* error checking for no files being fed to gallery.html */
         if(name1.length ==0 || team1.length ==0 || description.length == 0){
