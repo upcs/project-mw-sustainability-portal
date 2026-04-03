@@ -6,18 +6,11 @@ const express = require('express');
 var multer = require('multer');
 var path = require('path');
 var fs = require('fs/promises');
-
-console.log('declaring router');
-
+const rate_limit = require('express-rate-limit');
 const dbms = require("./dbms");
-
 const router = express.Router();
 
-console.log('about to declare upload');
-
-//const upload = multer({ storage });
-
-console.log('about to enter upload post');
+//const upload_limit 
 
 /* creating the endpoint (name and path ) for the file */
 router.post('/', async (req, res) => {  
