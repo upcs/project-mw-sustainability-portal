@@ -49,7 +49,7 @@ router.post('/', upload_limit, async (req, res) => {
     
     //change sql prompt in next spring, using id 18 as hardcoded value 
     const sql = "INSERT INTO `projects_list`( `name`, `team`, `image_route`) VALUES ('" + name + "','" + team + "', '/images/1600px_COLOURBOX9214366-3078337225.jpg');"+
-        "INSERT INTO 'project_assets`(`project_id`,`asset_route`, `is_text`) VALUES ((SELECT id FROM `project_list` WHERE name = '"+ name+"'), '"+descript_path+"', 1)";
+        "INSERT INTO 'project_assets`(`project_id`,`asset_route`, `is_text`) VALUES (project_id, '"+descript_path+"', 1) WHERE project_id > (SELECT id FROM `project_list` WHERE name = '"+ name+"')";
 
     dbms.dbquery(sql, (err, results) => {
         if (err){
