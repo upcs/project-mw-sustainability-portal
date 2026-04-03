@@ -33,7 +33,7 @@ router.post('/', upload_limit, async (req, res) => {
     /* working with file directory */
     const uploadDir = path.join( "public",  "assets", name);
     await fs.mkdir(uploadDir, {recursive : true});
-   
+    uploadDir = path.join( "assets", name);
 
     /* putting description path in variable and writing to file */
     const descript_path = path.join(uploadDir, "description.txt");
