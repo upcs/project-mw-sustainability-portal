@@ -9,21 +9,29 @@ var fs = require('fs/promises');
 const rate_limit = require('express-rate-limit');
 const dbms = require("./dbms");
 const router = express.Router();
+const santizer = require('sanitize-filename');
 
-//const upload_limit 
+
+const upload_limit = rate_limit({
+    windowMs: 15*60*1000, //15 minutes
+    max: 40, //max upload rate per 15 minutes
+});
+
+app.use(upload_limit);
 
 /* creating the endpoint (name and path ) for the file */
-router.post('/', async (req, res) => {  
+router.post('/', upload_limit, async (req, res) => {  
     
     console.log('entered upload post');
 
-    let name = req.body.name;
+    const raw_name = req.body.name;
+    let name = santizer(raw_name || "");
     let team = req.body.team;
     let descript = req.body.descrip;
 
     /* working with file directory */
     const uploadDir = path.join(process.cwd(), "public",  "assets", name);
-    fs.mkdirSync(uploadDir, {recursive : true});
+    await fs.mkdirSync(uploadDir, {recursive : true});
    
 
     /* putting description path in variable and writing to file */
@@ -31,7 +39,7 @@ router.post('/', async (req, res) => {
     await fs.writeFile(descript_path, descript, "utf8");
 
 
-    console.log(name, team);
+    console.log("New project upload: ", name, team);
     // while(!file){
       //   return res.status(400).send({message: "please select an image file"});
     // }
