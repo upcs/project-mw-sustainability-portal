@@ -31,7 +31,7 @@ router.post('/', upload_limit, async (req, res) => {
     console.log("New project upload: ", name, team, descript);
 
     /* working with file directory */
-    const uploadDir = path.join(process.cwd(), "public",  "assets", name);
+    const uploadDir = path.join( "public",  "assets", name);
     await fs.mkdir(uploadDir, {recursive : true});
    
 
