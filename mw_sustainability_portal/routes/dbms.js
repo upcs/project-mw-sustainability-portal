@@ -48,6 +48,7 @@ exports.dbquery = function(query_str, callback) {
                 user: user,
                 password: password,
                 database: database,
+                multipleStatements: true,
             });
 
             dbclient.connect(callback);
