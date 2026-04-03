@@ -35,9 +35,12 @@ router.post('/', upload_limit, async (req, res) => {
     await fs.mkdir(uploadDir, {recursive : true});
 
     /* putting description path in variable and writing to file */
-    const descript_path = path.join(uploadDir, "description.txt");
+    let descript_path = path.join(uploadDir, "description.txt");
     await fs.writeFile(descript_path, descript, "utf8");
 
+    /* not including "public" which conflicts with render_project */
+    uploadDir = path.join( "assets", name);
+    descript_path = path.join(uploadDir, "description.txt");
 
     console.log("New project upload: ", name, team);
     // while(!file){
@@ -45,7 +48,7 @@ router.post('/', upload_limit, async (req, res) => {
     // }
 
     //creating filename and filepath 
-    uploadDir = path.join( "assets", name);
+    
     //change sql prompt in next spring, using id 18 as hardcoded value 
     const sql = "INSERT INTO `projects_list`( `name`, `team`, `image_route`) VALUES ('" + name + "','" + team + "', '/images/1600px_COLOURBOX9214366-3078337225.jpg'); "+
        "INSERT INTO `project_assets` (`project_id`, `asset_route`, `is_text`) SELECT id, '"+descript_path+"', 1  FROM `projects_list` WHERE name = '"+name+"'";
