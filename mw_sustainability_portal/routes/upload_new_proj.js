@@ -50,7 +50,7 @@ router.post('/', upload_limit, async (req, res) => {
                     + "INSERT INTO `project_assets` (`project_id`, `asset_route`, `is_text`)" +
                             "SELECT id, '"+descript_path+"', 1"  
                             +   "FROM `projects_list`"
-                                +   "WHERE name = '"+name+"'"; 
+                                +   "WHERE name = '"+name+"'"; //first one uploads new project to database and second is descript path to assetsS
             
 
     console.log(sql);
