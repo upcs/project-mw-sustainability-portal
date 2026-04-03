@@ -31,7 +31,7 @@ router.post('/', upload_limit, async (req, res) => {
 
     /* working with file directory */
     const uploadDir = path.join(process.cwd(), "public",  "assets", name);
-    await fs.mkdirSync(uploadDir, {recursive : true});
+    await fs.mkdir(uploadDir, {recursive : true});
    
 
     /* putting description path in variable and writing to file */
