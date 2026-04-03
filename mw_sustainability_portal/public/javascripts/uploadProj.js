@@ -12,11 +12,11 @@ document.addEventListener("DOMContentLoaded", ()=> {
         //const uploadForm = document.getElementById("projInput");
         let name1 = document.getElementById("projName").value;
         let team1 = document.getElementById("projTeam").value;
-        let description = document.getElementById("pageDescrip").value;
+        let descrip = document.getElementById("pageDescrip").value;
 
 
         /* error checking for no files being fed to gallery.html */
-        if(name1.length ==0 || team1.length ==0 || description.length == 0){
+        if(name1.length ==0 || team1.length ==0 || descrip.length == 0){
 
             alert("add information to form first please");
             return; //ending process if no file chosen
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
 
         console.log("about to initialize formdata");
 
-        const postData = { name: name1, team: team1, descrip: description };
+        const postData = { name: name1, team: team1, decription: descrip };
         const jsonBody = JSON.stringify(postData);
         // const fd = new FormData(projInput);
         // fd.append("uploadFile", name, team, route);

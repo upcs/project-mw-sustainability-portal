@@ -27,8 +27,8 @@ router.post('/', upload_limit, async (req, res) => {
     const raw_name = req.body.name;
     let name = santizer(raw_name || "");
     let team = req.body.team;
-    let descript = req.body.descrip;
-    console.log("New project upload: ", name, team, descript);
+    let descript = req.body.description;
+    console.log("New project upload: ", name, team, description);
 
     /* working with file directory */
     const uploadDir = path.join(process.cwd(), "public",  "assets", name);
