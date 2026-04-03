@@ -17,7 +17,7 @@ const upload_limit = rate_limit({
     max: 40, //max upload rate per 15 minutes
 });
 
-app.use(upload_limit);
+router.use(upload_limit);
 
 /* creating the endpoint (name and path ) for the file */
 router.post('/', upload_limit, async (req, res) => {  
