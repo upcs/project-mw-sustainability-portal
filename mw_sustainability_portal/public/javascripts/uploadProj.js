@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
         //const uploadForm = document.getElementById("projInput");
         let name1 = document.getElementById("projName").value;
         let team1 = document.getElementById("projTeam").value;
-        let description = document.getElementById("pageDescrip").innerHTML;
+        let description = document.getElementById("pageDescrip").value;
 
 
         /* error checking for no files being fed to gallery.html */
