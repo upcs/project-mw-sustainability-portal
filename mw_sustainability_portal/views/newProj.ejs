@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<script src="/javascripts/uploadProj.js" defer ></script>
+<html>
+  
+  <body>
+   <h2>New Project Form</h2>
+
+   <form id="projInput" method="post" action="/upload_new_proj" >
+      <label for="projName">Project Name: </label>
+      <input type="text" id="projName" name = "name">
+
+      <label for="projTeam">Project Team: </label>
+      <input type="text" id="projTeam" name = "team">
+
+      <label for="pageDescrip">Project Description: </label>
+      <input type="text" id="pageDescrip" name = "description">
+
+      <button type="submit" >Upload</button>
+   </form>
+  </body>
+</html>
