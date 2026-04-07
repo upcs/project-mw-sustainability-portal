@@ -18,7 +18,7 @@ router.post('/', function(req, res, next) { //recieve a post
     console.log('got db user and pass');
     var query = 'select * from login'; //need to fix to select only 1 FIX THIS!!!
     var correct = 1; //1 = wrong pass
-    dbms.dbquery( query, function (err, results) {
+    dbms.dbquery(query, function (err, results) {
         if (err) {
             console.log("Incorrect User!");
         } else {
@@ -40,10 +40,7 @@ router.post('/', function(req, res, next) { //recieve a post
                 return res.redirect('/mylogin/admin_view'); // indirect render
                 });
 
-                //secure get url
-                router.get('/admin_view', ensureAuthenticated, function(req, res) {
-                    res.render('admin_view', { user: req.session.user });
-                });
+                
             }
             else
             {
@@ -53,6 +50,11 @@ router.post('/', function(req, res, next) { //recieve a post
             }
         }
     });
+});
+
+//secure get url
+router.get('/admin_view', ensureAuthenticated, function(req, res) {
+    res.render('admin_view', { user: req.session.user });
 });
 
 module.exports = router;

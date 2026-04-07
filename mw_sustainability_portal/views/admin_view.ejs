@@ -97,8 +97,16 @@
     </body>
     <script>
         $('#projbutton').click(function(){
-            $.post("http://localhost:3000/protected", function(){
-            })
+            //$.mylogin.get
+            //have it dynamically generate a link with info 
+            //about what project youre editing? with name of router
+            //have the links dynamically generated when ejs is made for each project button
+            //protected_pages?action=edit_project,projectname=sanitation
+            //log out: /protected_pages?action=logout
+
+            //placeholder:
+            linkstring = "/protected_pages?action=edit_project,projectname=sanitation";
+
         });
     </script>
 </html>
