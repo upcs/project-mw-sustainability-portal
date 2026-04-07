@@ -18,6 +18,16 @@ var renderProjRouter = require('./routes/render_project');
 
 var app = express();
 
+app.use(session({
+    secret: sessionSecret,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: 'auto',
+        maxAge: 3600
+    }
+}));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -36,16 +46,6 @@ app.use('/upload',uploadRouter);
 app.use('/mylogin', loginRouter);
 //app.use('/protected', protectedRouter); //check auth
 app.use('/render_project', renderProjRouter);
-
-app.use(session({
-    secret: sessionSecret,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-        secure: 'auto',
-        maxAge: 3600
-    }
-}));
 
 app.post('/submit', (req, res) => {
     console.log(req.body); // Access parsed data
