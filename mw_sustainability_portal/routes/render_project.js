@@ -6,6 +6,11 @@ const fs = require('fs').promises;
 const path = require('path');
 var app = express();
 
+/* GET projects page. */
+router.get('/' , async(req, res) => {
+    
+});
+
 router.post('/', function(req, res, next) {
     var name = req.body.proj_name;
     var team = req.body.proj_team;
@@ -14,35 +19,35 @@ router.post('/', function(req, res, next) {
     var query = 'SELECT * FROM project_assets WHERE project_id = ' + id;
 
     dbms.dbquery(query, async function (err, results) {
-            if (err) {
-                res.send('Bad bad things happened');
-            } else {
-                var desc = "";
-                var img_arr = [];
-                
-                results.forEach(function(asset) { 
-                    if (asset.is_text === 1) { 
-                        desc = asset.asset_route;
-                    } else if (asset.is_image === 1) {
-                        img_arr.push(asset.asset_route);
-                    }
-                });
-
-                if (desc) {
-                    try {
-                        textContent = await read_txt(desc);
-                    } catch (e) {
-                        console.error(e);
-                        textContent = "Error loading description";
-                    }
+        if (err) {
+            res.send('Bad bad things happened');
+        } else {
+            var desc = "";
+            var img_arr = [];
+            
+            results.forEach(function(asset) { 
+                if (asset.is_text === 1) { 
+                    desc = asset.asset_route;
+                } else if (asset.is_image === 1) {
+                    img_arr.push(asset.asset_route);
                 }
+            });
 
-                var data = {images: img_arr, description : textContent,
-                            proj_name : name, proj_team : team};
-                console.log(data);
-                res.render('project_page', data);
+            if (desc) {
+                try {
+                    textContent = await read_txt(desc);
+                } catch (e) {
+                    console.error(e);
+                    textContent = "Error loading description";
+                }
             }
-        });
+
+            var data = {images: img_arr, description : textContent,
+                        proj_name : name, proj_team : team};
+            console.log(data);
+            res.render('project_page', data);
+        }
+    });
 });
 
 async function read_txt(route) {
