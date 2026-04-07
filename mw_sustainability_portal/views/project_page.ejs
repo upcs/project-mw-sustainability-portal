@@ -38,20 +38,6 @@
     </head>
 
     <body>
-        <% var desc = ""; %>
-        <% var img_arr = []; %>
-
-        <% records.forEach(function(asset) { %>
-            <% if (asset.is_text === 1) { %>
-                <% desc = asset.asset_route; %>
-            <% } else if (asset.is_image === 1) { %>
-                <% img_arr.push(asset.asset_route); %>
-            <% } %>
-        <% }); %>
-
-        <% console.log("Description route: ", desc); %>
-        <% console.log("Image routes: ", img_arr); %>
-
         <button onclick="window.location.href='index.html'">Home</button>
         <h1> <%= proj_name %> </h1>
         <h2> <%= proj_team %> </h2>
@@ -61,7 +47,7 @@
                     <td>
                         <figure class="bob">
                             <div class="image-container">
-                                <img src=<%= img_arr[0] %>>
+                                <img src=<%= images[0] %>>
                             </div>
                             <figcaption> [Insert Caption Here] </figcaption>
                         </figure>
@@ -71,7 +57,9 @@
                             <p style="text-align: left;">
                                 2/25/2026
                             </p>
-                            <iframe srcdoc="<p> <%= desc %> </p>" > </iframe>
+                            <p>
+                                <%= description %>
+                            </p>
                         </div>
                     </td>
                 </tr>
@@ -79,9 +67,9 @@
                     <td>
                         <figure class="bob">
                             <div class="image-container">
-                                <img src=<%= img_arr[1] %>>
+                                <img src=<%= images[1] %>>
                             </div>
-                            <figcaption>[Insert caption here]</figcaption>
+                            <figcaption>[Insert Caption Here]</figcaption>
                         </figure>
                     </td>
                 </tr>

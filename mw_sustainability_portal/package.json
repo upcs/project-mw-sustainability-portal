@@ -19,6 +19,7 @@
     "ejs": "^4.0.1",
     "express": "^4.22.1",
     "express-fileupload": "^1.5.2",
+    "express-rate-limit": "^8.3.2",
     "http-errors": "~1.6.3",
     "jade": "^0.29.0",
     "jest": "^30.3.0",
@@ -30,6 +31,7 @@
     "mysql": "^2.18.1",
     "mysql2": "^3.18.2",
     "pg": "^8.20.0",
+    "sanitize-filename": "^1.6.4",
     "sharp": "^0.34.5"
   },
   "devDependencies": {
