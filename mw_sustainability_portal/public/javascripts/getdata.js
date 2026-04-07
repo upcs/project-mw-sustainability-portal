@@ -131,15 +131,32 @@ async function getProjectsPost(){
     }
 }
 
-async function getindivproj(){
-    const response = await fetch('/indivProj');
-    const data = await response.text();
-    document.body.innerHTML = data;
-}
-
+/* async function that handles a post to the indivProj ejs page  */
 async function getindivpost(){
     try {
         const response = await fetch('indivProj', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.text();
+    
+        document.body.innerHTML = data;
+
+    } catch (error) {
+        //console.error('Error fetching data:', error);
+    }
+}
+
+/* async function that handles a post to the indivProj ejs page  */
+async function newProject(){
+    try {
+        const response = await fetch('newProj', {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json'
