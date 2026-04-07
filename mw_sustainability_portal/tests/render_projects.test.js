@@ -4,10 +4,6 @@
 
 const router = require("../routes/render_project.js");
 //const router2 = require("../routes/index.js");
-const router3 = require("../routes/indivProj.js");
-const router4 = require("../routes/mylogin.js");
-const router5 = require("../routes/projects.js");
-const router6 = require("../routes/upload.js");
 const router7 = require("../routes/users.js");
 const dbms = require("../routes/dbms.js");
 
