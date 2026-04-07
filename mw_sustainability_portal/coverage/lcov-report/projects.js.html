@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">44.44% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>8/18</span>
+                <span class='fraction'>18/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>4/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">44.44% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>8/18</span>
+                <span class='fraction'>18/18</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -94,37 +94,37 @@
 <a name='L29'></a><a href='#L29'>29</a>
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a>
-<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L32'></a><a href='#L32'>32</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var express = require('express');
 var router = express.Router();
 var dbms = require("./dbms.js");
@@ -132,24 +132,24 @@ const { concat } = require("async");
 var app = express();
 &nbsp;
 /* GET projects page page. */
-router.get('/' , <span class="fstat-no" title="function not covered" >as</span>ync(req, res) =&gt; {
-    const sqlQuery = <span class="cstat-no" title="statement not covered" >'SELECT * FROM projects_list';</span>
-<span class="cstat-no" title="statement not covered" >    dbms.dbquery(sqlQuery, <span class="fstat-no" title="function not covered" >(e</span>rr, results) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        if (err) {</span>
-<span class="cstat-no" title="statement not covered" >            res.send('There are no projects or I cannot collect data');</span>
+router.get('/' , async(req, res) =&gt; {
+    const sqlQuery = 'SELECT * FROM projects_list';
+    dbms.dbquery(sqlQuery, (err, results) =&gt; {
+        if (err) {
+            res.send('There are no projects or I cannot collect data');
         }
-<span class="cstat-no" title="statement not covered" >        res.render('projects', { items: results });</span>
+        res.render('projects', { items: results });
     });
 &nbsp;
 });
 &nbsp;
-router.post('/', <span class="fstat-no" title="function not covered" >fu</span>nction(req, res, next) {
-<span class="cstat-no" title="statement not covered" >    dbms.dbquery('SELECT id, name, team, image_route, html_generated FROM projects_list', <span class="fstat-no" title="function not covered" >fu</span>nction (err, results) {</span>
-<span class="cstat-no" title="statement not covered" >        if (err) {</span>
-<span class="cstat-no" title="statement not covered" >            res.send('Bad bad things happened');</span>
+router.post('/', function(req, res, next) {
+    dbms.dbquery('SELECT id, name, team, image_route, html_generated FROM projects_list', function (err, results) {
+        if (err) {
+            res.send('Bad bad things happened');
         } else {
-<span class="cstat-no" title="statement not covered" >            console.log(results); </span>
-<span class="cstat-no" title="statement not covered" >            res.render('projects_list', {records: results});</span>
+            console.log(results); 
+            res.render('projects_list', {records: results});
         }
     });
 });
@@ -163,7 +163,7 @@ module.exports = router;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-04-06T23:36:59.458Z
+                at 2026-04-07T16:52:44.461Z
             </div>
         <script src="prettify.js"></script>
         <script>
