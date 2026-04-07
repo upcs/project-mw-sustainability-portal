@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node ./bin/www",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "dependencies": {
     "async": "^3.2.6",
