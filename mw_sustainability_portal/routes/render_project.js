@@ -8,42 +8,49 @@ const path = require('path');
 var app = express();
 
 /* GET projects page. */
-router.get('/' , async(req, res) => {
-    var team = req.query.team;
-    var name = req.query.name;
-    var id = req.query.id;
+router.get('/:id', async (req, res) => {
+    console.log("PARAMS:", req.params);
 
-    var query = 'SELECT * FROM project_assets WHERE project_id = ' + id;
+    var id = req.params.id;
 
-    dbms.dbquery(query, async function (err, results) {
-        if (err) {
-            res.send('Bad bad things happened');
-        } else {
-            var desc = "";
-            var img_arr = [];
-            
-            results.forEach(function(asset) { 
-                if (asset.is_text === 1) { 
-                    desc = asset.asset_route;
-                } else if (asset.is_image === 1) {
-                    img_arr.push(asset.asset_route);
-                }
+    //Get name + team from projects_list
+    var projectQuery = 'SELECT name, team FROM projects_list WHERE id = ' + id;
+
+    dbms.dbquery(projectQuery, function (err, projectInfo) {
+        if (err) return res.send('Error loading project info');
+
+        const name = projectInfo[0].name;
+        const team = projectInfo[0].team;
+
+        // Get assets from project_assets
+        const assetQuery = 'SELECT * FROM project_assets WHERE project_id =' + id;
+
+        dbms.dbquery(assetQuery, async function (err, results) {
+            if (err) return res.send('Error loading assets');
+
+            let desc = "";
+            let img_arr = [];
+            let textContent = "";
+
+            results.forEach(asset => {
+                if (asset.is_text === 1) desc = asset.asset_route;
+                if (asset.is_image === 1) img_arr.push(asset.asset_route);
             });
 
             if (desc) {
                 try {
                     textContent = await read_txt(desc);
-                } catch (e) {
-                    console.error(e);
+                } catch {
                     textContent = "Error loading description";
                 }
             }
 
             var data = {images: img_arr, description : textContent,
                         proj_name : name, proj_team : team};
+                        
             console.log(data);
             res.render('project_page', data);
-        }
+        });
     });
 });
 
