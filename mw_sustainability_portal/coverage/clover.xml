@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1774978927185" clover="3.2.0">
-  <project timestamp="1774978927185" name="All files">
-    <metrics statements="30" coveredstatements="25" conditionals="6" coveredconditionals="1" methods="7" coveredmethods="6" elements="43" coveredelements="32" complexity="0" loc="30" ncloc="30" packages="1" files="1" classes="1"/>
+<coverage generated="1775676118159" clover="3.2.0">
+  <project timestamp="1775676118159" name="All files">
+    <metrics statements="121" coveredstatements="119" conditionals="26" coveredconditionals="21" methods="21" coveredmethods="20" elements="168" coveredelements="160" complexity="0" loc="121" ncloc="121" packages="1" files="5" classes="5"/>
     <file name="dbms.js" path="C:\Users\sizem\OneDrive\Documents\GitHub\project-mw-sustainability-portal\mw_sustainability_portal\routes\dbms.js">
-      <metrics statements="30" coveredstatements="25" conditionals="6" coveredconditionals="1" methods="7" coveredmethods="6"/>
+      <metrics statements="30" coveredstatements="28" conditionals="6" coveredconditionals="2" methods="7" coveredmethods="6"/>
       <line num="9" count="2" type="stmt"/>
       <line num="12" count="2" type="stmt"/>
       <line num="13" count="2" type="stmt"/>
@@ -12,36 +12,35 @@
       <line num="17" count="2" type="stmt"/>
       <line num="18" count="2" type="stmt"/>
       <line num="36" count="2" type="stmt"/>
-      <line num="39" count="2" type="stmt"/>
-      <line num="41" count="2" type="stmt"/>
-      <line num="45" count="2" type="stmt"/>
-      <line num="46" count="2" type="stmt"/>
-      <line num="53" count="2" type="stmt"/>
-      <line num="58" count="2" type="stmt"/>
-      <line num="59" count="2" type="stmt"/>
-      <line num="60" count="2" type="stmt"/>
-      <line num="66" count="2" type="stmt"/>
+      <line num="39" count="3" type="stmt"/>
+      <line num="41" count="3" type="stmt"/>
+      <line num="45" count="3" type="stmt"/>
+      <line num="46" count="3" type="stmt"/>
+      <line num="54" count="3" type="stmt"/>
+      <line num="59" count="3" type="stmt"/>
+      <line num="60" count="3" type="stmt"/>
+      <line num="61" count="3" type="stmt"/>
       <line num="67" count="2" type="stmt"/>
       <line num="68" count="2" type="stmt"/>
       <line num="69" count="2" type="stmt"/>
-      <line num="75" count="2" type="cond" truecount="1" falsecount="1"/>
-      <line num="76" count="0" type="stmt"/>
-      <line num="77" count="0" type="stmt"/>
-      <line num="78" count="0" type="stmt"/>
-      <line num="80" count="2" type="stmt"/>
+      <line num="70" count="2" type="stmt"/>
+      <line num="76" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="77" count="1" type="stmt"/>
+      <line num="78" count="1" type="stmt"/>
+      <line num="79" count="1" type="stmt"/>
       <line num="81" count="2" type="stmt"/>
-      <line num="85" count="2" type="stmt"/>
-      <line num="88" count="2" type="stmt"/>
-      <line num="90" count="0" type="cond" truecount="0" falsecount="4"/>
-      <line num="91" count="0" type="stmt"/>
+      <line num="82" count="2" type="stmt"/>
+      <line num="86" count="3" type="stmt"/>
+      <line num="89" count="3" type="stmt"/>
+      <line num="91" count="0" type="cond" truecount="0" falsecount="4"/>
+      <line num="92" count="0" type="stmt"/>
     </file>
     <file name="indivProj.js" path="C:\Users\sizem\OneDrive\Documents\GitHub\project-mw-sustainability-portal\mw_sustainability_portal\routes\indivProj.js">
-      <metrics statements="19" coveredstatements="19" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="4"/>
+      <metrics statements="18" coveredstatements="18" conditionals="4" coveredconditionals="4" methods="4" coveredmethods="4"/>
       <line num="1" count="1" type="stmt"/>
       <line num="2" count="1" type="stmt"/>
       <line num="3" count="1" type="stmt"/>
       <line num="4" count="1" type="stmt"/>
-      <line num="5" count="1" type="stmt"/>
       <line num="8" count="1" type="stmt"/>
       <line num="9" count="2" type="stmt"/>
       <line num="10" count="2" type="stmt"/>
@@ -102,31 +101,42 @@
       <line num="31" count="1" type="stmt"/>
     </file>
     <file name="render_project.js" path="C:\Users\sizem\OneDrive\Documents\GitHub\project-mw-sustainability-portal\mw_sustainability_portal\routes\render_project.js">
-      <metrics statements="16" coveredstatements="16" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
+      <metrics statements="35" coveredstatements="35" conditionals="8" coveredconditionals="7" methods="4" coveredmethods="4"/>
       <line num="1" count="1" type="stmt"/>
       <line num="2" count="1" type="stmt"/>
       <line num="3" count="1" type="stmt"/>
       <line num="4" count="1" type="stmt"/>
       <line num="5" count="1" type="stmt"/>
+      <line num="6" count="1" type="stmt"/>
       <line num="7" count="1" type="stmt"/>
-      <line num="8" count="2" type="stmt"/>
-      <line num="9" count="2" type="stmt"/>
-      <line num="10" count="2" type="stmt"/>
-      <line num="12" count="2" type="stmt"/>
-      <line num="14" count="2" type="stmt"/>
-      <line num="15" count="2" type="cond" truecount="2" falsecount="0"/>
-      <line num="16" count="1" type="stmt"/>
-      <line num="18" count="1" type="stmt"/>
-      <line num="20" count="1" type="stmt"/>
-      <line num="26" count="1" type="stmt"/>
-    </file>
-    <file name="users.js" path="C:\Users\sizem\OneDrive\Documents\GitHub\project-mw-sustainability-portal\mw_sustainability_portal\routes\users.js">
-      <metrics statements="5" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <line num="1" count="1" type="stmt"/>
-      <line num="2" count="1" type="stmt"/>
-      <line num="5" count="1" type="stmt"/>
-      <line num="6" count="0" type="stmt"/>
       <line num="9" count="1" type="stmt"/>
+      <line num="10" count="5" type="stmt"/>
+      <line num="11" count="5" type="stmt"/>
+      <line num="12" count="5" type="stmt"/>
+      <line num="14" count="5" type="stmt"/>
+      <line num="16" count="5" type="stmt"/>
+      <line num="17" count="5" type="cond" truecount="2" falsecount="0"/>
+      <line num="18" count="1" type="stmt"/>
+      <line num="20" count="4" type="stmt"/>
+      <line num="21" count="4" type="stmt"/>
+      <line num="22" count="4" type="stmt"/>
+      <line num="24" count="4" type="stmt"/>
+      <line num="25" count="6" type="cond" truecount="2" falsecount="0"/>
+      <line num="26" count="3" type="stmt"/>
+      <line num="27" count="3" type="cond" truecount="1" falsecount="1"/>
+      <line num="28" count="3" type="stmt"/>
+      <line num="32" count="4" type="cond" truecount="2" falsecount="0"/>
+      <line num="33" count="3" type="stmt"/>
+      <line num="34" count="3" type="stmt"/>
+      <line num="36" count="1" type="stmt"/>
+      <line num="37" count="1" type="stmt"/>
+      <line num="41" count="4" type="stmt"/>
+      <line num="43" count="4" type="stmt"/>
+      <line num="44" count="4" type="stmt"/>
+      <line num="50" count="3" type="stmt"/>
+      <line num="57" count="3" type="stmt"/>
+      <line num="58" count="2" type="stmt"/>
+      <line num="62" count="1" type="stmt"/>
     </file>
   </project>
 </coverage>

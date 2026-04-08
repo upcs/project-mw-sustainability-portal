@@ -19,6 +19,7 @@ router.post('/', function(req, res, next) {
             } else {
                 var desc = "";
                 var img_arr = [];
+                var textContent = "";   // <-- ADD THIS LINE
                 
                 results.forEach(function(asset) { 
                     if (asset.is_text === 1) { 

@@ -1,65 +1,176 @@
-/**
- * @jest-environment node
- */
-
-const router = require("../routes/render_project.js");
-//const router2 = require("../routes/index.js");
-const router7 = require("../routes/users.js");
+const request = require("supertest");
+const express = require("express");
+const router = require("../routes/render_project");
 const dbms = require("../routes/dbms.js");
+const fs = require("fs").promises;
 
-jest.mock("../routes/dbms.js", () => ({
-    dbquery: jest.fn()
-}));
+// Mock DB + FS
+jest.mock("../routes/dbms.js");
+jest.spyOn(fs, "readFile");
 
-describe("POST / (render_projects router)", () => {
+function makeApp() {
+    const app = express();
+    app.use(express.json());
+    app.use("/", router);
 
-    let req, res;
-
-    beforeEach(() => {
-        req = {
-            method: "POST",
-            url: "/",
-            body: {
-                proj_name: "Solar Panels",
-                proj_team: "Team Green",
-                proj_id: 42
-            }
-        };
-
-        res = {
-            send: jest.fn(),
-            render: jest.fn()
-        };
+    // Intercept res.render
+    app.response.render = jest.fn(function (view, data) {
+        this.send({ view, data });
     });
 
-    test("renders project_page on successful DB query", () => {
-        const fakeResults = [{ asset: "panel1.jpg" }];
+    return app;
+}
+
+describe("render_project router", () => {
+
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+
+    test("renders project_page with images + description", async () => {
+        const fakeResults = [
+            { is_text: 1, asset_route: "desc.txt" },
+            { is_image: 1, asset_route: "img1.jpg" },
+            { is_image: 1, asset_route: "img2.jpg" }
+        ];
 
         dbms.dbquery.mockImplementation((query, callback) => {
             callback(null, fakeResults);
         });
 
-        router.handle(req, res, () => {});
+        fs.readFile.mockResolvedValue("This is the project description");
 
-        expect(dbms.dbquery).toHaveBeenCalledWith(
-            "SELECT * FROM project_assets WHERE project_id = 42",
-            expect.any(Function)
-        );
+        const app = makeApp();
 
-        expect(res.render).toHaveBeenCalledWith("project_page", {
-            records: fakeResults,
-            proj_name: "Solar Panels",
-            proj_team: "Team Green"
+        const res = await request(app)
+            .post("/")
+            .send({
+                proj_name: "Solar Panels",
+                proj_team: "Team Green",
+                proj_id: 42
+            });
+
+        expect(res.body).toEqual({
+            view: "project_page",
+            data: {
+                images: ["img1.jpg", "img2.jpg"],
+                description: "This is the project description",
+                proj_name: "Solar Panels",
+                proj_team: "Team Green"
+            }
         });
     });
 
-    test("sends error message when DB query fails", () => {
+    test("renders project_page with only images", async () => {
+        const fakeResults = [
+            { is_image: 1, asset_route: "img1.jpg" }
+        ];
+
         dbms.dbquery.mockImplementation((query, callback) => {
-            callback("SQL ERROR", null);
+            callback(null, fakeResults);
         });
 
-        router.handle(req, res, () => {});
+        const app = makeApp();
 
-        expect(res.send).toHaveBeenCalledWith("Bad bad things happened");
+        const res = await request(app)
+            .post("/")
+            .send({
+                proj_name: "Wind Turbines",
+                proj_team: "Team Blue",
+                proj_id: 99
+            });
+
+        expect(res.body).toEqual({
+            view: "project_page",
+            data: {
+                images: ["img1.jpg"],
+                description: "",
+                proj_name: "Wind Turbines",
+                proj_team: "Team Blue"
+            }
+        });
     });
+
+    test("renders project_page with only description", async () => {
+        const fakeResults = [
+            { is_text: 1, asset_route: "desc.txt" }
+        ];
+
+        dbms.dbquery.mockImplementation((query, callback) => {
+            callback(null, fakeResults);
+        });
+
+        fs.readFile.mockResolvedValue("Only text here");
+
+        const app = makeApp();
+
+        const res = await request(app)
+            .post("/")
+            .send({
+                proj_name: "Hydro Project",
+                proj_team: "Team Aqua",
+                proj_id: 7
+            });
+
+        expect(res.body).toEqual({
+            view: "project_page",
+            data: {
+                images: [],
+                description: "Only text here",
+                proj_name: "Hydro Project",
+                proj_team: "Team Aqua"
+            }
+        });
+    });
+
+    test("handles DB error", async () => {
+        dbms.dbquery.mockImplementation((query, callback) => {
+            callback(new Error("DB failed"), null);
+        });
+
+        const app = makeApp();
+
+        const res = await request(app)
+            .post("/")
+            .send({
+                proj_name: "Solar Panels",
+                proj_team: "Team Green",
+                proj_id: 42
+            });
+
+        expect(res.text).toBe("Bad bad things happened");
+    });
+
+    test("handles missing description file", async () => {
+        const fakeResults = [
+            { is_text: 1, asset_route: "missing.txt" }
+        ];
+
+        dbms.dbquery.mockImplementation((query, callback) => {
+            callback(null, fakeResults);
+        });
+
+        fs.readFile.mockRejectedValue(new Error("File not found"));
+
+        const app = makeApp();
+
+        const res = await request(app)
+            .post("/")
+            .send({
+                proj_name: "Biofuel",
+                proj_team: "Team Yellow",
+                proj_id: 55
+            });
+
+        expect(res.body).toEqual({
+            view: "project_page",
+            data: {
+                images: [],
+                description: "Error loading description",
+                proj_name: "Biofuel",
+                proj_team: "Team Yellow"
+            }
+        });
+    });
+
 });
