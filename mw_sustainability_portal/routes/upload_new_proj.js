@@ -47,10 +47,11 @@ router.post('/', upload_limit, async (req, res) => {
     const sql = "INSERT INTO `projects_list`( `name`, `team`, `image_route`)"+ 
                     "VALUES ('" + name + "','" + team + "', '/images/1600px_COLOURBOX9214366-3078337225.jpg');"
                     
-                    + "INSERT INTO `project_assets` (`project_id`, `asset_route`, `is_text`)" +
+                    + "INSERT INTO `project_assets` (`project_id`, `asset_route`, `is_text`) " +
                             "SELECT id, '"+descript_path+"', 1"  
-                            +   "FROM `projects_list`"
-                                +   "WHERE name = '"+name+"'"; //first one uploads new project to database and second is descript path to assetsS
+                            +   " FROM `projects_list` "
+                                +   "WHERE name = '"+name+"'"; 
+                                //first one uploads new project to database and second is descript path to assetsS
             
 
     console.log(sql);

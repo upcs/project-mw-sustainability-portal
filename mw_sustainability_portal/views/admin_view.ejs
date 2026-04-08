@@ -1,10 +1,6 @@
 
 <!DOCTYPE html>
-<script> 
-    let x = document.cookie;
-    console.log(x);
-    //check if the values in x = the saved admin password
-</script>
+<script src = "../routes/makeNewProject.js"></script>
 <html>
     <head>
         <link rel="stylesheet" href="stylesheets/contactpage.css" />
@@ -60,7 +56,7 @@
                             <div class="image-container">
                                 <img src="images/blankplus2.png" alt="Description of Image 1">
                             </div>
-                            <button style="margin-bottom: 40%;" class="projbutton" onclick="window.location.href='projectpageexample.html'">Create New Project</button>
+                            <button style="margin-bottom: 40%;" id="projbutton"">Create New Project</button>
                         </figure>
                     </td>
                     <td>
@@ -99,4 +95,18 @@
             </table>
          </div>
     </body>
+    <script>
+        $('#projbutton').click(function(){
+            //$.mylogin.get
+            //have it dynamically generate a link with info 
+            //about what project youre editing? with name of router
+            //have the links dynamically generated when ejs is made for each project button
+            //protected_pages?action=edit_project,projectname=sanitation
+            //log out: /protected_pages?action=logout
+
+            //placeholder:
+            linkstring = "/protected_pages?action=edit_project,projectname=sanitation";
+
+        });
+    </script>
 </html>

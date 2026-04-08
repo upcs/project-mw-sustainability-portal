@@ -2,7 +2,9 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+var session = require('express-session');
+const crypto = require('crypto'); //do i need to install this?
+const sessionSecret = crypto.randomBytes(32).toString('hex'); //generate secret string
 
 
 var indexRouter = require('./routes/index');
@@ -11,28 +13,39 @@ var projectsRouter = require('./routes/projects');
 var indivRouter = require('./routes/indivProj');
 var newProjRouter = require('./routes/newProj');
 var loginRouter = require('./routes/mylogin');
+//var protectedRouter = require('./routes/protected'); //check auth
 var uploadProjRouter = require('./routes/upload_new_proj');
 var loginRouter = require('./routes/mylogin');
 var renderProjRouter = require('./routes/render_project');
 
 var app = express();
 
+app.use(session({
+    secret: sessionSecret,
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: 'auto',
+        maxAge: 3600
+    }
+}));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({extended : true}));
-app.use(logger('dev'));
+//app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/projects', projectsRouter);
 app.use('/indivProj', indivRouter);
 app.use('/mylogin', loginRouter);
+//app.use('/protected', protectedRouter); //check auth
 app.use('/newProj', newProjRouter);
 app.use('/upload_new_proj', uploadProjRouter);
 app.use('/render_project', renderProjRouter);
