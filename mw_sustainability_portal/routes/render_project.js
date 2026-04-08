@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var dbms = require("./dbms.js");
+const url = require('url');
 const { concat } = require("async");
 const fs = require('fs').promises;
 const path = require('path');
@@ -8,13 +9,9 @@ var app = express();
 
 /* GET projects page. */
 router.get('/' , async(req, res) => {
-    
-});
-
-router.post('/', function(req, res, next) {
-    var name = req.body.proj_name;
-    var team = req.body.proj_team;
-    var id = req.body.proj_id;
+    var team = req.query.team;
+    var name = req.query.name;
+    var id = req.query.id;
 
     var query = 'SELECT * FROM project_assets WHERE project_id = ' + id;
 
@@ -48,6 +45,21 @@ router.post('/', function(req, res, next) {
             res.render('project_page', data);
         }
     });
+});
+
+router.post('/', function(req, res, next) {
+    var name = req.body.proj_name;
+    var team = req.body.proj_team;
+    var id = req.body.proj_id;
+
+    res.redirect(url.format({
+       pathname:"/render_project",
+       query: {
+          "name": name,
+          "team": team,
+          "id" : id
+        }
+     }));
 });
 
 async function read_txt(route) {
