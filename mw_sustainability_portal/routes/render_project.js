@@ -1,49 +1,72 @@
 var express = require('express');
 var router = express.Router();
 var dbms = require("./dbms.js");
+const url = require('url');
 const { concat } = require("async");
 const fs = require('fs').promises;
 const path = require('path');
 var app = express();
+
+/* GET projects page. */
+router.get('/:id', async (req, res) => {
+    console.log("PARAMS:", req.params);
+
+    var id = req.params.id;
+
+    //Get name + team from projects_list
+    var projectQuery = 'SELECT name, team FROM projects_list WHERE id = ' + id;
+
+    dbms.dbquery(projectQuery, function (err, projectInfo) {
+        if (err) return res.send('Error loading project info');
+
+        const name = projectInfo[0].name;
+        const team = projectInfo[0].team;
+
+        // Get assets from project_assets
+        const assetQuery = 'SELECT * FROM project_assets WHERE project_id =' + id;
+
+        dbms.dbquery(assetQuery, async function (err, results) {
+            if (err) return res.send('Error loading assets');
+
+            let desc = "";
+            let img_arr = [];
+            let textContent = "";
+
+            results.forEach(asset => {
+                if (asset.is_text === 1) desc = asset.asset_route;
+                if (asset.is_image === 1) img_arr.push(asset.asset_route);
+            });
+
+            if (desc) {
+                try {
+                    textContent = await read_txt(desc);
+                } catch {
+                    textContent = "Error loading description";
+                }
+            }
+
+            var data = {images: img_arr, description : textContent,
+                        proj_name : name, proj_team : team};
+                        
+            console.log(data);
+            res.render('project_page', data);
+        });
+    });
+});
 
 router.post('/', function(req, res, next) {
     var name = req.body.proj_name;
     var team = req.body.proj_team;
     var id = req.body.proj_id;
 
-    var query = 'SELECT * FROM project_assets WHERE project_id = ' + id;
-
-    dbms.dbquery(query, async function (err, results) {
-            if (err) {
-                res.send('Bad bad things happened');
-            } else {
-                var desc = "";
-                var img_arr = [];
-                var textContent = "";   // <-- ADD THIS LINE
-                
-                results.forEach(function(asset) { 
-                    if (asset.is_text === 1) { 
-                        desc = asset.asset_route;
-                    } else if (asset.is_image === 1) {
-                        img_arr.push(asset.asset_route);
-                    }
-                });
-
-                if (desc) {
-                    try {
-                        textContent = await read_txt(desc);
-                    } catch (e) {
-                        console.error(e);
-                        textContent = "Error loading description";
-                    }
-                }
-
-                var data = {images: img_arr, description : textContent,
-                            proj_name : name, proj_team : team};
-                console.log(data);
-                res.render('project_page', data);
-            }
-        });
+    res.redirect(url.format({
+       pathname:"/render_project",
+       query: {
+          "name": name,
+          "team": team,
+          "id" : id
+        }
+     }));
 });
 
 async function read_txt(route) {

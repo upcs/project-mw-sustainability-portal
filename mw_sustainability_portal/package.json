@@ -19,6 +19,7 @@
     "ejs": "^4.0.1",
     "express": "^4.22.1",
     "express-fileupload": "^1.5.2",
+    "express-session": "^1.19.0",
     "express-rate-limit": "^8.3.2",
     "http-errors": "~1.6.3",
     "jade": "^0.29.0",
