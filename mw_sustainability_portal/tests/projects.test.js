@@ -1,110 +1,69 @@
-/**
- * @jest-environment node
- */
+const request = require('supertest');
+const express = require('express');
 
-const router = require("../routes/projects.js");
-const dbms = require("../routes/dbms.js");
-
-// Mock dbms.dbquery
-jest.mock("../routes/dbms.js", () => ({
-    dbquery: jest.fn()
+// Mock dbms BEFORE requiring router
+jest.mock('../routes/dbms.js', () => ({
+  dbquery: jest.fn()
 }));
 
-describe("projects router", () => {
+const dbms = require('../routes/dbms.js');
+const router = require('../routes/projects.js');
 
-    let req, res, next;
+describe('projects router', () => {
+  let app;
 
-    beforeEach(() => {
-        req = {
-            method: "",
-            url: "/"
-        };
+  beforeEach(() => {
+    app = express();
 
-        res = {
-            send: jest.fn(),
-            render: jest.fn()
-        };
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: true }));
 
-        next = jest.fn();
+    // mock render so we don’t need a view engine
+    app.response.render = function(view, options) {
+      this.status(200).json({ view, ...options });
+    };
+
+    app.use('/projects', router);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  test('✅ GET /projects returns projects list', async () => {
+    const mockResults = [
+      { id: 1, name: 'Project A', team: 'Team 1', image_route: '/img/a.png', html_generated: '<p>A</p>' },
+      { id: 2, name: 'Project B', team: 'Team 2', image_route: '/img/b.png', html_generated: '<p>B</p>' }
+    ];
+
+    dbms.dbquery.mockImplementation((query, cb) => {
+      cb(null, mockResults);
     });
 
-    // -----------------------------
-    // GET /
-    // -----------------------------
-    test("GET / renders projects with items on success", () => {
-        const fakeResults = [
-            { id: 1, name: "Proj A" },
-            { id: 2, name: "Proj B" }
-        ];
+    const res = await request(app).get('/projects');
 
-        dbms.dbquery.mockImplementation((query, callback) => {
-            callback(null, fakeResults);
-        });
+    expect(res.status).toBe(200);
+    expect(res.body.view).toBe('projects_list');
+    expect(res.body.records).toEqual(mockResults);
+  });
 
-        req.method = "GET";
-
-        router.handle(req, res, next);
-
-        expect(dbms.dbquery).toHaveBeenCalledWith(
-            "SELECT * FROM projects_list",
-            expect.any(Function)
-        );
-
-        expect(res.render).toHaveBeenCalledWith("projects", {
-            items: fakeResults
-        });
+  test('❌ GET /projects handles DB error', async () => {
+    dbms.dbquery.mockImplementation((query, cb) => {
+      cb(new Error('DB error'), null);
     });
 
-    test("GET / sends error message when DB fails", () => {
-        dbms.dbquery.mockImplementation((query, callback) => {
-            callback("SQL ERROR", null);
-        });
+    const res = await request(app).get('/projects');
 
-        req.method = "GET";
+    expect(res.status).toBe(200);
+    expect(res.text).toBe('Bad bad things happened');
+  });
 
-        router.handle(req, res, next);
+  test('🔁 POST /projects redirects to /projects', async () => {
+    const res = await request(app)
+      .post('/projects')
+      .send({});
 
-        expect(res.send).toHaveBeenCalledWith(
-            "There are no projects or I cannot collect data"
-        );
-    });
-
-    // -----------------------------
-    // POST /
-    // -----------------------------
-    test("POST / renders projects_list with records on success", () => {
-        const fakeResults = [
-            { id: 1, name: "Proj A", team: "Alpha" }
-        ];
-
-        dbms.dbquery.mockImplementation((query, callback) => {
-            callback(null, fakeResults);
-        });
-
-        req.method = "POST";
-
-        router.handle(req, res, next);
-
-        expect(dbms.dbquery).toHaveBeenCalledWith(
-            "SELECT id, name, team, image_route, html_generated FROM projects_list",
-            expect.any(Function)
-        );
-
-        expect(res.render).toHaveBeenCalledWith("projects_list", {
-            records: fakeResults
-        });
-    });
-
-    test("POST / sends error message when DB fails", () => {
-        dbms.dbquery.mockImplementation((query, callback) => {
-            callback("SQL ERROR", null);
-        });
-
-        req.method = "POST";
-
-        router.handle(req, res, next);
-
-        expect(res.send).toHaveBeenCalledWith("Bad bad things happened");
-    });
-
+    expect(res.status).toBe(302);
+    expect(res.headers.location).toBe('/projects');
+  });
 });

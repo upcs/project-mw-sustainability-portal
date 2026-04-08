@@ -1,176 +1,144 @@
-const request = require("supertest");
 const express = require("express");
+const request = require("supertest");
 const router = require("../routes/render_project");
 const dbms = require("../routes/dbms.js");
 const fs = require("fs").promises;
 
-// Mock DB + FS
 jest.mock("../routes/dbms.js");
 jest.spyOn(fs, "readFile");
 
-function makeApp() {
+function createApp() {
     const app = express();
     app.use(express.json());
-    app.use("/", router);
 
-    // Intercept res.render
+    // Replace res.render so we can inspect output
     app.response.render = jest.fn(function (view, data) {
         this.send({ view, data });
     });
 
+    app.use("/", router);
     return app;
 }
 
-describe("render_project router", () => {
+describe("render_project router (fresh test suite)", () => {
 
     beforeEach(() => {
         jest.clearAllMocks();
     });
 
-    test("renders project_page with images + description", async () => {
-        const fakeResults = [
-            { is_text: 1, asset_route: "desc.txt" },
-            { is_image: 1, asset_route: "img1.jpg" },
-            { is_image: 1, asset_route: "img2.jpg" }
+    // -------------------------------------------------------
+    // GET — full successful load
+    // -------------------------------------------------------
+    test("GET /:id loads project info, assets, and description text", async () => {
+        const projectInfo = [{ name: "Rain Garden", team: "Eco Crew" }];
+        const assets = [
+            { is_text: 1, asset_route: "info.txt" },
+            { is_image: 1, asset_route: "garden1.jpg" },
+            { is_image: 1, asset_route: "garden2.jpg" }
         ];
 
-        dbms.dbquery.mockImplementation((query, callback) => {
-            callback(null, fakeResults);
+        dbms.dbquery.mockImplementation((sql, cb) => {
+            if (sql.includes("projects_list")) cb(null, projectInfo);
+            else cb(null, assets);
         });
 
-        fs.readFile.mockResolvedValue("This is the project description");
+        fs.readFile.mockResolvedValue("Rain garden project details");
 
-        const app = makeApp();
-
-        const res = await request(app)
-            .post("/")
-            .send({
-                proj_name: "Solar Panels",
-                proj_team: "Team Green",
-                proj_id: 42
-            });
+        const app = createApp();
+        const res = await request(app).get("/5");
 
         expect(res.body).toEqual({
             view: "project_page",
             data: {
-                images: ["img1.jpg", "img2.jpg"],
-                description: "This is the project description",
-                proj_name: "Solar Panels",
-                proj_team: "Team Green"
+                images: ["garden1.jpg", "garden2.jpg"],
+                description: "Rain garden project details",
+                proj_name: "Rain Garden",
+                proj_team: "Eco Crew"
             }
         });
     });
 
-    test("renders project_page with only images", async () => {
-        const fakeResults = [
-            { is_image: 1, asset_route: "img1.jpg" }
-        ];
-
-        dbms.dbquery.mockImplementation((query, callback) => {
-            callback(null, fakeResults);
+    // -------------------------------------------------------
+    // GET — project info DB failure
+    // -------------------------------------------------------
+    test("GET /:id returns error when project info query fails", async () => {
+        dbms.dbquery.mockImplementation((sql, cb) => {
+            cb(new Error("fail"), null);
         });
 
-        const app = makeApp();
+        const app = createApp();
+        const res = await request(app).get("/22");
 
-        const res = await request(app)
-            .post("/")
-            .send({
-                proj_name: "Wind Turbines",
-                proj_team: "Team Blue",
-                proj_id: 99
-            });
-
-        expect(res.body).toEqual({
-            view: "project_page",
-            data: {
-                images: ["img1.jpg"],
-                description: "",
-                proj_name: "Wind Turbines",
-                proj_team: "Team Blue"
-            }
-        });
+        expect(res.text).toBe("Error loading project info");
     });
 
-    test("renders project_page with only description", async () => {
-        const fakeResults = [
-            { is_text: 1, asset_route: "desc.txt" }
-        ];
+    // -------------------------------------------------------
+    // GET — asset query failure
+    // -------------------------------------------------------
+    test("GET /:id returns error when asset query fails", async () => {
+        const projectInfo = [{ name: "Solar Roof", team: "Sky Energy" }];
 
-        dbms.dbquery.mockImplementation((query, callback) => {
-            callback(null, fakeResults);
+        dbms.dbquery.mockImplementation((sql, cb) => {
+            if (sql.includes("projects_list")) cb(null, projectInfo);
+            else cb(new Error("asset error"), null);
         });
 
-        fs.readFile.mockResolvedValue("Only text here");
+        const app = createApp();
+        const res = await request(app).get("/9");
 
-        const app = makeApp();
-
-        const res = await request(app)
-            .post("/")
-            .send({
-                proj_name: "Hydro Project",
-                proj_team: "Team Aqua",
-                proj_id: 7
-            });
-
-        expect(res.body).toEqual({
-            view: "project_page",
-            data: {
-                images: [],
-                description: "Only text here",
-                proj_name: "Hydro Project",
-                proj_team: "Team Aqua"
-            }
-        });
+        expect(res.text).toBe("Error loading assets");
     });
 
-    test("handles DB error", async () => {
-        dbms.dbquery.mockImplementation((query, callback) => {
-            callback(new Error("DB failed"), null);
+    // -------------------------------------------------------
+    // GET — missing description file
+    // -------------------------------------------------------
+    test("GET /:id uses fallback description when file read fails", async () => {
+        const projectInfo = [{ name: "Wetland Filter", team: "AquaLab" }];
+        const assets = [{ is_text: 1, asset_route: "missing.txt" }];
+
+        dbms.dbquery.mockImplementation((sql, cb) => {
+            if (sql.includes("projects_list")) cb(null, projectInfo);
+            else cb(null, assets);
         });
 
-        const app = makeApp();
+        fs.readFile.mockRejectedValue(new Error("no file"));
 
-        const res = await request(app)
-            .post("/")
-            .send({
-                proj_name: "Solar Panels",
-                proj_team: "Team Green",
-                proj_id: 42
-            });
-
-        expect(res.text).toBe("Bad bad things happened");
-    });
-
-    test("handles missing description file", async () => {
-        const fakeResults = [
-            { is_text: 1, asset_route: "missing.txt" }
-        ];
-
-        dbms.dbquery.mockImplementation((query, callback) => {
-            callback(null, fakeResults);
-        });
-
-        fs.readFile.mockRejectedValue(new Error("File not found"));
-
-        const app = makeApp();
-
-        const res = await request(app)
-            .post("/")
-            .send({
-                proj_name: "Biofuel",
-                proj_team: "Team Yellow",
-                proj_id: 55
-            });
+        const app = createApp();
+        const res = await request(app).get("/14");
 
         expect(res.body).toEqual({
             view: "project_page",
             data: {
                 images: [],
                 description: "Error loading description",
-                proj_name: "Biofuel",
-                proj_team: "Team Yellow"
+                proj_name: "Wetland Filter",
+                proj_team: "AquaLab"
             }
         });
+    });
+
+    // -------------------------------------------------------
+    // POST — redirect behavior
+    // -------------------------------------------------------
+    test("POST / redirects with correct encoded query parameters", async () => {
+        const app = createApp();
+
+        const res = await request(app)
+            .post("/")
+            .send({
+                proj_name: "Urban Forest",
+                proj_team: "Tree Squad",
+                proj_id: 300
+            });
+
+        expect(res.status).toBe(302);
+
+        const parsed = new URL("http://localhost" + res.headers.location);
+
+        expect(parsed.pathname).toBe("/render_project");
+        expect(parsed.searchParams.get("name")).toBe("Urban Forest");
+        expect(parsed.searchParams.get("team")).toBe("Tree Squad");
+        expect(parsed.searchParams.get("id")).toBe("300");
     });
 
 });

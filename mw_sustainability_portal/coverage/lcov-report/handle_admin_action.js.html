@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for projects.js</title>
+    <title>Code coverage report for handle_admin_action.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="prettify.css" />
     <link rel="stylesheet" href="base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="index.html">All files</a> projects.js</h1>
+        <h1><a href="index.html">All files</a> handle_admin_action.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">7.14% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>15/15</span>
+                <span class='fraction'>1/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>0/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/3</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">7.14% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>15/15</span>
+                <span class='fraction'>1/14</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -90,68 +90,83 @@
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
 <a name='L27'></a><a href='#L27'>27</a>
-<a name='L28'></a><a href='#L28'>28</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var express = require('express');
-var router = express.Router();
-var dbms = require("./dbms.js");
-const { concat } = require("async");
-var app = express();
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * 4/7/26
+ */
 &nbsp;
-/* GET projects page page. */
-router.get('/' , async(req, res) =&gt; {
-    var query = 'SELECT id, name, team, image_route, html_generated FROM projects_list'
+function <span class="fstat-no" title="function not covered" >ensureAuthenticated(</span>req, res, next) {
+<span class="cstat-no" title="statement not covered" >    if (req.session &amp;&amp; req.session.user &amp;&amp; req.session.user.username) {</span>
+<span class="cstat-no" title="statement not covered" >        return next();</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return res.redirect('/mylogin/admin_error');</span>
+}
 &nbsp;
-    dbms.dbquery(query, function (err, results) {
-        if (err) {
-            res.send('Bad bad things happened');
-        } else {
-            console.log(results); 
-            res.render('projects_list', {records: results});
-        }
-    });
+app.get('/admin_view', ensureAuthenticated, <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {
     
-});
+    const actiontype = <span class="cstat-no" title="statement not covered" >req.query.action;</span> //example input: /protected_pages?action=edit_project
 &nbsp;
-router.post('/', function(req, res, next) {
-    res.redirect('/projects');
-});
+<span class="cstat-no" title="statement not covered" >    if(actiontype === 'edit_project') {</span>
+        //example input: /protected_pages?action=edit_project,projectname=sanitation
+<span class="cstat-no" title="statement not covered" >        projectname = req.query.projectname;</span>
+<span class="cstat-no" title="statement not covered" >        res.render('edit_project', { project: projectname });</span>
+    }
+    else <span class="cstat-no" title="statement not covered" >if (actiontype === 'upload') {</span>
+<span class="cstat-no" title="statement not covered" >        projectname = req.query.projectname;</span>
+<span class="cstat-no" title="statement not covered" >        res.render('edit_project_upload', { project: projectname });</span>
+    }
+    else <span class="cstat-no" title="statement not covered" >if (actiontype === 'logout') {</span>
+        //projectname = req.query.projectname; ??
+<span class="cstat-no" title="statement not covered" >        res.render('logout');</span>
+    }
+    else {
+<span class="cstat-no" title="statement not covered" >        res.redirect('/admin_view');</span>
+    }
 &nbsp;
-&nbsp;
-module.exports = router;
-&nbsp;</pre></td></tr></table></pre>
+});</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-04-08T20:45:14.429Z
+                at 2026-04-08T20:43:44.576Z
             </div>
         <script src="prettify.js"></script>
         <script>

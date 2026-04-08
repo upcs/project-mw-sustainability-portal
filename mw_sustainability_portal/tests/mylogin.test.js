@@ -1,72 +1,106 @@
-/**
- * @jest-environment node
- */
+const request = require('supertest');
+const express = require('express');
+const session = require('express-session');
 
-const router = require("../routes/mylogin.js");
-const dbms = require("../routes/dbms.js");
-
-// Mock dbms.dbquery
-jest.mock("../routes/dbms.js", () => ({
-    dbquery: jest.fn()
+// Mock dbms BEFORE requiring router
+jest.mock('../routes/dbms.js', () => ({
+  dbquery: jest.fn()
 }));
 
-describe("POST / (mylogin router)", () => {
+const dbms = require('../routes/dbms.js');
+const router = require('../routes/mylogin.js');
 
-    let req, res;
+describe('mylogin router', () => {
+  let app;
 
-    beforeEach(() => {
-        req = {
-            method: "POST",
-            url: "/",
-            body: {
-                user: "admin",
-                pass: "secret123"
-            }
-        };
+  beforeEach(() => {
+    app = express();
 
-        res = {
-            render: jest.fn(),
-            send: jest.fn()
-        };
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: true }));
+
+    app.use(session({
+      secret: 'test-secret',
+      resave: false,
+      saveUninitialized: true
+    }));
+
+    // mock render to avoid needing a template engine
+    app.response.render = function(view, options) {
+      this.status(200).json({ view, ...options });
+    };
+
+    app.use('/mylogin', router);
+  });
+
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+
+  test('✅ successful login redirects to admin_view', async () => {
+    dbms.dbquery.mockImplementation((query, cb) => {
+      cb(null, [{ pass: 'correctpass' }]);
     });
 
-    test("renders admin_view when password is correct", () => {
-        const fakeResults = [{ pass: "secret123" }];
+    const res = await request(app)
+      .post('/mylogin')
+      .send({ user: 'admin', pass: 'correctpass' });
 
-        dbms.dbquery.mockImplementation((query, callback) => {
-            callback(null, fakeResults);
-        });
+    expect(res.status).toBe(302);
+    expect(res.headers.location).toBe('/mylogin/admin_view');
+  });
 
-        router.handle(req, res, () => {});
-
-        expect(dbms.dbquery).toHaveBeenCalledWith(
-            "select * from login",
-            expect.any(Function)
-        );
-
-        expect(res.render).toHaveBeenCalledWith("admin_view");
+  test('❌ wrong password redirects to admin_error', async () => {
+    dbms.dbquery.mockImplementation((query, cb) => {
+      cb(null, [{ pass: 'correctpass' }]);
     });
 
-    test("renders admin_error when password is incorrect", () => {
-        const fakeResults = [{ pass: "wrongpass" }];
+    const res = await request(app)
+      .post('/mylogin')
+      .send({ user: 'admin', pass: 'wrongpass' });
 
-        dbms.dbquery.mockImplementation((query, callback) => {
-            callback(null, fakeResults);
-        });
+    expect(res.status).toBe(302);
+    expect(res.headers.location).toBe('admin_error');
+  });
 
-        router.handle(req, res, () => {});
+  test('❌ db error redirects to admin_error', async () => {
+  dbms.dbquery.mockImplementation((query, cb) => {
+    cb(new Error('DB error'), null);
+  });
 
-        expect(res.render).toHaveBeenCalledWith("admin_error");
+  const res = await request(app)
+    .post('/mylogin')
+    .send({ user: 'admin', pass: 'whatever' });
+
+  expect(res.status).toBe(302);
+  expect(res.headers.location).toBe('/mylogin/admin_error');
     });
 
-    test("handles DB error gracefully (no render)", () => {
-        dbms.dbquery.mockImplementation((query, callback) => {
-            callback("SQL ERROR", null);
-        });
+  test('🔒 protected route blocks unauthenticated users', async () => {
+    const res = await request(app)
+      .get('/mylogin/admin_view');
 
-        router.handle(req, res, () => {});
+    expect(res.status).toBe(302);
+    expect(res.headers.location).toBe('/mylogin/admin_error');
+  });
 
-        expect(res.render).not.toHaveBeenCalled();
-        expect(res.send).not.toHaveBeenCalled();
+  test('🔓 protected route allows authenticated users', async () => {
+    const agent = request.agent(app);
+
+    dbms.dbquery.mockImplementation((query, cb) => {
+      cb(null, [{ pass: 'correctpass' }]);
     });
+
+    // First login
+    await agent
+      .post('/mylogin')
+      .send({ user: 'admin', pass: 'correctpass' });
+
+    // Then access protected route
+    const res = await agent.get('/mylogin/admin_view');
+
+    expect(res.status).toBe(200);
+    expect(res.body.view).toBe('admin_view');
+    expect(res.body.user.username).toBe('admin');
+  });
 });
