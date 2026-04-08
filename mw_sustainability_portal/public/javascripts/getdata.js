@@ -76,6 +76,33 @@ $(function() { //event handler
 }*/
 
 
+//connect to ejs page
+async function render_proj(name, team, id){
+    const data = {proj_name : name, proj_team : team, proj_id : id};
+    console.log(data);
+    const json_body = JSON.stringify(data);
+
+    try {
+        const response = await fetch('render_project', {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: json_body,
+        });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.text();
+    
+    document.body.innerHTML = data;
+
+    } catch (error) {
+        //console.error('Error fetching data:', error);
+    }
+}
+
 
 async function getProjects(){
     const response = await fetch('/projects');

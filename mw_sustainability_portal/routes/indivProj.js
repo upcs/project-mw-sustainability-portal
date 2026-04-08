@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var dbms = require("./dbms.js");
 const { concat } = require("async");
-var app = express();
+//var app = express();
 
 /* GET projects page page. */
 router.get('/' , (req, res) => {

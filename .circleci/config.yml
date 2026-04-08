@@ -1,0 +1,48 @@
+# This config was automatically generated from your source code
+# Stacks detected: deps:node:mw_sustainability_portal,test:jest:
+version: 2.1
+orbs:
+  node: circleci/node@5
+  codecov: codecov/codecov@5
+jobs:
+  test-node:
+    # Install node dependencies and run tests
+    executor: node/default
+    working_directory: ~/project/mw_sustainability_portal
+    environment:
+      JEST_JUNIT_OUTPUT_DIR: ./test-results/
+    steps:
+      - checkout:
+          path: ~/project
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+          command: npm install jest-junit
+      - run:
+          name: Run tests
+          command: npm run test --ci --runInBand --reporters=default --reporters=jest-junit
+      - store_test_results:
+          path: ./test-results/
+      - run:
+        name: Upload to CodeCov
+    command: bash <(curl -s https://codecov.io/bash)
+  deploy:
+    # This is an example deploy job, not actually used by the workflow
+    docker:
+      - image: cimg/base:stable
+    steps:
+      # Replace this with steps to deploy to users
+      - run:
+          name: deploy
+          command: '#e.g. ./deploy.sh'
+workflows:
+  build-and-test:
+    jobs:
+      - test-node
+    # - deploy:
+    #     requires:
+    #       - test-node
+  upload-to-codecov:
+    jobs:
+      - checkout 
+      - codecov/upload

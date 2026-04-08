@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="/stylesheets/contactpage.css" />
+        <style>
+            figcaption
+            {
+                text-align: center;
+                font-weight: bold;
+                padding-top: 25px;
+                font-size: 20px;
+                color: #FFEE98;
+            }
+            img
+            {
+                max-width: 500px;
+                max-height: 500px;
+                border-radius: 5%;
+            }
+            .desc
+            {
+                padding: 50px;
+                border: 2px;
+                border-color: #cafdff;
+                border-radius: 5%;
+                background-color: rgb(74, 74, 147);
+                width: 400px;
+                min-height: 200px;
+                margin-bottom: 50px;
+                
+            }
+            p
+            {
+                color: #FFEE98;
+                line-height: 200%; /* double spaced */
+            }
+        </style>
+    </head>
+
+    <body>
+        <button onclick="window.location.href='../index.html'">Home</button><br><br>
+        <button onclick="history.back()"> Projects </button>
+        
+        <h1> <%= proj_name %> </h1>
+        <h2> <%= proj_team %> </h2>
+         <div class="gallery">
+            <table>
+                <tr>
+                    <td>
+                        <figure class="bob">
+                            <div class="image-container">
+                                <img src=<%= images[0] %>>
+                            </div>
+                            <figcaption> [Insert Caption Here] </figcaption>
+                        </figure>
+                    </td>
+                    <td>
+                        <div class="desc">
+                            <p style="text-align: left;">
+                                2/25/2026
+                            </p>
+                            <p>
+                                <%= description %>
+                            </p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <figure class="bob">
+                            <div class="image-container">
+                                <img src=<%= images[1] %>>
+                            </div>
+                            <figcaption>[Insert Caption Here]</figcaption>
+                        </figure>
+                    </td>
+                </tr>
+            </table>
+         </div>
+    </body>
+
+</html>

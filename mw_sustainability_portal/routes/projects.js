@@ -6,18 +6,9 @@ var app = express();
 
 /* GET projects page page. */
 router.get('/' , async(req, res) => {
-    const sqlQuery = 'SELECT * FROM projects_list';
-    dbms.dbquery(sqlQuery, (err, results) => {
-        if (err) {
-            res.send('There are no projects or I cannot collect data');
-        }
-        res.render('projects', { items: results });
-    });
+    var query = 'SELECT id, name, team, image_route, html_generated FROM projects_list'
 
-});
-
-router.post('/', function(req, res, next) {
-    dbms.dbquery( 'SELECT name, team, image_route, page_route, html_generated FROM projects_list', function (err, results) {
+    dbms.dbquery(query, function (err, results) {
         if (err) {
             res.send('Bad bad things happened');
         } else {
@@ -25,6 +16,11 @@ router.post('/', function(req, res, next) {
             res.render('projects_list', {records: results});
         }
     });
+    
+});
+
+router.post('/', function(req, res, next) {
+    res.redirect('/projects');
 });
 
 

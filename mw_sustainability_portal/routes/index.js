@@ -1,22 +1,11 @@
 const express = require("express");
 const dotenv = require("dotenv").config();
-const dbConnect = require("../public/javascripts/src/config/dbConnect");
-const authRoutes = require("../routes/authRoutes");
-const userRoutes = require("../routes/userRoutes");
-//var loginRoutes = require('../routes/loginRoutes');
 var router = express.Router();
-
-
-dbConnect();
 
 const app = express();
 
 //Middleware
 app.use(express.json());
-
-//Routes
-app.use("/api/auth", authRoutes);
-app.use("/api/auth", authRoutes);
 
 //Start the server
 const PORT2 = process.env.PORT2 || 7001;
