@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">93.54% </span>
+                <span class="strong">71.42% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>29/31</span>
+                <span class='fraction'>25/35</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.9% </span>
+                <span class="strong">45.45% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>10/11</span>
+                <span class='fraction'>5/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/5</span>
+                <span class='fraction'>3/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">93.54% </span>
+                <span class="strong">71.42% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>29/31</span>
+                <span class='fraction'>25/35</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -124,17 +124,23 @@
 <a name='L59'></a><a href='#L59'>59</a>
 <a name='L60'></a><a href='#L60'>60</a>
 <a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -156,6 +162,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -172,7 +179,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -181,29 +187,34 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const express = require('express');
 var router = express.Router();
 var dbms = require("./dbms.js");
-//const { concat } = require("async");
-//var app = express();
 &nbsp;
-function ensureAuthenticated(req, res, next) {
-    if (req.session &amp;&amp; req.session.user &amp;&amp; req.session.user.username) {
-        return next();
+function <span class="fstat-no" title="function not covered" >ensureAuthenticated(</span>req, res, next) {
+<span class="cstat-no" title="statement not covered" >    console.log("ensuring auth");</span>
+<span class="cstat-no" title="statement not covered" >    if (req.session &amp;&amp; req.session.user &amp;&amp; req.session.user.username) {</span>
+<span class="cstat-no" title="statement not covered" >        console.log("auth check passed");</span>
+<span class="cstat-no" title="statement not covered" >        return next();</span>
     }
-    return res.redirect('/mylogin/admin_error');
+<span class="cstat-no" title="statement not covered" >    console.log("auth check failed");</span>
+<span class="cstat-no" title="statement not covered" >    return res.redirect('/mylogin/admin_error');</span>
 }
 &nbsp;
 router.post('/', function(req, res, next) { //recieve a post
     console.log('Pulling data from DB');
     let user = req.body.user;
     let pass = req.body.pass;
-    console.log('got db user and pass');
-    var query = 'select * from login'; //need to fix to select only 1 FIX THIS!!!
+    console.log('get db user and pass');
+    var query = "SELECT * FROM login WHERE user = '" + user + "'";
     var correct = 1; //1 = wrong pass
     dbms.dbquery(query, function (err, results) {
         if (err) {
@@ -217,6 +228,7 @@ router.post('/', function(req, res, next) { //recieve a post
 &nbsp;
                 // //call router for rendering admin view next step
                 // // res.render('admin_view'); //should be indirect render, go through protected.js
+    
                 req.session.user = { id: null, username: user };
                 req.session.isAuthenticated = true;
 &nbsp;
@@ -225,7 +237,7 @@ router.post('/', function(req, res, next) { //recieve a post
 <span class="cstat-no" title="statement not covered" >                    console.error('Session save error:', err);</span>
 <span class="cstat-no" title="statement not covered" >                    return res.render('admin_error', { message: 'Session error' });</span>
                 }
-                return res.redirect('/mylogin/admin_view'); // indirect render
+                return res.redirect('/mylogin/index'); // indirect render
                 });
 &nbsp;
                 
@@ -233,7 +245,6 @@ router.post('/', function(req, res, next) { //recieve a post
             else
             {
                 console.log("Incorrect pass!");
-                //res.render('admin_error')
                 res.redirect('admin_error');
             }
         }
@@ -241,8 +252,12 @@ router.post('/', function(req, res, next) { //recieve a post
 });
 &nbsp;
 //secure get url
-router.get('/admin_view', ensureAuthenticated, function(req, res) {
-    res.render('admin_view', { user: req.session.user });
+router.get('/index', ensureAuthenticated, <span class="fstat-no" title="function not covered" >fu</span>nction(req, res) {
+<span class="cstat-no" title="statement not covered" >    res.render('index', { </span>
+        user: req.session.user,
+        loggedIn: req.session.isAuthenticated //used for ejs
+    });
+<span class="cstat-no" title="statement not covered" >    console.log("entered the get");</span>
 });
 &nbsp;
 module.exports = router;
@@ -253,7 +268,7 @@ module.exports = router;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-04-08T20:45:14.429Z
+                at 2026-04-09T17:01:11.845Z
             </div>
         <script src="prettify.js"></script>
         <script>
