@@ -11,15 +11,15 @@ const dbms = require("./dbms"); //database file
 const router = express.Router();
 const santizer = require('sanitize-filename'); //sanitizing input 
 
-function ensureAuthenticated(req, res) {
-    console.log("entered auth");
-    console.log(req.session.isAuthenticated);
-    if (req.session && req.session.isAuthenticated) {
-        console.log("good");
-        return;
+function ensureAuthenticated(req, res, next) {
+    if (req.session && req.session.user) {
+        // User is logged in
+        return next();
+    } else {
+        // No user in the session
+        
+        return res.status(401).json({ message: "user not logged in"});
     }
-    console.log("bad");
-    return res.redirect('/myLogin/admin_error');
 }
 
 
@@ -31,9 +31,9 @@ router.use(upload_limit);
 
 
 /* creating the endpoint (name and path ) for the file */
-router.post('/', upload_limit, async (req, res) => {  
+router.post('/', upload_limit, ensureAuthenticated, async (req, res) => {  
+
     
-    ensureAuthenticated(req, res);
     const raw_name = req.body.name; //name without sanitize
     let name = santizer(raw_name || ""); //sanitizing
     let team = req.body.team;
@@ -49,8 +49,8 @@ router.post('/', upload_limit, async (req, res) => {
     await fs.writeFile(descript_path, descript, "utf8");
 
     /* not including "public" in path because it conflicts with render_project */
-    uploadDir = path.join( "assets", name);
-    descript_path = path.join(uploadDir, "description.txt");
+    uploadDir = "assets/"+name;//path.join( "assets", name);
+    descript_path = uploadDir + "/description.txt";//path.join(uploadDir, "description.txt");
 
     
     //sql prompt that uploads new project with name and team, image route hardcoded 
