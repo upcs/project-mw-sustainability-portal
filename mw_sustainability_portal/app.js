@@ -10,7 +10,6 @@ const sessionSecret = crypto.randomBytes(32).toString('hex'); //generate secret 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var projectsRouter = require('./routes/projects');
-var indivRouter = require('./routes/indivProj');
 var newProjRouter = require('./routes/newProj');
 var loginRouter = require('./routes/mylogin');
 //var protectedRouter = require('./routes/protected'); //check auth
@@ -26,7 +25,6 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         secure: 'auto',
-        //maxAge: 3600 // this is only 3 seconds?
         maxAge: 360000
     }
 }));
@@ -44,7 +42,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/projects', projectsRouter);
-app.use('/indivProj', indivRouter);
 app.use('/mylogin', loginRouter);
 //app.use('/protected', protectedRouter); //check auth
 app.use('/newProj', newProjRouter);
