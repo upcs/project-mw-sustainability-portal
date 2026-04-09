@@ -1,8 +1,13 @@
+
 <!DOCTYPE html>
 <html>
   <head>
+    <!DOCTYPE html>
+    
+
     <link rel="stylesheet" href="stylesheets/contactpage.css" />
     <script src="javascripts/getdata.js"></script>
+    <?php include './stylesheets/top_bar.php'; ?>
     <style>
       body
       {
@@ -11,14 +16,16 @@
     </style>
   </head>
   <body>
-    <button class="rounded-square-button" onclick="location.href='login.html'">
-    <%= loggedIn ? "ADMIN LOGOUT" : "ADMIN LOGIN" %>
-    </button>
-    <!--<button class="rounded-square-button" onclick="window.location.href='login.html'">ADMIN LOGIN</button>-->
+    <div id="content"></div>
+    <script>
+      fetch("stylesheets/top_bar.php")
+        .then(res => res.text())
+        .then(html => document.getElementById("content").innerHTML = html);
+    </script>
+    
     
     <img src="images/MWSustainabilityProjects_Products3.jpeg"> 
-    <h2>  <%= loggedIn ? "Welcome Administrator" : "" %></h2>
-    <h1>Malawi Sustainablity Development</h1>
+    <h1 id="Header">Malawi Sustainablity Development</h1>
     <hr class="solid">
     <h2>Nkhorongo Community Day Secondary School</h2>
 
@@ -29,7 +36,10 @@
           <button class="circle-button" onclick="window.location.href='mission.html'">MISSION</button>
         </td>
         <td>
-          <button class="circle-button" onclick="getProjectsPost()">PROJECTS</button>
+          <form action="/projects" method="POST">
+            <button class="circle-button" type="submit">PROJECTS</button>
+          </form>
+          <!-- <button class="circle-button" onclick="getProjectsPost()">PROJECTS</button> -->
         </td>
         <td>
           <button class="circle-button" onclick="window.location.href='contactpage.html'">CONTACT</button>
