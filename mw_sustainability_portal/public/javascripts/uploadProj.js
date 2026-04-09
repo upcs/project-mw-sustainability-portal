@@ -13,7 +13,6 @@ document.addEventListener("DOMContentLoaded", ()=> {
         let name1 = document.getElementById("projName").value;
         let team1 = document.getElementById("projTeam").value;
         let descrip = document.getElementById("pageDescrip").value;
-        let img_input = document.getElementById("uploadFile");
 
 
 
