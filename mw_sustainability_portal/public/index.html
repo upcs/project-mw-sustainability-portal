@@ -1,8 +1,13 @@
+
 <!DOCTYPE html>
 <html>
   <head>
+    <!DOCTYPE html>
+    
+
     <link rel="stylesheet" href="stylesheets/contactpage.css" />
     <script src="javascripts/getdata.js"></script>
+    <?php include './stylesheets/top_bar.php'; ?>
     <style>
       body
       {
@@ -11,7 +16,13 @@
     </style>
   </head>
   <body>
-    <button class="rounded-square-button" onclick="window.location.href='login.html'">ADMIN LOGIN</button>
+    <div id="content"></div>
+    <script>
+      fetch("stylesheets/top_bar.php")
+        .then(res => res.text())
+        .then(html => document.getElementById("content").innerHTML = html);
+    </script>
+    
     
     <img src="images/MWSustainabilityProjects_Products3.jpeg"> 
     <h1 id="Header">Malawi Sustainablity Development</h1>
