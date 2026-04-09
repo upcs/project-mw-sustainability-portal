@@ -11,6 +11,17 @@ const dbms = require("./dbms"); //database file
 const router = express.Router();
 const santizer = require('sanitize-filename'); //sanitizing input 
 
+function ensureAuthenticated(req, res) {
+    console.log("entered auth");
+    console.log(req.session.isAuthenticated);
+    if (req.session && req.session.isAuthenticated) {
+        console.log("good");
+        return;
+    }
+    console.log("bad");
+    return res.redirect('/myLogin/admin_error');
+}
+
 
 const upload_limit = rate_limit({
     windowMs: 15*60*1000, //15 minutes
@@ -22,7 +33,7 @@ router.use(upload_limit);
 /* creating the endpoint (name and path ) for the file */
 router.post('/', upload_limit, async (req, res) => {  
     
-
+    ensureAuthenticated(req, res);
     const raw_name = req.body.name; //name without sanitize
     let name = santizer(raw_name || ""); //sanitizing
     let team = req.body.team;
