@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node ./bin/www",
-    "test": "jest"
+    "test": "jest --coverage"
   },
   "dependencies": {
     "async": "^3.2.6",
@@ -23,6 +23,7 @@
     "express-rate-limit": "^8.3.2",
     "http-errors": "~1.6.3",
     "jade": "^0.29.0",
+    "jest": "^30.3.0",
     "jsonwebtoken": "^9.0.3",
     "mongodb": "^7.1.0",
     "mongoose": "^9.2.2",
@@ -36,7 +37,8 @@
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.13",
-    "jest": "^30.3.0",
-    "nodemon": "^3.1.14"
+    "jest-environment-jsdom": "^30.3.0",
+    "nodemon": "^3.1.14",
+    "supertest": "^7.2.2"
   }
 }
