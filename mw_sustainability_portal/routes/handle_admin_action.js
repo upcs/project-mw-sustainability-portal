@@ -1,5 +1,6 @@
 /**
  * 4/7/26
+ * this has no functionality currently
  */
 
 function ensureAuthenticated(req, res, next) {

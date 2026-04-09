@@ -1,8 +1,6 @@
 const express = require('express');
 var router = express.Router();
 var dbms = require("./dbms.js");
-//const { concat } = require("async");
-//var app = express();
 
 function ensureAuthenticated(req, res, next) {
     console.log("ensuring auth");
@@ -18,8 +16,8 @@ router.post('/', function(req, res, next) { //recieve a post
     console.log('Pulling data from DB');
     let user = req.body.user;
     let pass = req.body.pass;
-    console.log('got db user and pass');
-    var query = 'select * from login'; //need to fix to select only 1 FIX THIS!!!
+    console.log('get db user and pass');
+    var query = "SELECT * FROM login WHERE user = '" + user + "'";
     var correct = 1; //1 = wrong pass
     dbms.dbquery(query, function (err, results) {
         if (err) {
@@ -48,7 +46,6 @@ router.post('/', function(req, res, next) { //recieve a post
             else
             {
                 console.log("Incorrect pass!");
-                //res.render('admin_error')
                 res.redirect('admin_error');
             }
         }
