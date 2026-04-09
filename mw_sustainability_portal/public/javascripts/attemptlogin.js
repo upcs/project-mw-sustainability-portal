@@ -19,12 +19,6 @@
 //async function trylogin() {
 async function trylogin() {
 
-
-    //document.getElementById("check1").innerHTML="attmepting login";
-    
-    
-    console.log("starting trylogin");
-
     //store the entered user and pass
     let user=document.getElementById("user").value;
     let password=document.getElementById("pass").value;
@@ -37,7 +31,6 @@ async function trylogin() {
     //change month to numbers here
     //Client-side post handling, use full url to access orders.js
     try {
-        alert("preparing to fetch");
     const response = await fetch('mylogin', {
     method: 'POST',
     headers: {

@@ -5,10 +5,10 @@ var dbms = require("./dbms.js");
 function ensureAuthenticated(req, res, next) {
     console.log("ensuring auth");
     if (req.session && req.session.user && req.session.user.username) {
-        console.log("good");
+        console.log("auth check passed");
         return next();
     }
-    console.log("bad");
+    console.log("auth check failed");
     return res.redirect('/mylogin/admin_error');
 }
 
