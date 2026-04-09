@@ -30,6 +30,7 @@ router.post('/', function(req, res, next) { //recieve a post
 
                 // //call router for rendering admin view next step
                 // // res.render('admin_view'); //should be indirect render, go through protected.js
+    
                 req.session.user = { id: null, username: user };
                 req.session.isAuthenticated = true;
 
@@ -38,7 +39,7 @@ router.post('/', function(req, res, next) { //recieve a post
                     console.error('Session save error:', err);
                     return res.render('admin_error', { message: 'Session error' });
                 }
-                return res.redirect('/mylogin/admin_view'); // indirect render
+                return res.redirect('/mylogin/index'); // indirect render
                 });
 
                 
@@ -53,8 +54,11 @@ router.post('/', function(req, res, next) { //recieve a post
 });
 
 //secure get url
-router.get('/admin_view', ensureAuthenticated, function(req, res) {
-    res.render('admin_view', { user: req.session.user });
+router.get('/index', ensureAuthenticated, function(req, res) {
+    res.render('index', { 
+        user: req.session.user,
+        loggedIn: req.session.isAuthenticated //used for ejs
+    });
     console.log("entered the get");
 });
 
