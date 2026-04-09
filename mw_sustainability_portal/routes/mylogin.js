@@ -5,9 +5,12 @@ var dbms = require("./dbms.js");
 //var app = express();
 
 function ensureAuthenticated(req, res, next) {
+    console.log("ensuring auth");
     if (req.session && req.session.user && req.session.user.username) {
+        console.log("good");
         return next();
     }
+    console.log("bad");
     return res.redirect('/mylogin/admin_error');
 }
 
@@ -55,6 +58,7 @@ router.post('/', function(req, res, next) { //recieve a post
 //secure get url
 router.get('/admin_view', ensureAuthenticated, function(req, res) {
     res.render('admin_view', { user: req.session.user });
+    console.log("entered the get");
 });
 
 module.exports = router;
