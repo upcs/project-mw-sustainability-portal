@@ -21,6 +21,7 @@ router.post('/', function(req, res, next) { //recieve a post
     dbms.dbquery(query, function (err, results) {
         if (err) {
             console.log("Incorrect User!");
+            return res.redirect('/mylogin/admin_error');
         } else {
             //does the password equal the user input one?
             if (results[0].pass == pass)
