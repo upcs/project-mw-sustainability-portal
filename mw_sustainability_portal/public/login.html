@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html>
+    <div id="content"></div>
+    <script>
+      fetch("stylesheets/top_bar.php")
+        .then(res => res.text())
+        .then(html => document.getElementById("content").innerHTML = html);
+    </script>
   <head>
     <link rel="stylesheet" href="stylesheets/contactpage.css" />
     <script src="javascripts/attemptlogin.js"></script>
