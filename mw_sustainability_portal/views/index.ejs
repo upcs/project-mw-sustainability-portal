@@ -11,9 +11,13 @@
     </style>
   </head>
   <body>
-    <button class="rounded-square-button" onclick="window.location.href='login.html'">ADMIN LOGIN</button>
+    <button class="rounded-square-button" onclick="location.href='login.html'">
+    <%= loggedIn ? "ADMIN LOGOUT" : "ADMIN LOGIN" %>
+    </button>
+    <!--<button class="rounded-square-button" onclick="window.location.href='login.html'">ADMIN LOGIN</button>-->
     
     <img src="images/MWSustainabilityProjects_Products3.jpeg"> 
+    <h2>  <%= loggedIn ? "Welcome Administrator" : "" %></h2>
     <h1>Malawi Sustainablity Development</h1>
     <hr class="solid">
     <h2>Nkhorongo Community Day Secondary School</h2>

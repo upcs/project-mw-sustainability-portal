@@ -1,13 +1,14 @@
 const express = require('express');
 var router = express.Router();
 var dbms = require("./dbms.js");
-//const { concat } = require("async");
-//var app = express();
 
 function ensureAuthenticated(req, res, next) {
+    console.log("ensuring auth");
     if (req.session && req.session.user && req.session.user.username) {
+        console.log("auth check passed");
         return next();
     }
+    console.log("auth check failed");
     return res.redirect('/mylogin/admin_error');
 }
 
@@ -15,8 +16,8 @@ router.post('/', function(req, res, next) { //recieve a post
     console.log('Pulling data from DB');
     let user = req.body.user;
     let pass = req.body.pass;
-    console.log('got db user and pass');
-    var query = 'select * from login'; //need to fix to select only 1 FIX THIS!!!
+    console.log('get db user and pass');
+    var query = "SELECT * FROM login WHERE user = '" + user + "'";
     var correct = 1; //1 = wrong pass
     dbms.dbquery(query, function (err, results) {
         if (err) {
@@ -30,6 +31,7 @@ router.post('/', function(req, res, next) { //recieve a post
 
                 // //call router for rendering admin view next step
                 // // res.render('admin_view'); //should be indirect render, go through protected.js
+    
                 req.session.user = { id: null, username: user };
                 req.session.isAuthenticated = true;
 
@@ -38,7 +40,7 @@ router.post('/', function(req, res, next) { //recieve a post
                     console.error('Session save error:', err);
                     return res.render('admin_error', { message: 'Session error' });
                 }
-                return res.redirect('/mylogin/admin_view'); // indirect render
+                return res.redirect('/mylogin/index'); // indirect render
                 });
 
                 
@@ -46,7 +48,6 @@ router.post('/', function(req, res, next) { //recieve a post
             else
             {
                 console.log("Incorrect pass!");
-                //res.render('admin_error')
                 res.redirect('admin_error');
             }
         }
@@ -54,8 +55,12 @@ router.post('/', function(req, res, next) { //recieve a post
 });
 
 //secure get url
-router.get('/admin_view', ensureAuthenticated, function(req, res) {
-    res.render('admin_view', { user: req.session.user });
+router.get('/index', ensureAuthenticated, function(req, res) {
+    res.render('index', { 
+        user: req.session.user,
+        loggedIn: req.session.isAuthenticated //used for ejs
+    });
+    console.log("entered the get");
 });
 
 module.exports = router;
