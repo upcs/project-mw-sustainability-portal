@@ -101,26 +101,18 @@ display: inline-block;
 }
 
 /*NavBar Styles*/
-  .navbar {
-    overflow: hidden;
-    position: sticky;
-    top: 0;
-    background-color: #333;
-    font-family: Arial, Helvetica, sans-serif;
-  }
+.navbar {
+  overflow: hidden;
+  position: sticky;
+  top: 0;
+  cursor: pointer;
+  background-color: #333;
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-  .navbar a {
-    float: left;
-    font-size: 16px;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-  }
-
-
-  .login a{
-  float: right;
+.navbar a {
+  /*border-radius: 10%; */
+  float: left;
   font-size: 16px;
   color: white;
   text-align: center;
@@ -128,15 +120,29 @@ display: inline-block;
   text-decoration: none;
 }
 
-  .dropdown {
-    float: left;
-    overflow: hidden;
-  }
+
+.login a{
+  float: right;
+  font-size: 16px;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  border-radius: 10%;
+  color: #4c665f;
+  background-color: #94ebee;
+  
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
 
 
 
-  .navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus {
-    background-color: red;
+  .navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus, .button-as-link:hover {
+    background-color: #529c9f;
   }
 
   .dropdown-content {
@@ -146,4 +152,16 @@ display: inline-block;
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
+  }
+
+  .button-as-link {
+    background: none; 
+    border: none;
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none; 
+    cursor: pointer;
   }
