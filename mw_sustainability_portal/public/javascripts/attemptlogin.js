@@ -6,6 +6,14 @@
  * send post to login.js (like orders.js)
  */
 
+// //runs when submit button is clicked
+// function trylogin(){
+//     //store the entered user and pass
+//     let user=document.getElementById("user").value;
+//     let password=document.getElementById("pass").value;
+//     //alert(password)
+//     let hashpass = caesarCipher(password, 5); //placeholder method
+// }
 
 // Client side fetch request for POST on server — make this a login
 //async function trylogin() {

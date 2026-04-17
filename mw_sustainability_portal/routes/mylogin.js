@@ -33,7 +33,7 @@ router.post('/', function(req, res, next) { //recieve a post
                 // // res.render('admin_view'); //should be indirect render, go through protected.js
     
                 req.session.user = { id: null, username: user };
-                //req.session.isAuthenticated = true;
+                req.session.isAuthenticated = true;
 
                 req.session.save((err) => {
                 if (err) {
@@ -58,7 +58,7 @@ router.post('/', function(req, res, next) { //recieve a post
 router.get('/index', ensureAuthenticated, function(req, res) {
     res.render('index', { 
         user: req.session.user,
-        //loggedIn: req.session.isAuthenticated //used for ejs
+        loggedIn: req.session.isAuthenticated //used for ejs
     });
     console.log("entered the get");
 });
