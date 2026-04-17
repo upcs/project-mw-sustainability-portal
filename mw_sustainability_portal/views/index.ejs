@@ -17,7 +17,11 @@
   </head>
   <body>
     <div id="content"></div>
-    <%- include('partials/topbar') %>
+    <script>
+      fetch("stylesheets/top_bar.php")
+        .then(res => res.text())
+        .then(html => document.getElementById("content").innerHTML = html);
+    </script>
     
     
     <img src="images/MWSustainabilityProjects_Products3.jpeg"> 
