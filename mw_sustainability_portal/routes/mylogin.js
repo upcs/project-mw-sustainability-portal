@@ -41,7 +41,6 @@ router.post('/', function(req, res, next) { //recieve a post
                     return res.render('admin_error', { message: 'Session error' });
                 }
                 return res.redirect('/mylogin/index'); // indirect render
-                //res.render('index');
                 });
 
                 
@@ -58,7 +57,7 @@ router.post('/', function(req, res, next) { //recieve a post
 //secure get url
 router.get('/index', ensureAuthenticated, function(req, res) {
     res.render('index', { 
-        //user: req.session.user,
+        user: req.session.user,
         //loggedIn: req.session.isAuthenticated //used for ejs
     });
     console.log("entered the get");
