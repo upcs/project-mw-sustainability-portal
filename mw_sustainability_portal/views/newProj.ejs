@@ -5,7 +5,7 @@
   <body>
    <h2>New Project Form</h2>
 
-   <form id="projInput" method="post" action="/upload_new_proj" >
+   <form id="projInput" method="post" action="/upload_new_proj" enctype="multipart/form-data">
       <label for="projName">Project Name: </label>
       <input type="text" id="projName" name = "name">
 
@@ -14,6 +14,12 @@
 
       <label for="pageDescrip">Project Description: </label>
       <input type="text" id="pageDescrip" name = "description">
+
+      <label for="file"> File to be uploaded: </label>
+      <input type="file" name="uploadFile" id="file">
+
+      <label for="file"> File to be uploaded: </label>
+      <input type="file" name="uploadFile" id="file">
 
       
       <form id="uploadForm">

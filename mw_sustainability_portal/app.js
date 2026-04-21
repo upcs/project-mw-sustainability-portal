@@ -14,6 +14,7 @@ var newProjRouter = require('./routes/newProj');
 // duplicate?? -> var loginRouter = require('./routes/mylogin');
 //var protectedRouter = require('./routes/protected'); //check auth
 var uploadProjRouter = require('./routes/upload_new_proj');
+var deleteProjRouter = require('./routes/delete_proj');
 var loginRouter = require('./routes/mylogin');
 var logoutRouter = require('./routes/logout');
 var renderProjRouter = require('./routes/render_project');
@@ -49,6 +50,7 @@ app.use('/logout', logoutRouter);
 app.use('/newProj', newProjRouter);
 app.use('/upload_new_proj', uploadProjRouter);
 app.use('/render_project', renderProjRouter);
+app.use('/delete_proj', deleteProjRouter);
 
 app.post('/submit', (req, res) => {
     console.log(req.body); // Access parsed data

@@ -46,7 +46,7 @@ router.get('/:id', async (req, res) => {
             }
 
             var data = {images: img_arr, description : textContent,
-                        proj_name : name, proj_team : team};
+                        proj_name : name, proj_team : team, proj_id : id};
                         
             console.log(data);
             res.render('project_page', data);
