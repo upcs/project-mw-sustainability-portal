@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<script src="/javascripts/gallery.js" defer ></script>
+<link rel="stylesheet" href="stylesheets/contactpage.css" />
+<head>
+    <style>
+        .gallery{
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+            max-width: 1000px;
+            margin: 20px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+
+    </style>
+
+</head>
+
+
+        <div class="gallery">
+            <% if (records && records.length > 0) { %>
+                    <% records.forEach(function(assets) {  %>
+                        <img src="/<%= assets.asset_route%>">
+                        <% }); %>
+                    <% } else { %>
+                    <td colspan="5">No assets found</td>
+                    <% } %>
+        </div>
+        <br>
+        <br>  
+        
+        <div>
+			<form id="uploadForm" method="post" action="/upload" enctype="multipart/form-data">
+						File to be uploaded: <input type="file" name="uploadFile" id="file" accept="image/*">
+				
+				<br><br>		
+				<button type="submit">Upload</button>
+			</form>
+			</div>
+		</div>
+
+    </body>
+</html>
