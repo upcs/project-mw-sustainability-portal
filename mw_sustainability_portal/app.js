@@ -11,10 +11,11 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var projectsRouter = require('./routes/projects');
 var newProjRouter = require('./routes/newProj');
-var loginRouter = require('./routes/mylogin');
+// duplicate?? -> var loginRouter = require('./routes/mylogin');
 //var protectedRouter = require('./routes/protected'); //check auth
 var uploadProjRouter = require('./routes/upload_new_proj');
 var loginRouter = require('./routes/mylogin');
+var logoutRouter = require('./routes/logout');
 var renderProjRouter = require('./routes/render_project');
 
 var app = express();
@@ -43,6 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/projects', projectsRouter);
 app.use('/mylogin', loginRouter);
+app.use('/logout', logoutRouter);
 //app.use('/protected', protectedRouter); //check auth
 app.use('/newProj', newProjRouter);
 app.use('/upload_new_proj', uploadProjRouter);
