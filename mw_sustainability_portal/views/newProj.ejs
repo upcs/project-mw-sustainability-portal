@@ -1,9 +1,11 @@
 <!DOCTYPE html>
+
 <script src="/javascripts/uploadProj.js" defer ></script>
 <html>
   
   <body>
-   <h2>New Project Form</h2>
+    <%- include('partials/topbar') %>
+   <h2>New Projects Form</h2>
 
    <form id="projInput" method="post" action="/upload_new_proj" enctype="multipart/form-data">
       <label for="projName">Project Name: </label>
