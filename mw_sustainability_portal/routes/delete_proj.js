@@ -18,12 +18,13 @@ function ensureAuthenticated(req, res, next) {
 /* creating the endpoint (name and path ) for the file */
 router.post('/', ensureAuthenticated, async (req, res) => {  
 
-    let id = req.body.id;
+    let id = req.body.proj_id;
     console.log(" project delete: ", id);
     
     //sql prompt that uploads new project with name and team, image route hardcoded 
     //also uploads route to desription file to assets 
-    const sql = "DELETE FROM `projects_list` WHERE `id` = "+ id +";";
+    const sql = "DELETE FROM `project_assets` WHERE `project_id` = "+ id +"; " +
+                "DELETE FROM `projects_list` WHERE `id` = "+ id +";";
                                 //first one uploads new project to database and second is descript path to assetsS
             
 
@@ -37,10 +38,10 @@ router.post('/', ensureAuthenticated, async (req, res) => {
         const isFetch = req.xhr || (req.headers.accept && req.headers.accept.includes("application/json"));
 
         if(isFetch){
-            return res.status(201).json({filePath});
+            return res.status(201).json("complete");
         }
 
-        return res.redirect('/projects_list');
+        return res.redirect('/projects');
         
     });
 

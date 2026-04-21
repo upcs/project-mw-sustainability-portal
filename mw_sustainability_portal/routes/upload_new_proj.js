@@ -17,28 +17,44 @@ function ensureAuthenticated(req, res, next) {
         return next();
     } else {
         // No user in the session
-        
-        return res.status(401).json({ message: "user not logged in"});
+        console.log("not logged in");
+        return res.redirect('/login.html');
     }
 }
 
+/* working with file directory */
+const upImgDir = path.join(process.cwd(), "public",  "images"); //TODO assumes good intent
+                                                                                //input for folder name not sanitized
+fs.mkdir(upImgDir, {recursive : true});
 
+/* configuring multer to take image uploads */
+const storage = multer.diskStorage({
+    destination: (req,file,cb) => {
+        cb(null, upImgDir )
+    },
+    filename: (req, file, cb) => {
+        const uniqueSuffix = Math.round(Math.random()*1E9);
+        cb(null, `${file.fieldname}-${uniqueSuffix}${path.extname(file.originalname)}`);
+    },
+})
+
+const up_storage = multer({ storage });
 const upload_limit = rate_limit({
     windowMs: 15*60*1000, //15 minutes
     max: 40, //max upload rate per 15 minutes
 });
-router.use(upload_limit);
 
 
 /* creating the endpoint (name and path ) for the file */
-router.post('/', upload_limit, ensureAuthenticated, async (req, res) => {  
+router.post('/', upload_limit, ensureAuthenticated, up_storage.single("uploadFile"), async (req, res) => {  
 
     
     const raw_name = req.body.name; //name without sanitize
     let name = santizer(raw_name || ""); //sanitizing
     let team = req.body.team;
     let descript = req.body.description;
-    console.log("New project upload: ", name, team, descript);
+    let img = req.file.filename;
+    console.log("New project upload: ", name, team, descript, img);
 
     /* working with file directory */
     let uploadDir = path.join( "public",  "assets", name);
@@ -48,6 +64,10 @@ router.post('/', upload_limit, ensureAuthenticated, async (req, res) => {
     let descript_path = path.join(uploadDir, "description.txt");
     await fs.writeFile(descript_path, descript, "utf8");
 
+    //creating filename and filepath 
+    const fileName = img;
+    const filePath = path.posix.join("/images", name, fileName);
+
     /* not including "public" in path because it conflicts with render_project */
     uploadDir = "assets/"+name;//path.join( "assets", name);
     descript_path = uploadDir + "/description.txt";//path.join(uploadDir, "description.txt");
@@ -56,7 +76,7 @@ router.post('/', upload_limit, ensureAuthenticated, async (req, res) => {
     //sql prompt that uploads new project with name and team, image route hardcoded 
     //also uploads route to desription file to assets 
     const sql = "INSERT INTO `projects_list`( `name`, `team`, `image_route`)"+ 
-                    "VALUES ('" + name + "','" + team + "', '/images/1600px_COLOURBOX9214366-3078337225.jpg');"
+                    "VALUES ('" + name + "','" + team + "', '"+ filePath + "');"
                     
                     + "INSERT INTO `project_assets` (`project_id`, `asset_route`, `is_text`) " +
                             "SELECT id, '"+descript_path+"', 1"  
@@ -77,12 +97,10 @@ router.post('/', upload_limit, ensureAuthenticated, async (req, res) => {
         if(isFetch){
             return res.status(201).json({filePath});
         }
-
-        return res.redirect('/newProj');
         
     });
 
-
+    return res.redirect('/projects');
       
 
 });
