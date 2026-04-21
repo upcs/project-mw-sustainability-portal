@@ -12,15 +12,10 @@ exports.version = '0.0.1';
 var mysql = require('mysql2'),
     async = require('async');
 
-var host = "pdx0mysql00.campus.up.edu"; //pdx0mysql00 IP address
+var host = "10.12.116.139";
 var database = "cs341s26mwsus"; //database name
-var user = "cs341s26mwsus"; //username (change to match your db)
-var password = "@E9D]ugX.oVU70qx"; //password (change to match your db, yes THIS IS VERY POOR PRACTICE)
-//
-// var host = "localhost"; //IP address
-// var database = "mwsus"; //database name
-// var user = "mwsus"; //username (change to match your db)
-// var password = "mjlccs341"; //password (change to match your db, yes THIS IS VERY POOR PRACTICE)
+var user = "mwsus";
+var password = "mjlccs341";
 
 /**
  * dbquery
