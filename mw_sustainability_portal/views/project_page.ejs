@@ -34,6 +34,27 @@
                 color: #FFEE98;
                 line-height: 200%; /* double spaced */
             }
+            #deleteBut
+            {
+                width: 150px;
+                height: 30px;
+
+                font-size: 15px;
+                border-radius: 15%;
+                                                
+                /* General styling */
+                background-color: #94ebee; 
+                color: #4c665f;
+                border: 3px;
+                cursor: pointer; /* Changes cursor to a hand on hover */
+                display: flex;
+                justify-content: center; /* Center content horizontally */
+                align-items: center; /* Center content vertically */
+                margin: auto;
+                box-shadow: 0 2px 4px darkslategray;
+                transition: all 0.2s ease;
+  
+            }
         </style>
     </head>
 
@@ -43,11 +64,6 @@
         <%- include('partials/topbar') %>
         <!-- I think this is uneeded <button onclick="window.location.href='../index.html'">Home</button><br><br>
         <button onclick="history.back()"> Projects </button> -->
-
-        <form id="del_proj" method="post" action="/delete_proj">
-            <input type="hidden" id="proj_id" value= "<%= proj_id %>">
-            <button id="deleteBut" type="submit"> Delete Page!! </button>
-        </form>
 
         <h1> <%= proj_name %> </h1>
         <h2> <%= proj_team %> </h2>
@@ -85,6 +101,11 @@
                 </tr>
             </table>
          </div>
+        
+        <form id="del_proj" method="post" action="/delete_proj">
+            <input type="hidden" id="proj_id" value= "<%= proj_id %>">
+            <button id="deleteBut" type="submit"> Delete Project </button>
+        </form>
     </body>
 
 </html>
