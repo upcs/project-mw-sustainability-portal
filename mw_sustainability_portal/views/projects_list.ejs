@@ -1,104 +1,96 @@
-
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="stylesheets/contactpage.css" />
-        <style>
-            .image-container img {
-                width: 300px;
-                height: 300px;
-                overflow: hidden;
-                object-fit: cover; /* Scales the image to cover the container while preserving aspect ratio */
-                object-position: center; /* Centers the image within the container (default) */
-            }
-            .projbutton
-            {
-                border-radius: 5%;
-                font-size: 20px;
-                padding: 20px;
-                font-weight: bold;
-                color: #FFEE98;
-                background-color: rgb(74, 74, 147);
-                margin: 30px;
-            }
-            .bob
-            {
-                /* center button for each project */
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-            }
-            .figcaption
-            {
-                text-align: center;
-                font-weight: bold;
-                font-size: 30px;
-                color: #cafdff;
-            }
-        </style>
-        <script src="/javascripts/getdata.js"></script>
-    </head>
-  <html margin: 0;>
-    <head>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    </head>
-        <style>
-            html, body {
-                margin: 0;
-            }
-        </style>
-    <div class="navbar">
-        <a onclick="window.location.href='index.html'">HOME</a>
-        <a onclick="window.location.href='mission.html'">MISSION</a>
-        <form action="/projects" method="POST">
-                <button class="button-as-link" type="submit">PROJECTS</button>
-        </form>
-        <a onclick="window.location.href='contactpage.html'">CONTACT</a>
-        <a  onclick="newProject()">NEW PROJECT</a>
+<head>
+    <link rel="stylesheet" href="stylesheets/contactpage.css" />
 
-        <div class="login">
-        <a class="rightside" onclick="window.location.href='login.html'">Admin Login</a>
-        </div>
+    <style>
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 20px;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .image-container {
+            width: 100%;
+            max-width: 300px;
+            aspect-ratio: 1 / 1; /* forces perfect square */
+            overflow: hidden;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;     /* fills square, crops if needed */
+            object-position: center;
+        }
+
+        .projbutton {
+            border-radius: 5%;
+            font-size: 20px;
+            padding: 15px 20px;
+            font-weight: bold;
+            color: #FFEE98;
+            background-color: rgb(74, 74, 147);
+            margin: 20px;
+            cursor: pointer;
+        }
+
+        .projbutton:hover {
+            background-color: rgb(60, 60, 120);
+        }
+
+        .figcaption {
+            font-weight: bold;
+            font-size: 24px;
+            color: #cafdff;
+            margin-top: 10px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    </style>
+
+    <script src="/javascripts/getdata.js"></script>
+</head>
+
+<%- include('partials/topbar') %>
+
+<body>
+    <h1>PROJECTS</h1>
+
+    <div class="gallery">
+        <% if (records && records.length > 0) { %>
+            <% records.forEach(function(project) { %>
+                <div class="project-card">
+                    
+                    <div class="image-container">
+                        <img src="<%= project.image_route %>" alt="<%= project.name %>">
+                    </div>
+
+                    <div class="figcaption">
+                        <p><%= project.name %></p>
+                        <p>Presented by: <%= project.team %></p>
+                    </div>
+
+                    <a href="/render_project/<%= project.id %>">
+                        <button class="projbutton">View Project</button>
+                    </a>
+
+                </div>
+            <% }); %>
+        <% } else { %>
+            <p style="text-align:center;">No projects found</p>
+        <% } %>
     </div>
-    </body>
-    </html>
-    <body>
-        <button onclick="window.location.href='index.html'">Home</button>
-        <button onclick="newProject()">New Project +</button>
-        <h1>PROJECTS</h1>
-
-        <div class="gallery">
-            <table cellpadding="10" cellspacing="0">
-                <tbody>
-                    <% if (records && records.length > 0) { %>
-                        <!--Check to see if there are any present records-->
-                        <tr>
-                            <% records.forEach(function(project) { %>
-                                <td>
-                                    <!--Populate project cards with dynamic data pulled from the DB-->
-                                    <div class="bob">
-                                            <div class="image-container">
-                                                <img src=<%= project.image_route %>>
-                                            </div>
-                                            <div class="figcaption">
-                                                <p><%= project.name %></p>                             
-                                                <p>Presented by: <%= project.team %></p>
-                                            </div>
-                                            <a href="/render_project/<%= project.id %>">
-                                                <button class="projbutton">View Project</button>
-                                            </a>
-                                    </div> 
-                                </td>
-                            <% }); %>
-                        </tr>
-                    <% } else { %>
-                        <tr>
-                            <td colspan="5">No projects found</td>
-                        </tr>
-                    <% } %>
-                </tbody>
-            </table>
-        </div>
-    </body>
+</body>
 </html>

@@ -9,16 +9,16 @@
       }
     </style>
   <div class="navbar">
-    <a onclick="window.location.href='index.html'">HOME</a>
-    <a onclick="window.location.href='mission.html'">MISSION</a>
+    <a href="/">HOME</a>
+    <a href="/mission">MISSION</a>
     <form action="/projects" method="POST">
             <button class="button-as-link" type="submit">PROJECTS</button>
     </form>
-    <a onclick="window.location.href='contactpage.html'">CONTACT</a>
+    <a href="/contact">CONTACT</a>
     <a onclick="newProject()">NEW PROJECT</a>
 
     <div class="login">
-      <a class="rightside" onclick="window.location.href='login.html'">Admin Login</a>
+      <a class="rightside" href="/login_page">Admin Login</a>
     </div>
   </div>
   </body>
