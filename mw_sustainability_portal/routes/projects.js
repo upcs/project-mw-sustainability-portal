@@ -2,10 +2,9 @@ var express = require('express');
 var router = express.Router();
 var dbms = require("./dbms.js");
 const { concat } = require("async");
-var app = express();
 
 /* GET projects page page. */
-router.get('/' , async(req, res) => {
+router.get('/' , async (req, res) => {
     var query = 'SELECT id, name, team, image_route, html_generated FROM projects_list'
 
     dbms.dbquery(query, function (err, results) {
