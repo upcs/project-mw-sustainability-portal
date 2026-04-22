@@ -41,6 +41,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/projects', projectsRouter);
 app.use('/mylogin', loginRouter);
+app.use('/login_page', require('./routes/login_page'));
+app.use('/contact', require('./routes/contact'));
+app.use('/mission', require('./routes/mission'));
 //app.use('/protected', protectedRouter); //check auth
 app.use('/new_proj', newProjRouter);
 app.use('/upload_new_proj', uploadProjRouter);
