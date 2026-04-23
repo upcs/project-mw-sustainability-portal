@@ -14,6 +14,7 @@
     <script src="javascripts/logoutclick.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha.js"></script>
   </head>
+  <button class="rounded-square-button" onclick="logoutclick()">LOGOUT</button>
   <body>
       
     <div class="container" style="text-align: center;">  
@@ -22,10 +23,9 @@
       <input type="text" id="user" name="user"><br><br>
       <label for="pass">Enter Password:</label><br>
       <input type="password" type="text" id="pass" name="pass"><br><br>
-      <button type="button" onclick="trylogin()" id="submitloginbutton" 
-      >Submit</button>
+      <button type="button" onclick="trylogin()" id="submitloginbutton" >Submit</button>
       <br>
-      <button class="rounded-square-button" onclick="logoutclick()">LOGOUT</button>
+      
     </div>
 
     <h2 id="check1"></h2>
