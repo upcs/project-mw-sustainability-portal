@@ -14,7 +14,7 @@ function ensureAuthenticated(req, res, next) {
         return next();
     }
     console.log("not logged in");
-    return res.redirect('/login.html');
+    return res.redirect('/login_page');
 }
 
 /* ---------------- FILE SETUP ---------------- */
