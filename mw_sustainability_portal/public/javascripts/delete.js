@@ -5,7 +5,11 @@ document.addEventListener("DOMContentLoaded", ()=> {
 
     console.log("about to enter event listener");
 
+    
+
     delete_.addEventListener("submit", async(e)=>{
+        
+        if(confirm("Delete Project Forever?")){
         e.preventDefault();
 
         /* declaring form and file elements */
@@ -35,6 +39,10 @@ document.addEventListener("DOMContentLoaded", ()=> {
             alert(data.message || "Upload fail");
             return;
         }
+    }
+    else{
+        window.location.href ="/projects";
+    }
 
         window.location.href ="/projects";
     });

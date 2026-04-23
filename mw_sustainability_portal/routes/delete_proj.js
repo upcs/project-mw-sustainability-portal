@@ -33,7 +33,9 @@ router.post('/', ensureAuthenticated, async (req, res) => {
     dbms.dbquery(sql, (err, results) => {
         if (err){
             console.log("DB delete failed: ", err);
-            return res.status(500).json({message: "DB delete failed"});}
+            //return res.status(500).json({message: "DB delete failed"});}
+            return res.redirect("/projects");}
+
 
         const isFetch = req.xhr || (req.headers.accept && req.headers.accept.includes("application/json"));
 
