@@ -16,10 +16,10 @@ router.get('/', function(req, res) {
         console.log('Session destroyed '+req.sessionID);
         console.log('connect.sid', req.cookies['connect.sid']);
         res.clearCookie('connect.sid');
-        return res.redirect('/login.html');
+        return res.redirect('/login_page');
         });
     } else {
-        return res.redirect('/login.html');
+        return res.redirect('/login_page');
     }
 });
 
