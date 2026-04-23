@@ -15,6 +15,7 @@ var loginRouter = require('./routes/mylogin');
 //var protectedRouter = require('./routes/protected'); //check auth
 var uploadProjRouter = require('./routes/upload_new_proj');
 var deleteProjRouter = require('./routes/delete_proj');
+var logoutRouter = require('./routes/logout');
 var renderProjRouter = require('./routes/render_project');
 
 var app = express();
@@ -41,6 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/projects', projectsRouter);
 app.use('/mylogin', loginRouter);
+app.use('/logout', logoutRouter);
 app.use('/login_page', require('./routes/login_page'));
 app.use('/contact', require('./routes/contact'));
 app.use('/mission', require('./routes/mission'));

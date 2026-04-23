@@ -6,14 +6,18 @@
         .then(res => res.text())
         .then(html => document.getElementById("content").innerHTML = html);
     </script>
+    <script src="javascripts/logoutclick.js"></script>
+
   <head>
     <link rel="stylesheet" href="stylesheets/contactpage.css" />
     <script src="javascripts/attemptlogin.js"></script>
+    <script src="javascripts/logoutclick.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha.js"></script>
   </head>
+  <button class="rounded-square-button" onclick="logoutclick()">LOGOUT</button>
   <body>
       
-    <div class="container">  
+    <div class="container" style="text-align: center;">  
       <h1>MW Sustainablity Administrator Login</h1>
       <label for="user">Enter Username:</label><br>
       <input type="text" id="user" name="user"><br><br>
@@ -21,6 +25,7 @@
       <input type="password" type="text" id="pass" name="pass"><br><br>
       <button type="button" onclick="trylogin()" id="submitloginbutton" 
       >Submit</button>
+      <br>
     </div>
 
     <h2 id="check1"></h2>
