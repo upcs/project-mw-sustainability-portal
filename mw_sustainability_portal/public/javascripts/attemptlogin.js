@@ -19,41 +19,41 @@
 //async function trylogin() {
 async function trylogin() {
 
-    //store the entered user and pass
-    let user=document.getElementById("user").value;
-    let password=document.getElementById("pass").value;
-    //alert(password)
-    let hashpass = hash(password, 10); //placeholder method
-    console.log("starting try catch");
+    let user = document.getElementById("user").value;
+    let password = document.getElementById("pass").value;
 
-    const postData = {user: user, pass: password};
+    let hashpass = hash(password, 10); // still placeholder
+
+    const postData = { user: user, pass: password };
     const jsonBody = JSON.stringify(postData);
-    //change month to numbers here
-    //Client-side post handling, use full url to access orders.js
+
     try {
-    const response = await fetch('mylogin', {
-    method: 'POST',
-    headers: {
-    'Content-Type': 'application/json'
-    },
-        body : jsonBody,
-    });
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-        
-    }
-    //alert("repsonse okay");
-    
-    const data = await response.text();
-    document.body.innerHTML = data;
+        const response = await fetch('/mylogin', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: jsonBody,
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        if (response.redirected) {
+            window.location.href = response.url;
+            return;
+        }
+
+        // fallback (error page etc.)
+        const data = await response.text();
+        document.body.innerHTML = data;
 
     } catch (error) {
         console.error('Error fetching data:', error);
-        alert('Error fetching data:', error);
+        alert('Error fetching data');
     }
 }
-
-
 
 
 /**

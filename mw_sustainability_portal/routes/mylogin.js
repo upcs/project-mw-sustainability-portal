@@ -40,7 +40,7 @@ router.post('/', function(req, res, next) { //recieve a post
                     console.error('Session save error:', err);
                     return res.render('admin_error', { message: 'Session error' });
                 }
-                return res.redirect('/mylogin/index'); // indirect render
+                return res.redirect('/'); // indirect render
                 });
 
                 
