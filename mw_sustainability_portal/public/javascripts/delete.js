@@ -5,7 +5,11 @@ document.addEventListener("DOMContentLoaded", ()=> {
 
     console.log("about to enter event listener");
 
+    
+
     delete_.addEventListener("submit", async(e)=>{
+        alert("deleting!!");
+
         e.preventDefault();
 
         /* declaring form and file elements */
