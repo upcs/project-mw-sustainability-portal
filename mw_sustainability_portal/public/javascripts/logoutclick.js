@@ -28,5 +28,6 @@
 // }
 
 function logoutclick() {
+    alert('Logged out!');
     window.location.href = '/logout';
 }
