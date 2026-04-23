@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.hdropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.hdropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.hdropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.hdropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.hdropdown-content a:hover {background-color: #ddd;}
+
+.hdropdown:hover .hdropdown-content {display: block;}
+
+.hdropdown:hover .hdropbtn {background-color: #3e8e41;}
+</style>
+</head>
+<body>
+
+<div class="hdropdown">
+  <button class="hdropbtn">Admin Panel</button>
+  <div class="hdropdown-content">
+            <form id="del_proj" method="post" action="/delete_proj">
+            <input type="hidden" id="proj_id" value= "<%= proj_id %>">
+            <a href="#" id="deleteBut" type="submit"> Delete Page!! </a>
+        </form>
+    <a href="#">Edit</a>
+  </div>
+</div>
+
+</body>
+</html>
