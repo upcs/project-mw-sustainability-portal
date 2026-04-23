@@ -52,8 +52,3 @@ router.post('/', ensureAuthenticated, async (req, res) => {
 
 //exports the state of the router
 module.exports = router;
-
-
-
-
-

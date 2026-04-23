@@ -39,6 +39,7 @@ async function trylogin() {
         body : jsonBody,
     });
     if (!response.ok) {
+        alert("response not ook");
         throw new Error(`HTTP error! status: ${response.status}`);
         
     }
