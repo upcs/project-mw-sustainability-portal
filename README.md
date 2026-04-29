@@ -46,6 +46,9 @@ Website Home Page
 - hide admin pages for non-admin users
 - make login button turn into logout button
 
+### Deployment
+- Need to find a way to deploy site in Malawi with limited resources
+
 ## Tech Stack
 
 - Backend: Node.js, Express.js
