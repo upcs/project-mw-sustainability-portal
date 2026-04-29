@@ -2,12 +2,11 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <!DOCTYPE html>
     
 
     <link rel="stylesheet" href="stylesheets/contactpage.css" />
     <script src="javascripts/getdata.js"></script>
-    
+    <?php include './stylesheets/top_bar.php'; ?>
     <style>
       body
       {
@@ -29,22 +28,30 @@
     <hr class="solid">
     <h2>Nkhorongo Community Day Secondary School</h2>
 
+
+<script>
+/* When the user clicks on the button, 
+toggle between hiding and showing the dropdown content */
+
+</script>
+
     <!--Make 3 circle buttons in a row!-->
-    <table>
+    <!-- <table>
       <tr>
         <td>
-          <button class="circle-button" onclick="window.location.href='mission.html'">MISSION</button>
+          <button class="circle-button" href='/mission'>MISSION</button>
         </td>
         <td>
           <form action="/projects" method="POST">
             <button class="circle-button" type="submit">PROJECTS</button>
           </form>
-          <!-- <button class="circle-button" onclick="getProjectsPost()">PROJECTS</button> -->
-        </td>
+          <button class="circle-button" onclick="getProjectsPost()">PROJECTS</button> -->
+        <!-- </td>
         <td>
-          <button class="circle-button" onclick="window.location.href='contactpage.html'">CONTACT</button>
+          <button class="circle-button" href='/contact'>CONTACT</button>
         </td>
       </tr>
-    </table>
+    </table> -->
   </body>
+
 </html>

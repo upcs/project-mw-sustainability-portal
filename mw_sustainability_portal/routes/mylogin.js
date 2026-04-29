@@ -20,11 +20,13 @@ router.post('/', function(req, res, next) { //recieve a post
     var query = "SELECT * FROM login WHERE user = '" + user + "'";
     var correct = 1; //1 = wrong pass
     dbms.dbquery(query, function (err, results) {
-        if (err) {
+        if (err || results[0] == undefined) {
             console.log("Incorrect User!");
             return res.redirect('/mylogin/admin_error');
         } else {
+
             //does the password equal the user input one?
+            console.log("stored pass:" + results);
             if (results[0].pass == pass)
             {   
                 console.log("good pass!");
@@ -40,7 +42,7 @@ router.post('/', function(req, res, next) { //recieve a post
                     console.error('Session save error:', err);
                     return res.render('admin_error', { message: 'Session error' });
                 }
-                return res.redirect('/mylogin/index'); // indirect render
+                return res.redirect('/'); // indirect render
                 });
 
                 

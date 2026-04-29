@@ -3,11 +3,12 @@
   <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    <link rel="stylesheet" href="stylesheets/topBar.css" />
-  </head>
+   <script src="javascripts/logoutclick.js"></script>
+  
   <style>
-    html, body {
-          margin: 0;
-      }
+html, body {
+  margin: 0;
+}
       /*NavBar Styles*/
 .navbar {
   overflow: hidden;
@@ -42,14 +43,6 @@
   background-color: #94ebee;
   
 }
-
-.dropdown {
-  float: left;
-  overflow: hidden;
-}
-
-
-
   .navbar a:hover, .dropdown:hover .dropbtn, .dropbtn:focus, .button-as-link:hover {
     background-color: #529c9f;
   }
@@ -83,17 +76,18 @@
   border-radius: 10%;
 }
     </style>
+    </head>
   <div class="navbar">
-    <a onclick="window.location.href='../../index.html'">HOME</a>
-    <a onclick="window.location.href='../../mission.html'">MISSION</a>
+    <a href="/"">HOME</a>
+    <a href="/mission">MISSION</a>
     <form action="/projects" method="POST">
             <button class="button-as-link" type="submit">PROJECTS</button>
     </form>
-    <a onclick="window.location.href='../../contactpage.html'">CONTACT</a>
+    <a href="/contact">CONTACT</a>
     <a onclick="newProject()">NEW PROJECT</a>
 
     <div class="login">
-      <a class="rightside" onclick="window.location.href='login.html'">Admin Login</a>
+      <a class="rightside" href="/login_page">Admin Login</a>
     </div>
   </div>
   </body>

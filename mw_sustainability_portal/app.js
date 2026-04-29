@@ -10,12 +10,12 @@ const sessionSecret = crypto.randomBytes(32).toString('hex'); //generate secret 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var projectsRouter = require('./routes/projects');
-var newProjRouter = require('./routes/newProj');
+var newProjRouter = require('./routes/new_proj');
 var loginRouter = require('./routes/mylogin');
 //var protectedRouter = require('./routes/protected'); //check auth
 var uploadProjRouter = require('./routes/upload_new_proj');
 var deleteProjRouter = require('./routes/delete_proj');
-var loginRouter = require('./routes/mylogin');
+var logoutRouter = require('./routes/logout');
 var renderProjRouter = require('./routes/render_project');
 
 var app = express();
@@ -35,17 +35,19 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({extended : true}));
-//app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/projects', projectsRouter);
 app.use('/mylogin', loginRouter);
+app.use('/logout', logoutRouter);
+app.use('/login_page', require('./routes/login_page'));
+app.use('/contact', require('./routes/contact'));
+app.use('/mission', require('./routes/mission'));
 //app.use('/protected', protectedRouter); //check auth
-app.use('/newProj', newProjRouter);
+app.use('/new_proj', newProjRouter);
 app.use('/upload_new_proj', uploadProjRouter);
 app.use('/render_project', renderProjRouter);
 app.use('/delete_proj', deleteProjRouter);

@@ -1,4 +1,7 @@
-/*NavBar Styles*/
+html, body {
+  margin: 0;
+}
+      /*NavBar Styles*/
 .navbar {
   overflow: hidden;
   position: sticky;
