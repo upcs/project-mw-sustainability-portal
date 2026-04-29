@@ -55,12 +55,14 @@ Website Home Page
 - Other: File-based assets and custom script
 
 ## Project Structure
+
+```
 project-mw-sustainability-portal-main/
 │
 ├── public/                 # Static frontend assets
 │   ├── assets/             # Project descriptions by category
 │   ├── images/             # Images and media files
-│   ├── javascripts/        # Client-side JS
+│   ├── javascripts/        # Client-side JavaScript
 │   ├── stylesheets/        # CSS styles
 │   └── index.html          # Static entry page
 │
@@ -72,7 +74,7 @@ project-mw-sustainability-portal-main/
 │   ├── delete_proj.js
 │   └── ...
 │
-├── views/                  # EJS templates (frontend rendering)
+├── views/                  # EJS templates (server-rendered pages)
 │   ├── index.ejs
 │   ├── projects_list.ejs
 │   ├── project_page.ejs
@@ -86,18 +88,31 @@ project-mw-sustainability-portal-main/
 │
 └── README.md
 
+```
+
 ## Getting Started
 1. Clone the repository
-git clone https://github.com/megan-ou/project-mw-sustainability-portal-main.git
+```
+git clone https://github.com/upcs/project-mw-sustainability-portal 
 cd project-mw-sustainability-portal-main
-2. npm install
-3. npm start
+```
+2. Install dependencies
+```
+npm install
+```
+3. Run the application
+```
+npm start
+```
+4. Open in browser
+http://localhost:3000
 
-This is a static website, so you can simply open:
+## Testing
 
-http://locallhost:3000
-
-in your browser.
+Run tests with:
+```
+npm test
+```
 
 ## Usage
 
